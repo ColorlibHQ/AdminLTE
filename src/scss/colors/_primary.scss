@@ -195,7 +195,10 @@
     --#{$prefix}pagination-active-color: var(--#{$lte-prefix}primary-color);
     --#{$prefix}pagination-active-bg: var(--#{$prefix}primary);
     --#{$prefix}pagination-active-border-color: var(--#{$prefix}primary);
-    --#{$prefix}pagination-focus-box-shadow: 0 0 0 $pagination-focus-box-shadow-width rgba(var(--#{$prefix}primary-rgb), #{$focus-ring-opacity});
+    // Sass does not evaluate `$variables` inside a custom property value — it
+    // emits them verbatim — so every part of this has to be interpolated or a
+    // `var()`. Reuses the focus-ring token set on `[data-lte-primary]` above.
+    --#{$prefix}pagination-focus-box-shadow: 0 0 #{$focus-ring-blur} #{$focus-ring-width} var(--#{$prefix}focus-ring-color);
   }
 
   .progress,

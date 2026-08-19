@@ -5,6 +5,12 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.8.1] - 2026-08-19
+
+### Fixed
+
+- **Pagination lost its focus ring under `data-lte-primary`.** Both palette sheets shipped a literal `$pagination-focus-box-shadow-width` in their compiled output: Sass does not evaluate `$variables` inside a custom property value — it emits them verbatim rather than failing — so the typo compiled cleanly, reached the browser as text, and made the declaration invalid. `--bs-pagination-focus-box-shadow` then resolved to nothing and keyboard focus on `.page-link` became invisible, a keyboard-accessibility regression introduced in 4.6.0. The value is now built from Bootstrap's focus-ring tokens (the variable it named never existed; the right one is `$focus-ring-width`) and follows the theme colour. A unit test now scans the compiled output of all three sheets for unresolved Sass variables, since compilation cannot catch this class of typo (#6109, reported by @johnnyq).
+
 ## [4.8.0] - 2026-08-19
 
 ### Added

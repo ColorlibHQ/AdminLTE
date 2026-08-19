@@ -188,6 +188,17 @@ describe('extended palette', () => {
     expect(compileScss('src/scss/adminlte-colors.scss')).not.toContain('data-lte-contrast')
   })
 
+  it('no sheet ships an unresolved Sass variable', () => {
+    // Sass emits `$foo` verbatim inside a custom property value instead of
+    // failing, so this class of typo is silent until the declaration is dropped
+    // by the browser — which is how a broken pagination focus ring shipped
+    // (#6109). Compilation is not enough; the output has to be scanned.
+    for (const entry of ['src/scss/adminlte.scss', 'src/scss/adminlte-colors.scss', 'src/scss/adminlte-colors-v3.scss']) {
+      const leftovers = [...new Set(compileScss(entry).match(/\$[a-z][\w-]*/g) ?? [])]
+      expect(leftovers, entry).toEqual([])
+    }
+  })
+
   it('presets only reference colours that exist', () => {
     const known = new Set([...colors.map(c => c.name), 'primary', 'success', 'danger', 'warning', 'info', 'secondary'])
     for (const set of sets as Array<{ name: string; colors: string[] }>) {

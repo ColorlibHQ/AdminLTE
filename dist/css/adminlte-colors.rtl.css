@@ -1819,7 +1819,7 @@
   --bs-pagination-active-color: var(--lte-primary-color);
   --bs-pagination-active-bg: var(--bs-primary);
   --bs-pagination-active-border-color: var(--bs-primary);
-  --bs-pagination-focus-box-shadow: 0 0 0 $pagination-focus-box-shadow-width rgba(var(--bs-primary-rgb), 0.25);
+  --bs-pagination-focus-box-shadow: 0 0 0 0.25rem var(--bs-focus-ring-color);
 }
 [data-lte-primary] .progress,
 [data-lte-primary] .progress-stacked {
