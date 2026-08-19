@@ -5,6 +5,13 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.8.2] - 2026-08-19
+
+### Maintenance
+
+- **Dev dependencies refreshed** — astro 7.1.6 → 7.2.3, @astrojs/mdx 7.0.5 → 7.0.6, eslint 10.8.0 → 10.8.1, the typescript-eslint trio 8.66.0 → 8.67.0, vitest 4.1.10 → 4.1.11, happy-dom 20.11.1 → 20.11.2, axe-core 4.12.1 → 4.13.0, terser 5.49.2 → 5.50.0, postcss 8.5.25 → 8.5.26, globals 17.9.0 → 17.11.0, concurrently 10.0.4 → 10.0.5, lockfile-lint 5.0.0 → 5.0.1. All within their current majors; `dist/` is byte-identical, so this changes nothing for consumers.
+- **TypeScript stays on 6.0.3.** 7.0.2 is out, but `typescript-eslint` still declares `peerDependencies.typescript: ">=4.8.4 <6.1.0"` and `@astrojs/check` accepts `^5 || ^6`, so the toolchain cannot move yet. It will be picked up when those two allow it.
+
 ## [4.8.1] - 2026-08-19
 
 ### Fixed
