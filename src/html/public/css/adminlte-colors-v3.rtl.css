@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v4.8.0 — AdminLTE 3 color palette (legacy)
+ *   AdminLTE v4.8.1 — AdminLTE 3 color palette (legacy)
  *   Opt-in. The extended colours exactly as AdminLTE 3 shipped them — same
  *   names, same values, same text-colour rule (Bootstrap 4's YIQ brightness
  *   test, so lightblue, olive and teal take white text as they did) — with
@@ -2397,7 +2397,7 @@
   --bs-pagination-active-color: var(--lte-primary-color);
   --bs-pagination-active-bg: var(--bs-primary);
   --bs-pagination-active-border-color: var(--bs-primary);
-  --bs-pagination-focus-box-shadow: 0 0 0 $pagination-focus-box-shadow-width rgba(var(--bs-primary-rgb), 0.25);
+  --bs-pagination-focus-box-shadow: 0 0 0 0.25rem var(--bs-focus-ring-color);
 }
 [data-lte-primary] .progress,
 [data-lte-primary] .progress-stacked {

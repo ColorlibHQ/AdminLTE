@@ -194,7 +194,7 @@ describe('extended palette', () => {
     // by the browser — which is how a broken pagination focus ring shipped
     // (#6109). Compilation is not enough; the output has to be scanned.
     for (const entry of ['src/scss/adminlte.scss', 'src/scss/adminlte-colors.scss', 'src/scss/adminlte-colors-v3.scss']) {
-      const leftovers = [...new Set(compileScss(entry).match(/\$[a-z][\w-]*/g) ?? [])]
+      const leftovers = [...new Set(compileScss(entry).matchAll(/\$[a-z][\w-]*/g).map(m => m[0]))]
       expect(leftovers, entry).toEqual([])
     }
   })
