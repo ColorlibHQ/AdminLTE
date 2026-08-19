@@ -115,3 +115,10 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 {isDocsPage && (
   <link rel="stylesheet" href={deploymentPath + "css/adminlte-docs" + cssPath + ".css"} />
 )}
+
+{/* Cloudflare's Email Obfuscation rewrites any `package@version` it finds in a
+    text node into a "[email protected]" link, which silently breaks every
+    copy-paste install snippet on the docs pages — 31 of them on Integrations
+    alone. These markers switch it off for the page; the same fix docs.adminlte.io
+    uses. Only docs pages carry version-pinned snippets, so only they need it. */}
+{isDocsPage && <Fragment set:html={"<!--email_off-->"} />}

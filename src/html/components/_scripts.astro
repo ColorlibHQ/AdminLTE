@@ -6,6 +6,8 @@ const pathSegments = pathname.split('/').filter(segment => segment !== '');
 const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0;
 const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 const adminlteJsUrl = deploymentPath + "js/adminlte.js";
+// Closes the `email_off` region opened in _head.astro (docs pages only).
+const isDocsPage = Astro.url.pathname.includes("/docs/")
 ---
 
 <!--begin::Third Party Plugin(OverlayScrollbars)-->
@@ -83,3 +85,4 @@ document.addEventListener("DOMContentLoaded", function () {
      in <head> stays inline, because it must run before first paint. -->
 <!--end::Color Mode Toggle-->
 
+{isDocsPage && <Fragment set:html={"<!--email_on-->"} />}
