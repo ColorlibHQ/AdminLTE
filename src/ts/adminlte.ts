@@ -10,7 +10,7 @@ import SidebarSearch from './sidebar-search.js'
 import { initAccessibility } from './accessibility.js'
 
 /**
- * AdminLTE v4.8.2
+ * AdminLTE v4.8.3
  * Author: Colorlib
  * Website: AdminLTE.io <https://adminlte.io>
  * License: Open source - MIT <https://opensource.org/licenses/MIT>

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v4.8.2
+ *   AdminLTE v4.8.3
  *   Author: Colorlib
  *   Website: AdminLTE.io <https://adminlte.io>
  *   License: Open source - MIT <https://opensource.org/licenses/MIT>
@@ -12822,6 +12822,11 @@ textarea.form-control-lg {
 .app-header .nav-link {
   position: relative;
   height: 2.5rem;
+}
+@media (max-width: 575.98px) {
+  .app-header {
+    --bs-navbar-nav-link-padding-x: 0.5rem;
+  }
 }
 
 .navbar-search {

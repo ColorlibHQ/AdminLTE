@@ -5,6 +5,14 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.8.3] - 2026-08-19
+
+### Fixed
+
+- **Every page scrolled sideways on a phone.** At 390px the header's right-hand item row (messages, notifications, fullscreen, user menu) is a little wider than the viewport at Bootstrap's default 1rem nav-link padding, so `document.scrollWidth` came out 22px past `clientWidth` on all 90 demo pages — a horizontal scrollbar on every screen. Below `sm` the header now halves `--bs-navbar-nav-link-padding-x`; from `sm` up nothing changes (the user menu keeps its 182px width and its label). Measured 412/390 before, 390/390 after, desktop unaffected.
+
+  Worth noting for anyone who checks this themselves: measure `scrollWidth > clientWidth`, not `> window.innerWidth` — the layout viewport grows to match the overflow, so the `innerWidth` comparison silently passes.
+
 ## [4.8.2] - 2026-08-19
 
 ### Fixed

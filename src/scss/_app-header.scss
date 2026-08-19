@@ -15,6 +15,14 @@
     position: relative;
     height: $nav-link-height;
   }
+
+  // On a phone the right-hand item row (messages, notifications, fullscreen,
+  // user menu) is a few pixels wider than the viewport at Bootstrap's default
+  // 1rem link padding, which put a horizontal scrollbar on every page. Halve
+  // the padding below `sm`; from `sm` up nothing changes.
+  @include media-breakpoint-down(sm) {
+    --#{$prefix}navbar-nav-link-padding-x: #{$navbar-nav-link-padding-x * .5};
+  }
 }
 
 // Navbar search: a quiet pill with the icon inside; the icon is the submit
