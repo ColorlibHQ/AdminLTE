@@ -1,3 +1,4 @@
+import { globSync } from 'node:fs'
 import { readFileSync, writeFileSync } from 'node:fs'
 import pkg from '../../package.json' with { type: 'json' }
 
@@ -35,6 +36,37 @@ for (const file of banners) {
 
     writeFileSync(file, updated)
     console.log(`sync-version: ${file} -> v${pkg.version}`)
+  } catch (error) {
+    console.error(`sync-version: failed to update ${file}`, error)
+    process.exitCode = 1
+  }
+}
+
+// The docs' copy-paste install snippets pin an exact version, which is the right
+// advice but goes stale the moment it is typed: they still said 4.0.0 eight
+// releases later. Stamp them from package.json too. A floating `admin-lte@4` is
+// left alone — that one is deliberate and never goes stale.
+const snippetRegex = /admin-lte@\d+\.\d+\.\d+(?:-[\w.]+)?/g
+
+const docsFiles = globSync('src/html/components/docs/*.mdx').toSorted((a, b) => a.localeCompare(b))
+
+for (const file of docsFiles) {
+  try {
+    const contents = readFileSync(file, 'utf8')
+
+    if (!snippetRegex.test(contents)) {
+      continue
+    }
+
+    const updated = contents.replaceAll(snippetRegex, `admin-lte@${pkg.version}`)
+
+    if (updated === contents) {
+      console.log(`sync-version: ${file} snippets already at v${pkg.version}`)
+      continue
+    }
+
+    writeFileSync(file, updated)
+    console.log(`sync-version: ${file} snippets -> v${pkg.version}`)
   } catch (error) {
     console.error(`sync-version: failed to update ${file}`, error)
     process.exitCode = 1
