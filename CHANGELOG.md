@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [4.8.2] - 2026-08-19
 
+### Fixed
+
+- **The documentation's install snippets were being served as `[email protected]`.** Cloudflare's Email Obfuscation treats any `package@version` in a text node as an email address and rewrites it as a mailto link — so every version-pinned snippet on the live docs pages was unusable: 31 of them on Integrations (Flatpickr, Tom Select, Quill, Chart.js …), 8 each on Introduction and Deployment, 7 on Getting Started. The docs pages now carry `<!--email_off-->` markers, the same fix docs.adminlte.io already used.
+
+### Changed
+
+- **The docs' install snippets are stamped from `package.json`.** Introduction, Getting Started, Deployment and Colors still pinned `admin-lte@4.0.0`, eight releases after that was current. `sync-version.mjs` now stamps `admin-lte@X.Y.Z` in the docs sources alongside the SCSS/TS banners, so `npm version` keeps them honest. A deliberate floating `admin-lte@4` (the README quick start) is left alone.
+
 ### Maintenance
 
 - **Dev dependencies refreshed** — astro 7.1.6 → 7.2.3, @astrojs/mdx 7.0.5 → 7.0.6, eslint 10.8.0 → 10.8.1, the typescript-eslint trio 8.66.0 → 8.67.0, vitest 4.1.10 → 4.1.11, happy-dom 20.11.1 → 20.11.2, axe-core 4.12.1 → 4.13.0, terser 5.49.2 → 5.50.0, postcss 8.5.25 → 8.5.26, globals 17.9.0 → 17.11.0, concurrently 10.0.4 → 10.0.5, lockfile-lint 5.0.0 → 5.0.1. All within their current majors; `dist/` is byte-identical, so this changes nothing for consumers.
