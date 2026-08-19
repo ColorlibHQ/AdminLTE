@@ -796,35 +796,38 @@
 <span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">h5</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;fw-bold&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Heads up</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">h5</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Body text. </span><span style="color:#808080">&lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;callout-link&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">A link</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">.</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Class</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>.callout</code></td>
-                          <td>Base block: padding and a <code>.25rem</code> left border.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.callout-{color}</code></td>
-                          <td>
-                            One per <code>$theme-colors</code> entry. Sets the background, border
-                            and text-emphasis colours together.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>.callout-link</code></td>
-                          <td>
-                            Bolds a link inside a callout. Plain links and
-                            <code>&lt;code&gt;</code> are already tinted to the variant’s emphasis
-                            colour, so they stay legible on the subtle background.
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Class</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>.callout</code></td>
+                            <td>Base block: padding and a <code>.25rem</code> left border.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.callout-{color}</code></td>
+                            <td>
+                              One per <code>$theme-colors</code> entry. Sets the background, border
+                              and text-emphasis colours together.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>.callout-link</code></td>
+                            <td>
+                              Bolds a link inside a callout. Plain links and
+                              <code>&lt;code&gt;</code> are already tinted to the variant’s emphasis
+                              colour, so they stay legible on the subtle background.
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       Consecutive callouts collapse the gap between them, so a stack reads as one
                       block.
@@ -845,38 +848,42 @@
 <span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-body&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Class</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>.ribbon-wrapper</code></td>
-                          <td>
-                            The square that clips the banner. Must sit inside something positioned —
-                            <code>.card</code> already is; anything else needs
-                            <code>.position-relative</code>.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>.ribbon</code></td>
-                          <td>
-                            The banner itself. Colour comes from a <code>.text-bg-*</code> utility.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>.ribbon-wrapper.ribbon-lg</code></td>
-                          <td>Larger corner, <code>1rem</code> text.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.ribbon-wrapper.ribbon-xl</code></td>
-                          <td>Largest corner, <code>1.25rem</code> text.</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Class</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>.ribbon-wrapper</code></td>
+                            <td>
+                              The square that clips the banner. Must sit inside something positioned
+                              — <code>.card</code> already is; anything else needs
+                              <code>.position-relative</code>.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>.ribbon</code></td>
+                            <td>
+                              The banner itself. Colour comes from a
+                              <code>.text-bg-*</code> utility.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>.ribbon-wrapper.ribbon-lg</code></td>
+                            <td>Larger corner, <code>1rem</code> text.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.ribbon-wrapper.ribbon-xl</code></td>
+                            <td>Largest corner, <code>1.25rem</code> text.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       The banner’s width is derived from <code>--lte-ribbon-size</code>, so
                       overriding that one property rescales the whole thing:
@@ -914,35 +921,40 @@
 <span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">svg</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;small-box-icon&quot;</span><span style="color:#9CDCFE"> aria-hidden</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;true&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">svg</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;small-box-footer link-light&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">More info </span><span style="color:#808080">&lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-link-45deg&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Class</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>.small-box</code></td>
-                          <td>The tile. Pair with a <code>.text-bg-*</code> utility for colour.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.inner</code></td>
-                          <td>Holds the figure and its label.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.small-box-icon</code></td>
-                          <td>
-                            Oversized watermark icon, anchored to the trailing edge. Mark it
-                            <code>aria-hidden=&quot;true&quot;</code>.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>.small-box-footer</code></td>
-                          <td>Full-width footer link.</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Class</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>.small-box</code></td>
+                            <td>
+                              The tile. Pair with a <code>.text-bg-*</code> utility for colour.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>.inner</code></td>
+                            <td>Holds the figure and its label.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.small-box-icon</code></td>
+                            <td>
+                              Oversized watermark icon, anchored to the trailing edge. Mark it
+                              <code>aria-hidden=&quot;true&quot;</code>.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>.small-box-footer</code></td>
+                            <td>Full-width footer link.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="info-box">Info box</h5>
                     <p>A compact stat row: icon, label, figure and an optional progress bar.</p>
                     <pre
@@ -963,44 +975,47 @@
 <span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">span</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;progress-description&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">70% increase in 30 days</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">span</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Class</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>.info-box</code></td>
-                          <td>The row.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.info-box-icon</code></td>
-                          <td>Square icon area. Colour it with <code>.text-bg-*</code>.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.info-box-content</code></td>
-                          <td>Text column.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.info-box-text</code></td>
-                          <td>Label. Truncates rather than wrapping.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.info-box-number</code></td>
-                          <td>The figure.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.info-box-more</code></td>
-                          <td>Optional trailing link.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.progress-description</code></td>
-                          <td>Caption under an embedded progress bar.</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Class</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>.info-box</code></td>
+                            <td>The row.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.info-box-icon</code></td>
+                            <td>Square icon area. Colour it with <code>.text-bg-*</code>.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.info-box-content</code></td>
+                            <td>Text column.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.info-box-text</code></td>
+                            <td>Label. Truncates rather than wrapping.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.info-box-number</code></td>
+                            <td>The figure.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.info-box-more</code></td>
+                            <td>Optional trailing link.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.progress-description</code></td>
+                            <td>Caption under an embedded progress bar.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="timeline">Timeline</h5>
                     <p>A vertical, dated activity list.</p>
                     <pre
@@ -1020,47 +1035,50 @@
 <span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Class</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>.timeline</code></td>
-                          <td>The container, drawing the vertical rule.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.time-label</code></td>
-                          <td>A date marker interrupting the rule.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.timeline-icon</code></td>
-                          <td>The dot on the rule. Colour it with <code>.text-bg-*</code>.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.timeline-item</code></td>
-                          <td>The entry’s panel.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.time</code></td>
-                          <td>Trailing timestamp inside the panel.</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <code>.timeline-header</code> / <code>.timeline-body</code> /
-                            <code>.timeline-footer</code>
-                          </td>
-                          <td>The panel’s three sections. Body and footer are optional.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.timeline-inverse</code></td>
-                          <td>Flat variant: no shadow, a plain border instead.</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Class</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>.timeline</code></td>
+                            <td>The container, drawing the vertical rule.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.time-label</code></td>
+                            <td>A date marker interrupting the rule.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.timeline-icon</code></td>
+                            <td>The dot on the rule. Colour it with <code>.text-bg-*</code>.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.timeline-item</code></td>
+                            <td>The entry’s panel.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.time</code></td>
+                            <td>Trailing timestamp inside the panel.</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code>.timeline-header</code> / <code>.timeline-body</code> /
+                              <code>.timeline-footer</code>
+                            </td>
+                            <td>The panel’s three sections. Body and footer are optional.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.timeline-inverse</code></td>
+                            <td>Flat variant: no shadow, a plain border instead.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       Each entry is a bare <code>&lt;div&gt;</code> wrapping the icon and the item —
                       the wrapper carries no class.
@@ -1083,59 +1101,62 @@
 <span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">span</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;username&quot;</span><span style="color:#808080">&gt;&lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Jonathan Burke Jr.</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">span</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">span</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;description&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Shared publicly · 7:30 PM today</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">span</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Class</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>.user-block</code></td>
-                          <td>
-                            Avatar, name and meta line from flat markup — the avatar spans both text
-                            rows, so no wrapper element is needed. An optional
-                            <code>.comment</code> lands on a third row.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>.user-block.user-block-sm</code></td>
-                          <td>Smaller avatar and type, for comment threads.</td>
-                        </tr>
-                        <tr>
-                          <td><code>.post</code></td>
-                          <td>
-                            One entry in a feed. Divided from the next; the last entry drops its
-                            divider and trailing space.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>.description-block</code></td>
-                          <td>
-                            A centred figure with an uppercase caption —
-                            <code>.description-header</code> and <code>.description-text</code>.
-                            Repeat across a card footer’s columns.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>.widget-user</code></td>
-                          <td>
-                            Profile card with a banner header and an avatar straddling the
-                            header/footer seam. Needs <code>.widget-user-header</code>,
-                            <code>.widget-user-image</code>, <code>.widget-user-username</code>,
-                            <code>.widget-user-desc</code>.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>.widget-user-2</code></td>
-                          <td>
-                            Shorter variant with the avatar inline in the header, so long names can
-                            wrap.
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Class</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>.user-block</code></td>
+                            <td>
+                              Avatar, name and meta line from flat markup — the avatar spans both
+                              text rows, so no wrapper element is needed. An optional
+                              <code>.comment</code> lands on a third row.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>.user-block.user-block-sm</code></td>
+                            <td>Smaller avatar and type, for comment threads.</td>
+                          </tr>
+                          <tr>
+                            <td><code>.post</code></td>
+                            <td>
+                              One entry in a feed. Divided from the next; the last entry drops its
+                              divider and trailing space.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>.description-block</code></td>
+                            <td>
+                              A centred figure with an uppercase caption —
+                              <code>.description-header</code> and <code>.description-text</code>.
+                              Repeat across a card footer’s columns.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>.widget-user</code></td>
+                            <td>
+                              Profile card with a banner header and an avatar straddling the
+                              header/footer seam. Needs <code>.widget-user-header</code>,
+                              <code>.widget-user-image</code>, <code>.widget-user-username</code>,
+                              <code>.widget-user-desc</code>.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>.widget-user-2</code></td>
+                            <td>
+                              Shorter variant with the avatar inline in the header, so long names
+                              can wrap.
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       For <code>.widget-user</code>, the header’s height and the avatar’s size are
                       Sass variables (<code>$lte-widget-user-header-height</code>,
@@ -1144,28 +1165,31 @@
                     </p>
                     <h5 id="progress-bars">Progress bars</h5>
                     <p>Extra sizes on top of Bootstrap’s <code>.progress</code>.</p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Class</th>
-                          <th>Height</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>.progress-sm</code></td>
-                          <td><code>10px</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.progress-xs</code></td>
-                          <td><code>7px</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.progress-xxs</code></td>
-                          <td><code>3px</code></td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Class</th>
+                            <th>Height</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>.progress-sm</code></td>
+                            <td><code>10px</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.progress-xs</code></td>
+                            <td><code>7px</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.progress-xxs</code></td>
+                            <td><code>3px</code></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       <code>.progress.vertical</code> turns a bar on its side, and
                       <code>.progress-group</code> pairs a bar with a label row.

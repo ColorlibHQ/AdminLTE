@@ -811,35 +811,38 @@
 <span class="line"><span style="color:#D4D4D4">    No matching pages.</span></span>
 <span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Attribute</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>data-lte-toggle=&quot;sidebar-search&quot;</code></td>
-                          <td>Marks the input as a menu filter.</td>
-                        </tr>
-                        <tr>
-                          <td><code>data-lte-target</code></td>
-                          <td>
-                            Selector for the menu to filter. Optional — without it, the
-                            <code>.sidebar-menu</code> inside the input’s own
-                            <code>.app-sidebar</code> is used.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>data-lte-search-empty</code></td>
-                          <td>
-                            Optional element shown only while a query matches nothing. Give it
-                            <code>role=&quot;status&quot;</code> so the result is announced.
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Attribute</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>data-lte-toggle=&quot;sidebar-search&quot;</code></td>
+                            <td>Marks the input as a menu filter.</td>
+                          </tr>
+                          <tr>
+                            <td><code>data-lte-target</code></td>
+                            <td>
+                              Selector for the menu to filter. Optional — without it, the
+                              <code>.sidebar-menu</code> inside the input’s own
+                              <code>.app-sidebar</code> is used.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>data-lte-search-empty</code></td>
+                            <td>
+                              Optional element shown only while a query matches nothing. Give it
+                              <code>role=&quot;status&quot;</code> so the result is announced.
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       <code>type=&quot;search&quot;</code> is worth using: the browser’s built-in
                       clear button fires <code>input</code>, so it restores the menu for free.
@@ -864,24 +867,27 @@
                       </li>
                     </ul>
                     <h5 id="events">Events</h5>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Event</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>filtered.lte.sidebar-search</code></td>
-                          <td>
-                            Fired on the input after each filter pass. <code>event.detail</code> is
-                            <code>{ query, matches }</code>; <code>matches</code> is
-                            <code>-1</code> when the filter was cleared.
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Event</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>filtered.lte.sidebar-search</code></td>
+                            <td>
+                              Fired on the input after each filter pass.
+                              <code>event.detail</code> is <code>{ query, matches }</code>;
+                              <code>matches</code> is <code>-1</code> when the filter was cleared.
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <pre
                       class="astro-code dark-plus"
                       style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
@@ -905,47 +911,51 @@
 <span class="line"><span style="color:#9CDCFE">search</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">clear</span><span style="color:#D4D4D4">()           </span><span style="color:#6A9955">// restore it</span></span>
 <span class="line"><span style="color:#9CDCFE">search</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">dispose</span><span style="color:#D4D4D4">()         </span><span style="color:#6A9955">// restore, then drop the instance</span></span></code></pre>
                     <h6 id="methods">Methods</h6>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Method</th>
-                          <th>Returns</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>search(term)</code></td>
-                          <td><code>void</code></td>
-                          <td>
-                            Filters the menu to entries matching <code>term</code>. An empty or
-                            whitespace-only term calls <code>clear()</code>.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>clear()</code></td>
-                          <td><code>void</code></td>
-                          <td>
-                            Un-hides every entry and restores each submenu’s pre-search open state.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>dispose()</code></td>
-                          <td><code>void</code></td>
-                          <td>Clears the filter, then removes the instance from the registry.</td>
-                        </tr>
-                        <tr>
-                          <td><code>SidebarSearch.getInstance(el)</code></td>
-                          <td><code>SidebarSearch | null</code></td>
-                          <td>The existing instance for an element, if any.</td>
-                        </tr>
-                        <tr>
-                          <td><code>SidebarSearch.getOrCreateInstance(el)</code></td>
-                          <td><code>SidebarSearch</code></td>
-                          <td>The existing instance, or a new one.</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>Returns</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>search(term)</code></td>
+                            <td><code>void</code></td>
+                            <td>
+                              Filters the menu to entries matching <code>term</code>. An empty or
+                              whitespace-only term calls <code>clear()</code>.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>clear()</code></td>
+                            <td><code>void</code></td>
+                            <td>
+                              Un-hides every entry and restores each submenu’s pre-search open
+                              state.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>dispose()</code></td>
+                            <td><code>void</code></td>
+                            <td>Clears the filter, then removes the instance from the registry.</td>
+                          </tr>
+                          <tr>
+                            <td><code>SidebarSearch.getInstance(el)</code></td>
+                            <td><code>SidebarSearch | null</code></td>
+                            <td>The existing instance for an element, if any.</td>
+                          </tr>
+                          <tr>
+                            <td><code>SidebarSearch.getOrCreateInstance(el)</code></td>
+                            <td><code>SidebarSearch</code></td>
+                            <td>The existing instance, or a new one.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       The constructor takes no config — the target menu comes from
                       <code>data-lte-target</code>.

@@ -5,6 +5,12 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.8.4] - 2026-08-19
+
+### Fixed
+
+- **Reference tables on the docs pages pushed the page sideways on a phone.** Markdown pipe-tables render as a bare `<table>` with no scroll container, so anything wider than three columns overflowed the viewport — 265px of it on the Colors page. They are now wrapped in `.table-responsive` with a tab stop, exactly like the hand-written tables next to them, so the table scrolls inside the column and stays keyboard-reachable. Desktop layout is unchanged.
+
 ## [4.8.3] - 2026-08-19
 
 ### Fixed

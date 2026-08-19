@@ -909,61 +909,66 @@
                       Layout behaviour is mostly controlled by classes on <code>&lt;body&gt;</code>,
                       not <code>.app-wrapper</code>. The supported modifiers:
                     </p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Class</th>
-                          <th>What it does</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>layout-fixed</code></td>
-                          <td>
-                            Sidebar gets its own scrollbar; only <code>.app-main</code> scrolls with
-                            the page
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>fixed-header</code></td>
-                          <td>
-                            Sticky <code>.app-header</code> at the top; sidebar also pins (since
-                            v4.0.0)
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>fixed-footer</code></td>
-                          <td>Sticky <code>.app-footer</code> at the bottom</td>
-                        </tr>
-                        <tr>
-                          <td><code>sidebar-expand-{sm,md,lg,xl,xxl}</code></td>
-                          <td>
-                            Breakpoint at which the sidebar transitions from off-canvas (mobile) to
-                            inline (desktop). <code>lg</code> is the default in the demos.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>sidebar-mini</code></td>
-                          <td>Collapses sidebar to icon-only mini state</td>
-                        </tr>
-                        <tr>
-                          <td><code>sidebar-mini sidebar-collapse</code></td>
-                          <td>Starts the page with the mini sidebar already collapsed</td>
-                        </tr>
-                        <tr>
-                          <td><code>sidebar-without-hover</code></td>
-                          <td>Disables the auto-expand-on-hover behaviour for the mini sidebar</td>
-                        </tr>
-                        <tr>
-                          <td><code>layout-rtl</code></td>
-                          <td>
-                            Mirrors the layout for right-to-left languages (also requires
-                            <code>.rtl.css</code> and <code>dir=&quot;rtl&quot;</code> — see
-                            <a href="rtl.html">RTL Support</a>)
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Class</th>
+                            <th>What it does</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>layout-fixed</code></td>
+                            <td>
+                              Sidebar gets its own scrollbar; only <code>.app-main</code> scrolls
+                              with the page
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>fixed-header</code></td>
+                            <td>
+                              Sticky <code>.app-header</code> at the top; sidebar also pins (since
+                              v4.0.0)
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>fixed-footer</code></td>
+                            <td>Sticky <code>.app-footer</code> at the bottom</td>
+                          </tr>
+                          <tr>
+                            <td><code>sidebar-expand-{sm,md,lg,xl,xxl}</code></td>
+                            <td>
+                              Breakpoint at which the sidebar transitions from off-canvas (mobile)
+                              to inline (desktop). <code>lg</code> is the default in the demos.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>sidebar-mini</code></td>
+                            <td>Collapses sidebar to icon-only mini state</td>
+                          </tr>
+                          <tr>
+                            <td><code>sidebar-mini sidebar-collapse</code></td>
+                            <td>Starts the page with the mini sidebar already collapsed</td>
+                          </tr>
+                          <tr>
+                            <td><code>sidebar-without-hover</code></td>
+                            <td>
+                              Disables the auto-expand-on-hover behaviour for the mini sidebar
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>layout-rtl</code></td>
+                            <td>
+                              Mirrors the layout for right-to-left languages (also requires
+                              <code>.rtl.css</code> and <code>dir=&quot;rtl&quot;</code> — see
+                              <a href="rtl.html">RTL Support</a>)
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       These compose. The demo dashboards use
                       <code>class=&quot;layout-fixed sidebar-expand-lg bg-body-tertiary&quot;</code>
@@ -1005,27 +1010,32 @@
                       the user clicks the hamburger toggle.
                     </p>
                     <p>Mobile-specific classes:</p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Class</th>
-                          <th>When applied</th>
-                          <th>Effect</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>sidebar-open</code></td>
-                          <td>Body — when the user explicitly opens the mobile sidebar</td>
-                          <td>Slides the sidebar in over the content with an overlay</td>
-                        </tr>
-                        <tr>
-                          <td><code>sidebar-collapse</code></td>
-                          <td>Body — set automatically when the user closes the mobile sidebar</td>
-                          <td>Hides the sidebar</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Class</th>
+                            <th>When applied</th>
+                            <th>Effect</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>sidebar-open</code></td>
+                            <td>Body — when the user explicitly opens the mobile sidebar</td>
+                            <td>Slides the sidebar in over the content with an overlay</td>
+                          </tr>
+                          <tr>
+                            <td><code>sidebar-collapse</code></td>
+                            <td>
+                              Body — set automatically when the user closes the mobile sidebar
+                            </td>
+                            <td>Hides the sidebar</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       These are managed by the
                       <a href="javascript/pushmenu.html">PushMenu plugin</a> — you don’t write them

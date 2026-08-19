@@ -802,27 +802,30 @@
                       Configure the sidebar via data attributes on the
                       <code>.app-sidebar</code> element:
                     </p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Attribute</th>
-                          <th>Default</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>data-sidebar-breakpoint</code></td>
-                          <td><code>991.98</code></td>
-                          <td>Screen width (px) below which the sidebar is considered mobile.</td>
-                        </tr>
-                        <tr>
-                          <td><code>data-enable-persistence</code></td>
-                          <td><code>false</code></td>
-                          <td>Save sidebar state to localStorage across page loads.</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Attribute</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>data-sidebar-breakpoint</code></td>
+                            <td><code>991.98</code></td>
+                            <td>Screen width (px) below which the sidebar is considered mobile.</td>
+                          </tr>
+                          <tr>
+                            <td><code>data-enable-persistence</code></td>
+                            <td><code>false</code></td>
+                            <td>Save sidebar state to localStorage across page loads.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <pre
                       class="astro-code dark-plus"
                       style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
@@ -844,64 +847,70 @@
                       </li>
                     </ul>
                     <h5 id="css-classes">CSS Classes</h5>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Class</th>
-                          <th>Applied to</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>sidebar-collapse</code></td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>Sidebar is collapsed.</td>
-                        </tr>
-                        <tr>
-                          <td><code>sidebar-open</code></td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>Sidebar is explicitly open on mobile.</td>
-                        </tr>
-                        <tr>
-                          <td><code>sidebar-mini</code></td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>Enables mini sidebar mode (icons only when collapsed).</td>
-                        </tr>
-                        <tr>
-                          <td><code>sidebar-without-hover</code></td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>Prevents collapsed sidebar from expanding on hover.</td>
-                        </tr>
-                        <tr>
-                          <td><code>sidebar-expand-{breakpoint}</code></td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>
-                            Sets the responsive breakpoint (<code>sm</code>, <code>md</code>,
-                            <code>lg</code>, <code>xl</code>, <code>xxl</code>).
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Class</th>
+                            <th>Applied to</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>sidebar-collapse</code></td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>Sidebar is collapsed.</td>
+                          </tr>
+                          <tr>
+                            <td><code>sidebar-open</code></td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>Sidebar is explicitly open on mobile.</td>
+                          </tr>
+                          <tr>
+                            <td><code>sidebar-mini</code></td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>Enables mini sidebar mode (icons only when collapsed).</td>
+                          </tr>
+                          <tr>
+                            <td><code>sidebar-without-hover</code></td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>Prevents collapsed sidebar from expanding on hover.</td>
+                          </tr>
+                          <tr>
+                            <td><code>sidebar-expand-{breakpoint}</code></td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>
+                              Sets the responsive breakpoint (<code>sm</code>, <code>md</code>,
+                              <code>lg</code>, <code>xl</code>, <code>xxl</code>).
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="events">Events</h5>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Event</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>open.lte.push-menu</code></td>
-                          <td>Fired when the sidebar is expanded.</td>
-                        </tr>
-                        <tr>
-                          <td><code>collapse.lte.push-menu</code></td>
-                          <td>Fired when the sidebar is collapsed.</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Event</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>open.lte.push-menu</code></td>
+                            <td>Fired when the sidebar is expanded.</td>
+                          </tr>
+                          <tr>
+                            <td><code>collapse.lte.push-menu</code></td>
+                            <td>Fired when the sidebar is collapsed.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>Both events bubble. Listen on <code>document</code> for a global hook:</p>
                     <pre
                       class="astro-code dark-plus"
@@ -928,94 +937,100 @@
 <span class="line"><span style="color:#9CDCFE">  enablePersistence:</span><span style="color:#569CD6"> false</span></span>
 <span class="line"><span style="color:#D4D4D4">})</span></span></code></pre>
                     <h6 id="methods">Methods</h6>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Method</th>
-                          <th>Returns</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>toggle()</code></td>
-                          <td><code>void</code></td>
-                          <td>
-                            Expands or collapses the sidebar based on current state. Persists state
-                            if <code>enablePersistence</code> is <code>true</code>.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>expand()</code></td>
-                          <td><code>void</code></td>
-                          <td>Expands the sidebar. Fires <code>open.lte.push-menu</code>.</td>
-                        </tr>
-                        <tr>
-                          <td><code>collapse()</code></td>
-                          <td><code>void</code></td>
-                          <td>Collapses the sidebar. Fires <code>collapse.lte.push-menu</code>.</td>
-                        </tr>
-                        <tr>
-                          <td><code>isCollapsed()</code></td>
-                          <td><code>boolean</code></td>
-                          <td>
-                            <code>true</code> if <code>&lt;body&gt;</code> has
-                            <code>sidebar-collapse</code> class.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>isExplicitlyOpen()</code></td>
-                          <td><code>boolean</code></td>
-                          <td>
-                            <code>true</code> if <code>&lt;body&gt;</code> has
-                            <code>sidebar-open</code> (mobile, user opened it).
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>isMiniMode()</code></td>
-                          <td><code>boolean</code></td>
-                          <td>
-                            <code>true</code> if <code>&lt;body&gt;</code> has
-                            <code>sidebar-mini</code>.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>isMobileSize()</code></td>
-                          <td><code>boolean</code></td>
-                          <td>
-                            <code>true</code> if <code>window.innerWidth ≤ sidebarBreakpoint</code>.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>saveSidebarState(state)</code></td>
-                          <td><code>void</code></td>
-                          <td>
-                            Manually save state to localStorage (<code
-                              >&quot;sidebar-open&quot;</code
-                            >
-                            or <code>&quot;sidebar-collapse&quot;</code>).
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>loadSidebarState()</code></td>
-                          <td><code>void</code></td>
-                          <td>Read state from localStorage and apply it.</td>
-                        </tr>
-                        <tr>
-                          <td><code>clearSidebarState()</code></td>
-                          <td><code>void</code></td>
-                          <td>Remove saved state from localStorage.</td>
-                        </tr>
-                        <tr>
-                          <td><code>updateStateByResponsiveLogic()</code></td>
-                          <td><code>void</code></td>
-                          <td>
-                            Recompute correct state based on viewport size (collapse on mobile,
-                            expand on desktop unless mini). Called automatically on resize.
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>Returns</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>toggle()</code></td>
+                            <td><code>void</code></td>
+                            <td>
+                              Expands or collapses the sidebar based on current state. Persists
+                              state if <code>enablePersistence</code> is <code>true</code>.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>expand()</code></td>
+                            <td><code>void</code></td>
+                            <td>Expands the sidebar. Fires <code>open.lte.push-menu</code>.</td>
+                          </tr>
+                          <tr>
+                            <td><code>collapse()</code></td>
+                            <td><code>void</code></td>
+                            <td>
+                              Collapses the sidebar. Fires <code>collapse.lte.push-menu</code>.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>isCollapsed()</code></td>
+                            <td><code>boolean</code></td>
+                            <td>
+                              <code>true</code> if <code>&lt;body&gt;</code> has
+                              <code>sidebar-collapse</code> class.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>isExplicitlyOpen()</code></td>
+                            <td><code>boolean</code></td>
+                            <td>
+                              <code>true</code> if <code>&lt;body&gt;</code> has
+                              <code>sidebar-open</code> (mobile, user opened it).
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>isMiniMode()</code></td>
+                            <td><code>boolean</code></td>
+                            <td>
+                              <code>true</code> if <code>&lt;body&gt;</code> has
+                              <code>sidebar-mini</code>.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>isMobileSize()</code></td>
+                            <td><code>boolean</code></td>
+                            <td>
+                              <code>true</code> if
+                              <code>window.innerWidth ≤ sidebarBreakpoint</code>.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>saveSidebarState(state)</code></td>
+                            <td><code>void</code></td>
+                            <td>
+                              Manually save state to localStorage (<code
+                                >&quot;sidebar-open&quot;</code
+                              >
+                              or <code>&quot;sidebar-collapse&quot;</code>).
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>loadSidebarState()</code></td>
+                            <td><code>void</code></td>
+                            <td>Read state from localStorage and apply it.</td>
+                          </tr>
+                          <tr>
+                            <td><code>clearSidebarState()</code></td>
+                            <td><code>void</code></td>
+                            <td>Remove saved state from localStorage.</td>
+                          </tr>
+                          <tr>
+                            <td><code>updateStateByResponsiveLogic()</code></td>
+                            <td><code>void</code></td>
+                            <td>
+                              Recompute correct state based on viewport size (collapse on mobile,
+                              expand on desktop unless mini). Called automatically on resize.
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h6 id="storage-key">Storage key</h6>
                     <p>
                       When <code>enablePersistence</code> is enabled, the plugin reads/writes

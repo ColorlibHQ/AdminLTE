@@ -945,7 +945,7 @@
                       style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
                       tabindex="0"
                       data-language="html"
-                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.8.3/dist/css/adminlte-colors.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span></code></pre>
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.8.4/dist/css/adminlte-colors.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span></code></pre>
                     <p>From npm, in a bundler:</p>
                     <pre
                       class="astro-code dark-plus"
@@ -968,43 +968,46 @@
                       ship as two files that define the same class names with different values, so
                       load <strong>one</strong> of them after <code>adminlte.css</code>:
                     </p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>File</th>
-                          <th>What you get</th>
-                          <th>Text colour rule</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>dist/css/adminlte-colors.css</code></td>
-                          <td>
-                            14 colours designed in OKLCH — orange, amber, olive, teal, sky, indigo,
-                            violet, fuchsia, pink, navy, steel, slate, graphite, midnight — every
-                            one readable with white text, placed to sit next to Bootstrap’s theme
-                            colours
-                          </td>
-                          <td>Bootstrap 5’s <code>color-contrast()</code>, 4.5:1</td>
-                        </tr>
-                        <tr>
-                          <td><code>dist/css/adminlte-colors-v3.css</code></td>
-                          <td>
-                            the 18 AdminLTE 3 colours — lightblue, navy, olive, lime, fuchsia,
-                            maroon, blue, indigo, purple, pink, red, orange, yellow, green, teal,
-                            cyan, gray, gray-dark — values as they were in the 3.2 build
-                          </td>
-                          <td>
-                            AdminLTE 3’s rule (Bootstrap 4 YIQ): white on lightblue, olive, teal,
-                            cyan …; dark on lime, orange, yellow. Eight miss WCAG AA —
-                            <a href="#making-the-v3-colours-pass-aa"
-                              ><code>data-lte-contrast=&quot;aa&quot;</code></a
-                            >
-                            flips those
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>File</th>
+                            <th>What you get</th>
+                            <th>Text colour rule</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>dist/css/adminlte-colors.css</code></td>
+                            <td>
+                              14 colours designed in OKLCH — orange, amber, olive, teal, sky,
+                              indigo, violet, fuchsia, pink, navy, steel, slate, graphite, midnight
+                              — every one readable with white text, placed to sit next to
+                              Bootstrap’s theme colours
+                            </td>
+                            <td>Bootstrap 5’s <code>color-contrast()</code>, 4.5:1</td>
+                          </tr>
+                          <tr>
+                            <td><code>dist/css/adminlte-colors-v3.css</code></td>
+                            <td>
+                              the 18 AdminLTE 3 colours — lightblue, navy, olive, lime, fuchsia,
+                              maroon, blue, indigo, purple, pink, red, orange, yellow, green, teal,
+                              cyan, gray, gray-dark — values as they were in the 3.2 build
+                            </td>
+                            <td>
+                              AdminLTE 3’s rule (Bootstrap 4 YIQ): white on lightblue, olive, teal,
+                              cyan …; dark on lime, orange, yellow. Eight miss WCAG AA —
+                              <a href="#making-the-v3-colours-pass-aa"
+                                ><code>data-lte-contrast=&quot;aa&quot;</code></a
+                              >
+                              flips those
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       Both emit exactly the same class families (<code>.bg-*</code>,
                       <code>.text-bg-*</code>, <code>.text-*</code>, <code>.border-*</code>,
@@ -1858,98 +1861,101 @@
                       Bootstrap emits for a theme colour, so opacity modifiers and dark mode work
                       exactly as you would expect:
                     </p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>You get</th>
-                          <th>Example</th>
-                          <th>Notes</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Tokens</td>
-                          <td><code>--bs-teal</code>, <code>--bs-teal-rgb</code></td>
-                          <td>
-                            Plus <code>--bs-teal-bg-subtle</code>,
-                            <code>--bs-teal-border-subtle</code>,
-                            <code>--bs-teal-text-emphasis</code> in both colour modes
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Background</td>
-                          <td><code>.bg-teal</code>, <code>.bg-teal.bg-opacity-25</code></td>
-                          <td>Same variable shape as <code>.bg-primary</code></td>
-                        </tr>
-                        <tr>
-                          <td>Background + contrast text</td>
-                          <td><code>.text-bg-teal</code></td>
-                          <td>White text; this is what widgets use</td>
-                        </tr>
-                        <tr>
-                          <td>Gradient</td>
-                          <td><code>.bg-gradient-teal</code></td>
-                          <td>
-                            The AdminLTE 3 class; also emitted for the 8 theme colours (<code
-                              >.bg-gradient-primary</code
-                            >
-                            …). Bootstrap’s composable <code>.bg-teal.bg-gradient</code> gives the
-                            same result
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Text, border, link</td>
-                          <td>
-                            <code>.text-teal</code>, <code>.border-teal</code>,
-                            <code>.link-teal</code>
-                          </td>
-                          <td>
-                            With <code>.text-opacity-*</code>, <code>.border-opacity-*</code>,
-                            <code>.link-underline-*</code>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Cards</td>
-                          <td>
-                            <code>.card-teal</code>, <code>.card-outline.card-teal</code>,
-                            <code>.card.text-bg-teal</code>
-                          </td>
-                          <td>
-                            Feeds the same <code>--lte-card-variant-*</code> variables the
-                            theme-colour cards use
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Callouts</td>
-                          <td><code>.callout-teal</code></td>
-                          <td>Subtle background, emphasis text — flips in dark mode</td>
-                        </tr>
-                        <tr>
-                          <td>Direct chat</td>
-                          <td><code>.direct-chat-teal</code></td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td>Widgets</td>
-                          <td>
-                            <code>.small-box.text-bg-teal</code>,
-                            <code>.info-box.text-bg-teal</code>, <code>.badge.text-bg-teal</code>,
-                            <code>.progress-bar.bg-teal</code>
-                          </td>
-                          <td>
-                            These already colour themselves through <code>.text-bg-*</code> /
-                            <code>.bg-*</code>, so nothing extra is emitted
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Buttons</td>
-                          <td>
-                            <code>.btn.text-bg-teal</code>, <code>.btn.bg-gradient-teal</code>
-                          </td>
-                          <td>Get a hover / active shade so they don’t look inert</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>You get</th>
+                            <th>Example</th>
+                            <th>Notes</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Tokens</td>
+                            <td><code>--bs-teal</code>, <code>--bs-teal-rgb</code></td>
+                            <td>
+                              Plus <code>--bs-teal-bg-subtle</code>,
+                              <code>--bs-teal-border-subtle</code>,
+                              <code>--bs-teal-text-emphasis</code> in both colour modes
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Background</td>
+                            <td><code>.bg-teal</code>, <code>.bg-teal.bg-opacity-25</code></td>
+                            <td>Same variable shape as <code>.bg-primary</code></td>
+                          </tr>
+                          <tr>
+                            <td>Background + contrast text</td>
+                            <td><code>.text-bg-teal</code></td>
+                            <td>White text; this is what widgets use</td>
+                          </tr>
+                          <tr>
+                            <td>Gradient</td>
+                            <td><code>.bg-gradient-teal</code></td>
+                            <td>
+                              The AdminLTE 3 class; also emitted for the 8 theme colours (<code
+                                >.bg-gradient-primary</code
+                              >
+                              …). Bootstrap’s composable <code>.bg-teal.bg-gradient</code> gives the
+                              same result
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Text, border, link</td>
+                            <td>
+                              <code>.text-teal</code>, <code>.border-teal</code>,
+                              <code>.link-teal</code>
+                            </td>
+                            <td>
+                              With <code>.text-opacity-*</code>, <code>.border-opacity-*</code>,
+                              <code>.link-underline-*</code>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Cards</td>
+                            <td>
+                              <code>.card-teal</code>, <code>.card-outline.card-teal</code>,
+                              <code>.card.text-bg-teal</code>
+                            </td>
+                            <td>
+                              Feeds the same <code>--lte-card-variant-*</code> variables the
+                              theme-colour cards use
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Callouts</td>
+                            <td><code>.callout-teal</code></td>
+                            <td>Subtle background, emphasis text — flips in dark mode</td>
+                          </tr>
+                          <tr>
+                            <td>Direct chat</td>
+                            <td><code>.direct-chat-teal</code></td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>Widgets</td>
+                            <td>
+                              <code>.small-box.text-bg-teal</code>,
+                              <code>.info-box.text-bg-teal</code>, <code>.badge.text-bg-teal</code>,
+                              <code>.progress-bar.bg-teal</code>
+                            </td>
+                            <td>
+                              These already colour themselves through <code>.text-bg-*</code> /
+                              <code>.bg-*</code>, so nothing extra is emitted
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Buttons</td>
+                            <td>
+                              <code>.btn.text-bg-teal</code>, <code>.btn.bg-gradient-teal</code>
+                            </td>
+                            <td>Get a hover / active shade so they don’t look inert</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="making-one-of-them-your-primary">
                       Making one of them your <code>primary</code>
                     </h5>
@@ -1977,67 +1983,70 @@
                       Nothing changes without the attribute, and it works on any container — a
                       section of a page can carry its own primary. What follows the colour:
                     </p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Follows</th>
-                          <th>Details</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Buttons</td>
-                          <td>
-                            <code>.btn-primary</code>, <code>.btn-outline-primary</code> (hover,
-                            active and disabled states shaded exactly as Bootstrap shades its own),
-                            <code>.btn-link</code>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Links</td>
-                          <td>
-                            <code>a</code>, <code>.link-primary</code>, <code>.btn-link</code>,
-                            pagination links — with Bootstrap’s dark-mode tint in dark mode
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Utilities and tokens</td>
-                          <td>
-                            <code>--bs-primary</code>, <code>--bs-primary-rgb</code>, the subtle /
-                            emphasis trio, <code>.text-primary</code>, <code>.bg-primary</code>,
-                            <code>.border-primary</code>, <code>.text-bg-primary</code>,
-                            <code>.alert-primary</code>, <code>.list-group-item-primary</code>,
-                            <code>.accordion</code>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Forms</td>
-                          <td>
-                            Focus ring and focus border on <code>.form-control</code> /
-                            <code>.form-select</code>, <code>.form-check-input:checked</code>,
-                            indeterminate checkboxes, <code>.form-range</code> thumbs
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Components</td>
-                          <td>
-                            <code>.nav-pills .nav-link.active</code>,
-                            <code>.pagination .active</code>, <code>.progress-bar</code>,
-                            <code>.list-group-item.active</code>,
-                            <code>.dropdown-item.active</code>, <code>--bs-focus-ring-color</code>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>AdminLTE</td>
-                          <td>
-                            <code>.card-primary</code> (and <code>.card-outline</code>),
-                            <code>.direct-chat-primary</code>, <code>.toast-primary</code>,
-                            <code>.small-box</code>/<code>.info-box</code> carrying
-                            <code>.bg-primary</code>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Follows</th>
+                            <th>Details</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Buttons</td>
+                            <td>
+                              <code>.btn-primary</code>, <code>.btn-outline-primary</code> (hover,
+                              active and disabled states shaded exactly as Bootstrap shades its
+                              own), <code>.btn-link</code>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Links</td>
+                            <td>
+                              <code>a</code>, <code>.link-primary</code>, <code>.btn-link</code>,
+                              pagination links — with Bootstrap’s dark-mode tint in dark mode
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Utilities and tokens</td>
+                            <td>
+                              <code>--bs-primary</code>, <code>--bs-primary-rgb</code>, the subtle /
+                              emphasis trio, <code>.text-primary</code>, <code>.bg-primary</code>,
+                              <code>.border-primary</code>, <code>.text-bg-primary</code>,
+                              <code>.alert-primary</code>, <code>.list-group-item-primary</code>,
+                              <code>.accordion</code>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Forms</td>
+                            <td>
+                              Focus ring and focus border on <code>.form-control</code> /
+                              <code>.form-select</code>, <code>.form-check-input:checked</code>,
+                              indeterminate checkboxes, <code>.form-range</code> thumbs
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Components</td>
+                            <td>
+                              <code>.nav-pills .nav-link.active</code>,
+                              <code>.pagination .active</code>, <code>.progress-bar</code>,
+                              <code>.list-group-item.active</code>,
+                              <code>.dropdown-item.active</code>, <code>--bs-focus-ring-color</code>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>AdminLTE</td>
+                            <td>
+                              <code>.card-primary</code> (and <code>.card-outline</code>),
+                              <code>.direct-chat-primary</code>, <code>.toast-primary</code>,
+                              <code>.small-box</code>/<code>.info-box</code> carrying
+                              <code>.bg-primary</code>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       Bootstrap’s own theme colours work too —
                       <code>data-lte-primary=&quot;danger&quot;</code> needs no palette colour at
@@ -4394,63 +4403,66 @@
                       (<code>navy</code>, <code>olive</code>, <code>fuchsia</code>) and remakes the
                       rest:
                     </p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>AdminLTE 3</th>
-                          <th>Now</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>bg-lightblue</code></td>
-                          <td><code>text-bg-sky</code></td>
-                          <td>Same hue, set so white text passes</td>
-                        </tr>
-                        <tr>
-                          <td><code>bg-maroon</code></td>
-                          <td><code>text-bg-pink</code></td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <code>bg-navy</code> / <code>bg-olive</code> / <code>bg-fuchsia</code>
-                          </td>
-                          <td>same names</td>
-                          <td>Values redesigned</td>
-                        </tr>
-                        <tr>
-                          <td><code>bg-lime</code></td>
-                          <td>—</td>
-                          <td>
-                            No white-text lime exists; use <code>text-bg-olive</code> or Bootstrap’s
-                            <code>text-bg-warning</code>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <code>bg-purple</code>, <code>bg-teal</code>, <code>bg-orange</code>,
-                            <code>bg-indigo</code> …
-                          </td>
-                          <td>
-                            <code>text-bg-violet</code>, <code>text-bg-teal</code>,
-                            <code>text-bg-orange</code>, <code>text-bg-indigo</code>
-                          </td>
-                          <td>See the palette table</td>
-                        </tr>
-                        <tr>
-                          <td><code>sidebar-dark-primary</code>, <code>navbar-light</code> …</td>
-                          <td><code>text-bg-*</code> + <code>data-bs-theme</code></td>
-                          <td>See <em>Skins</em> above</td>
-                        </tr>
-                        <tr>
-                          <td><code>bg-gradient-*</code></td>
-                          <td><code>bg-gradient-*</code></td>
-                          <td>Kept, for palette and theme colours</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>AdminLTE 3</th>
+                            <th>Now</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>bg-lightblue</code></td>
+                            <td><code>text-bg-sky</code></td>
+                            <td>Same hue, set so white text passes</td>
+                          </tr>
+                          <tr>
+                            <td><code>bg-maroon</code></td>
+                            <td><code>text-bg-pink</code></td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code>bg-navy</code> / <code>bg-olive</code> / <code>bg-fuchsia</code>
+                            </td>
+                            <td>same names</td>
+                            <td>Values redesigned</td>
+                          </tr>
+                          <tr>
+                            <td><code>bg-lime</code></td>
+                            <td>—</td>
+                            <td>
+                              No white-text lime exists; use <code>text-bg-olive</code> or
+                              Bootstrap’s <code>text-bg-warning</code>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code>bg-purple</code>, <code>bg-teal</code>, <code>bg-orange</code>,
+                              <code>bg-indigo</code> …
+                            </td>
+                            <td>
+                              <code>text-bg-violet</code>, <code>text-bg-teal</code>,
+                              <code>text-bg-orange</code>, <code>text-bg-indigo</code>
+                            </td>
+                            <td>See the palette table</td>
+                          </tr>
+                          <tr>
+                            <td><code>sidebar-dark-primary</code>, <code>navbar-light</code> …</td>
+                            <td><code>text-bg-*</code> + <code>data-bs-theme</code></td>
+                            <td>See <em>Skins</em> above</td>
+                          </tr>
+                          <tr>
+                            <td><code>bg-gradient-*</code></td>
+                            <td><code>bg-gradient-*</code></td>
+                            <td>Kept, for palette and theme colours</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       Two ways to keep existing markup working: load
                       <strong><code>adminlte-colors-v3.css</code></strong> and every v3 name is back

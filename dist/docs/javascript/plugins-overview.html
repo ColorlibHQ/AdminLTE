@@ -771,87 +771,92 @@
                       exposes a programmatic API for code-driven control.
                     </p>
                     <h5 id="at-a-glance">At a glance</h5>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Plugin</th>
-                          <th>Data API</th>
-                          <th>Programmatic</th>
-                          <th>Documentation</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><strong>PushMenu</strong></td>
-                          <td><code>data-lte-toggle=&quot;sidebar&quot;</code></td>
-                          <td>
-                            <code>.toggle()</code> / <code>.expand()</code> /
-                            <code>.collapse()</code>
-                          </td>
-                          <td><a href="pushmenu.html">Reference</a></td>
-                        </tr>
-                        <tr>
-                          <td><strong>Treeview</strong></td>
-                          <td><code>data-lte-toggle=&quot;treeview&quot;</code> on parent menu</td>
-                          <td>
-                            <code>.toggle()</code> / <code>.open()</code> / <code>.close()</code>
-                          </td>
-                          <td><a href="treeview.html">Reference</a></td>
-                        </tr>
-                        <tr>
-                          <td><strong>CardWidget</strong></td>
-                          <td>
-                            <code>data-lte-toggle=&quot;card-collapse&quot;</code>,
-                            <code>card-remove</code>, <code>card-maximize</code>
-                          </td>
-                          <td>
-                            <code>.toggle()</code> / <code>.collapse()</code> /
-                            <code>.expand()</code> / <code>.remove()</code> /
-                            <code>.maximize()</code> / <code>.minimize()</code> /
-                            <code>.toggleMaximize()</code>
-                          </td>
-                          <td><a href="card-widget.html">Reference</a></td>
-                        </tr>
-                        <tr>
-                          <td><strong>DirectChat</strong></td>
-                          <td><code>data-lte-toggle=&quot;chat-pane&quot;</code></td>
-                          <td><code>.toggle()</code></td>
-                          <td><a href="direct-chat.html">Reference</a></td>
-                        </tr>
-                        <tr>
-                          <td><strong>FullScreen</strong></td>
-                          <td><code>data-lte-toggle=&quot;fullscreen&quot;</code></td>
-                          <td>
-                            <code>.toggleFullScreen()</code> / <code>.inFullScreen()</code> /
-                            <code>.outFullscreen()</code>
-                          </td>
-                          <td><a href="fullscreen.html">Reference</a></td>
-                        </tr>
-                        <tr>
-                          <td><strong>SidebarSearch</strong></td>
-                          <td>
-                            <code>data-lte-toggle=&quot;sidebar-search&quot;</code> on an input
-                          </td>
-                          <td><code>.search(term)</code> / <code>.clear()</code></td>
-                          <td><a href="sidebar-search.html">Reference</a></td>
-                        </tr>
-                        <tr>
-                          <td><strong>Layout</strong></td>
-                          <td>(auto-applied to <code>&lt;body&gt;</code>)</td>
-                          <td><code>.holdTransition(time)</code></td>
-                          <td><a href="layout.html">Reference</a></td>
-                        </tr>
-                        <tr>
-                          <td><strong>AccessibilityManager</strong></td>
-                          <td>(helper function: <code>initAccessibility()</code>)</td>
-                          <td>
-                            <code>.announce()</code> / <code>.focusElement()</code> /
-                            <code>.trapFocus()</code> / <code>.addLandmarks()</code>
-                          </td>
-                          <td><a href="accessibility.html">Reference</a></td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Plugin</th>
+                            <th>Data API</th>
+                            <th>Programmatic</th>
+                            <th>Documentation</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><strong>PushMenu</strong></td>
+                            <td><code>data-lte-toggle=&quot;sidebar&quot;</code></td>
+                            <td>
+                              <code>.toggle()</code> / <code>.expand()</code> /
+                              <code>.collapse()</code>
+                            </td>
+                            <td><a href="pushmenu.html">Reference</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>Treeview</strong></td>
+                            <td>
+                              <code>data-lte-toggle=&quot;treeview&quot;</code> on parent menu
+                            </td>
+                            <td>
+                              <code>.toggle()</code> / <code>.open()</code> / <code>.close()</code>
+                            </td>
+                            <td><a href="treeview.html">Reference</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>CardWidget</strong></td>
+                            <td>
+                              <code>data-lte-toggle=&quot;card-collapse&quot;</code>,
+                              <code>card-remove</code>, <code>card-maximize</code>
+                            </td>
+                            <td>
+                              <code>.toggle()</code> / <code>.collapse()</code> /
+                              <code>.expand()</code> / <code>.remove()</code> /
+                              <code>.maximize()</code> / <code>.minimize()</code> /
+                              <code>.toggleMaximize()</code>
+                            </td>
+                            <td><a href="card-widget.html">Reference</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>DirectChat</strong></td>
+                            <td><code>data-lte-toggle=&quot;chat-pane&quot;</code></td>
+                            <td><code>.toggle()</code></td>
+                            <td><a href="direct-chat.html">Reference</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>FullScreen</strong></td>
+                            <td><code>data-lte-toggle=&quot;fullscreen&quot;</code></td>
+                            <td>
+                              <code>.toggleFullScreen()</code> / <code>.inFullScreen()</code> /
+                              <code>.outFullscreen()</code>
+                            </td>
+                            <td><a href="fullscreen.html">Reference</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>SidebarSearch</strong></td>
+                            <td>
+                              <code>data-lte-toggle=&quot;sidebar-search&quot;</code> on an input
+                            </td>
+                            <td><code>.search(term)</code> / <code>.clear()</code></td>
+                            <td><a href="sidebar-search.html">Reference</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>Layout</strong></td>
+                            <td>(auto-applied to <code>&lt;body&gt;</code>)</td>
+                            <td><code>.holdTransition(time)</code></td>
+                            <td><a href="layout.html">Reference</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>AccessibilityManager</strong></td>
+                            <td>(helper function: <code>initAccessibility()</code>)</td>
+                            <td>
+                              <code>.announce()</code> / <code>.focusElement()</code> /
+                              <code>.trapFocus()</code> / <code>.addLandmarks()</code>
+                            </td>
+                            <td><a href="accessibility.html">Reference</a></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="two-ways-to-use-them">Two ways to use them</h5>
                     <h6 id="1-data-api-declarative">1. Data API (declarative)</h6>
                     <p>
@@ -967,120 +972,125 @@
 <span class="line"><span style="color:#D4D4D4">  }</span></span>
 <span class="line"><span style="color:#D4D4D4">})</span></span></code></pre>
                     <h6 id="event-name-reference">Event name reference</h6>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Plugin</th>
-                          <th>Before (cancelable)</th>
-                          <th>After</th>
-                          <th>Fired for</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>PushMenu</td>
-                          <td><code>open.lte.push-menu</code></td>
-                          <td><code>opened.lte.push-menu</code></td>
-                          <td>Sidebar expanding</td>
-                        </tr>
-                        <tr>
-                          <td>PushMenu</td>
-                          <td><code>collapse.lte.push-menu</code></td>
-                          <td><code>collapsed.lte.push-menu</code></td>
-                          <td>Sidebar collapsing</td>
-                        </tr>
-                        <tr>
-                          <td>Treeview</td>
-                          <td><code>expand.lte.treeview</code></td>
-                          <td><code>expanded.lte.treeview</code></td>
-                          <td>Submenu opening (after fires post-animation)</td>
-                        </tr>
-                        <tr>
-                          <td>Treeview</td>
-                          <td><code>collapse.lte.treeview</code></td>
-                          <td><code>collapsed.lte.treeview</code></td>
-                          <td>Submenu closing (after fires post-animation)</td>
-                        </tr>
-                        <tr>
-                          <td>Treeview</td>
-                          <td>—</td>
-                          <td><code>load.lte.treeview</code></td>
-                          <td>Pre-opened submenu detected on page load</td>
-                        </tr>
-                        <tr>
-                          <td>CardWidget</td>
-                          <td><code>expand.lte.card-widget</code></td>
-                          <td><code>expanded.lte.card-widget</code></td>
-                          <td>Card expanding (after fires post-animation)</td>
-                        </tr>
-                        <tr>
-                          <td>CardWidget</td>
-                          <td><code>collapse.lte.card-widget</code></td>
-                          <td><code>collapsed.lte.card-widget</code></td>
-                          <td>Card collapsing (after fires post-animation)</td>
-                        </tr>
-                        <tr>
-                          <td>CardWidget</td>
-                          <td><code>remove.lte.card-widget</code></td>
-                          <td><code>removed.lte.card-widget</code></td>
-                          <td>Card removal (the card leaves the DOM after <code>removed</code>)</td>
-                        </tr>
-                        <tr>
-                          <td>CardWidget</td>
-                          <td>—</td>
-                          <td><code>maximized.lte.card-widget</code></td>
-                          <td>Card maximized</td>
-                        </tr>
-                        <tr>
-                          <td>CardWidget</td>
-                          <td>—</td>
-                          <td><code>minimized.lte.card-widget</code></td>
-                          <td>Card minimized</td>
-                        </tr>
-                        <tr>
-                          <td>DirectChat</td>
-                          <td>—</td>
-                          <td><code>expanded.lte.direct-chat</code></td>
-                          <td>Contacts pane opened</td>
-                        </tr>
-                        <tr>
-                          <td>DirectChat</td>
-                          <td>—</td>
-                          <td><code>collapsed.lte.direct-chat</code></td>
-                          <td>Contacts pane closed</td>
-                        </tr>
-                        <tr>
-                          <td>FullScreen</td>
-                          <td>—</td>
-                          <td><code>maximized.lte.fullscreen</code></td>
-                          <td>Entered fullscreen</td>
-                        </tr>
-                        <tr>
-                          <td>FullScreen</td>
-                          <td>—</td>
-                          <td><code>minimized.lte.fullscreen</code></td>
-                          <td>Exited fullscreen</td>
-                        </tr>
-                        <tr>
-                          <td>SidebarSearch</td>
-                          <td>—</td>
-                          <td><code>filtered.lte.sidebar-search</code></td>
-                          <td>
-                            Menu filtered (<code>detail: { query, matches }</code>;
-                            <code>matches</code> is <code>-1</code> on clear)
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>ColorMode</td>
-                          <td>—</td>
-                          <td><code>changed.lte.color-mode</code></td>
-                          <td>
-                            Theme changed (<code>detail: { theme, resolved }</code>, fired on
-                            <code>document</code>)
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Plugin</th>
+                            <th>Before (cancelable)</th>
+                            <th>After</th>
+                            <th>Fired for</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>PushMenu</td>
+                            <td><code>open.lte.push-menu</code></td>
+                            <td><code>opened.lte.push-menu</code></td>
+                            <td>Sidebar expanding</td>
+                          </tr>
+                          <tr>
+                            <td>PushMenu</td>
+                            <td><code>collapse.lte.push-menu</code></td>
+                            <td><code>collapsed.lte.push-menu</code></td>
+                            <td>Sidebar collapsing</td>
+                          </tr>
+                          <tr>
+                            <td>Treeview</td>
+                            <td><code>expand.lte.treeview</code></td>
+                            <td><code>expanded.lte.treeview</code></td>
+                            <td>Submenu opening (after fires post-animation)</td>
+                          </tr>
+                          <tr>
+                            <td>Treeview</td>
+                            <td><code>collapse.lte.treeview</code></td>
+                            <td><code>collapsed.lte.treeview</code></td>
+                            <td>Submenu closing (after fires post-animation)</td>
+                          </tr>
+                          <tr>
+                            <td>Treeview</td>
+                            <td>—</td>
+                            <td><code>load.lte.treeview</code></td>
+                            <td>Pre-opened submenu detected on page load</td>
+                          </tr>
+                          <tr>
+                            <td>CardWidget</td>
+                            <td><code>expand.lte.card-widget</code></td>
+                            <td><code>expanded.lte.card-widget</code></td>
+                            <td>Card expanding (after fires post-animation)</td>
+                          </tr>
+                          <tr>
+                            <td>CardWidget</td>
+                            <td><code>collapse.lte.card-widget</code></td>
+                            <td><code>collapsed.lte.card-widget</code></td>
+                            <td>Card collapsing (after fires post-animation)</td>
+                          </tr>
+                          <tr>
+                            <td>CardWidget</td>
+                            <td><code>remove.lte.card-widget</code></td>
+                            <td><code>removed.lte.card-widget</code></td>
+                            <td>
+                              Card removal (the card leaves the DOM after <code>removed</code>)
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>CardWidget</td>
+                            <td>—</td>
+                            <td><code>maximized.lte.card-widget</code></td>
+                            <td>Card maximized</td>
+                          </tr>
+                          <tr>
+                            <td>CardWidget</td>
+                            <td>—</td>
+                            <td><code>minimized.lte.card-widget</code></td>
+                            <td>Card minimized</td>
+                          </tr>
+                          <tr>
+                            <td>DirectChat</td>
+                            <td>—</td>
+                            <td><code>expanded.lte.direct-chat</code></td>
+                            <td>Contacts pane opened</td>
+                          </tr>
+                          <tr>
+                            <td>DirectChat</td>
+                            <td>—</td>
+                            <td><code>collapsed.lte.direct-chat</code></td>
+                            <td>Contacts pane closed</td>
+                          </tr>
+                          <tr>
+                            <td>FullScreen</td>
+                            <td>—</td>
+                            <td><code>maximized.lte.fullscreen</code></td>
+                            <td>Entered fullscreen</td>
+                          </tr>
+                          <tr>
+                            <td>FullScreen</td>
+                            <td>—</td>
+                            <td><code>minimized.lte.fullscreen</code></td>
+                            <td>Exited fullscreen</td>
+                          </tr>
+                          <tr>
+                            <td>SidebarSearch</td>
+                            <td>—</td>
+                            <td><code>filtered.lte.sidebar-search</code></td>
+                            <td>
+                              Menu filtered (<code>detail: { query, matches }</code>;
+                              <code>matches</code> is <code>-1</code> on clear)
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>ColorMode</td>
+                            <td>—</td>
+                            <td><code>changed.lte.color-mode</code></td>
+                            <td>
+                              Theme changed (<code>detail: { theme, resolved }</code>, fired on
+                              <code>document</code>)
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       All events bubble (since 4.1). The “after” events of animated actions fire
                       when the animation completes, not when it starts.
@@ -1112,84 +1122,87 @@
                       The plugins toggle a small set of CSS classes that you can also style or react
                       to:
                     </p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Class</th>
-                          <th>Set by</th>
-                          <th>Where</th>
-                          <th>Meaning</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>sidebar-collapse</code></td>
-                          <td>PushMenu</td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>Sidebar collapsed (desktop mini state, or mobile-closed)</td>
-                        </tr>
-                        <tr>
-                          <td><code>sidebar-open</code></td>
-                          <td>PushMenu</td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>Mobile sidebar explicitly opened by user</td>
-                        </tr>
-                        <tr>
-                          <td><code>sidebar-mini</code></td>
-                          <td>PushMenu</td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>Mini-sidebar mode active</td>
-                        </tr>
-                        <tr>
-                          <td><code>menu-open</code></td>
-                          <td>Treeview</td>
-                          <td><code>.nav-item</code></td>
-                          <td>Submenu is currently expanded</td>
-                        </tr>
-                        <tr>
-                          <td><code>collapsed-card</code></td>
-                          <td>CardWidget</td>
-                          <td><code>.card</code></td>
-                          <td>Card body/footer are collapsed</td>
-                        </tr>
-                        <tr>
-                          <td><code>maximized-card</code></td>
-                          <td>CardWidget</td>
-                          <td><code>&lt;html&gt;</code> and <code>.card</code></td>
-                          <td>Card is in fullscreen mode</td>
-                        </tr>
-                        <tr>
-                          <td><code>direct-chat-contacts-open</code></td>
-                          <td>DirectChat</td>
-                          <td><code>.direct-chat</code></td>
-                          <td>Contacts pane visible</td>
-                        </tr>
-                        <tr>
-                          <td><code>hold-transition</code></td>
-                          <td>Layout</td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>Transitions disabled briefly (during resize, etc.)</td>
-                        </tr>
-                        <tr>
-                          <td><code>app-loaded</code></td>
-                          <td>Layout</td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>Initial page-load animation finished</td>
-                        </tr>
-                        <tr>
-                          <td><code>reduce-motion</code></td>
-                          <td>AccessibilityManager</td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>OS <code>prefers-reduced-motion</code> detected</td>
-                        </tr>
-                        <tr>
-                          <td><code>menu-open</code></td>
-                          <td>SidebarSearch</td>
-                          <td><code>.nav-item</code></td>
-                          <td>Submenu expanded to reveal a match (restored on clear)</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Class</th>
+                            <th>Set by</th>
+                            <th>Where</th>
+                            <th>Meaning</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>sidebar-collapse</code></td>
+                            <td>PushMenu</td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>Sidebar collapsed (desktop mini state, or mobile-closed)</td>
+                          </tr>
+                          <tr>
+                            <td><code>sidebar-open</code></td>
+                            <td>PushMenu</td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>Mobile sidebar explicitly opened by user</td>
+                          </tr>
+                          <tr>
+                            <td><code>sidebar-mini</code></td>
+                            <td>PushMenu</td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>Mini-sidebar mode active</td>
+                          </tr>
+                          <tr>
+                            <td><code>menu-open</code></td>
+                            <td>Treeview</td>
+                            <td><code>.nav-item</code></td>
+                            <td>Submenu is currently expanded</td>
+                          </tr>
+                          <tr>
+                            <td><code>collapsed-card</code></td>
+                            <td>CardWidget</td>
+                            <td><code>.card</code></td>
+                            <td>Card body/footer are collapsed</td>
+                          </tr>
+                          <tr>
+                            <td><code>maximized-card</code></td>
+                            <td>CardWidget</td>
+                            <td><code>&lt;html&gt;</code> and <code>.card</code></td>
+                            <td>Card is in fullscreen mode</td>
+                          </tr>
+                          <tr>
+                            <td><code>direct-chat-contacts-open</code></td>
+                            <td>DirectChat</td>
+                            <td><code>.direct-chat</code></td>
+                            <td>Contacts pane visible</td>
+                          </tr>
+                          <tr>
+                            <td><code>hold-transition</code></td>
+                            <td>Layout</td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>Transitions disabled briefly (during resize, etc.)</td>
+                          </tr>
+                          <tr>
+                            <td><code>app-loaded</code></td>
+                            <td>Layout</td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>Initial page-load animation finished</td>
+                          </tr>
+                          <tr>
+                            <td><code>reduce-motion</code></td>
+                            <td>AccessibilityManager</td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>OS <code>prefers-reduced-motion</code> detected</td>
+                          </tr>
+                          <tr>
+                            <td><code>menu-open</code></td>
+                            <td>SidebarSearch</td>
+                            <td><code>.nav-item</code></td>
+                            <td>Submenu expanded to reveal a match (restored on clear)</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="production-vs-source">Production vs source</h5>
                     <p>
                       The plugins live in

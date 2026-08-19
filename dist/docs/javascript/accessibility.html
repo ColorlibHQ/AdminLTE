@@ -781,58 +781,63 @@
                       automatically initialized when AdminLTE loads.
                     </p>
                     <h5 id="features">Features</h5>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Feature</th>
-                          <th>WCAG Criterion</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Skip Links</td>
-                          <td>2.4.1 Bypass Blocks</td>
-                          <td>Adds “Skip to main content” and “Skip to navigation” links.</td>
-                        </tr>
-                        <tr>
-                          <td>Focus Management</td>
-                          <td>2.4.3 &amp; 2.4.7</td>
-                          <td>
-                            Modal focus restoration to the triggering element and Escape handling.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Keyboard Navigation</td>
-                          <td>2.1.1 Keyboard</td>
-                          <td>Arrow key navigation in menus, Enter/Space for custom buttons.</td>
-                        </tr>
-                        <tr>
-                          <td>Reduced Motion</td>
-                          <td>2.3.3 Animation</td>
-                          <td>
-                            Respects <code>prefers-reduced-motion</code> by disabling animations.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Live Announcements</td>
-                          <td>4.1.3 Status Messages</td>
-                          <td>Announces errors and success messages to screen readers.</td>
-                        </tr>
-                        <tr>
-                          <td>Error Identification</td>
-                          <td>3.3.1 &amp; 3.3.2</td>
-                          <td>Auto-labels unlabelled inputs, announces form validation errors.</td>
-                        </tr>
-                        <tr>
-                          <td>Table Accessibility</td>
-                          <td>1.3.1 Info &amp; Relationships</td>
-                          <td>
-                            Adds <code>scope</code> attributes to table headers automatically.
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Feature</th>
+                            <th>WCAG Criterion</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Skip Links</td>
+                            <td>2.4.1 Bypass Blocks</td>
+                            <td>Adds “Skip to main content” and “Skip to navigation” links.</td>
+                          </tr>
+                          <tr>
+                            <td>Focus Management</td>
+                            <td>2.4.3 &amp; 2.4.7</td>
+                            <td>
+                              Modal focus restoration to the triggering element and Escape handling.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Keyboard Navigation</td>
+                            <td>2.1.1 Keyboard</td>
+                            <td>Arrow key navigation in menus, Enter/Space for custom buttons.</td>
+                          </tr>
+                          <tr>
+                            <td>Reduced Motion</td>
+                            <td>2.3.3 Animation</td>
+                            <td>
+                              Respects <code>prefers-reduced-motion</code> by disabling animations.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Live Announcements</td>
+                            <td>4.1.3 Status Messages</td>
+                            <td>Announces errors and success messages to screen readers.</td>
+                          </tr>
+                          <tr>
+                            <td>Error Identification</td>
+                            <td>3.3.1 &amp; 3.3.2</td>
+                            <td>
+                              Auto-labels unlabelled inputs, announces form validation errors.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Table Accessibility</td>
+                            <td>1.3.1 Info &amp; Relationships</td>
+                            <td>
+                              Adds <code>scope</code> attributes to table headers automatically.
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="configuration">Configuration</h5>
                     <p>
                       The module is initialized in <code>adminlte.ts</code> with all features
@@ -891,38 +896,41 @@
 <span class="line"><span style="color:#6A9955">// Generate a unique ID for ARIA attributes</span></span>
 <span class="line"><span style="color:#9CDCFE">accessibilityUtils</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">generateId</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&#39;modal&#39;</span><span style="color:#D4D4D4">) </span><span style="color:#6A9955">// &quot;modal-x7k2m9p4q&quot;</span></span></code></pre>
                     <h5 id="css-classes">CSS Classes</h5>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Class</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>skip-links</code></td>
-                          <td>Container for skip navigation links.</td>
-                        </tr>
-                        <tr>
-                          <td><code>skip-link</code></td>
-                          <td>Individual skip link, visible only on focus.</td>
-                        </tr>
-                        <tr>
-                          <td><code>reduce-motion</code></td>
-                          <td>
-                            Added to <code>&lt;body&gt;</code> when user prefers reduced motion.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>sr-only</code></td>
-                          <td>Screen reader only content (visually hidden).</td>
-                        </tr>
-                        <tr>
-                          <td><code>live-region</code></td>
-                          <td>ARIA live region for dynamic announcements.</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Class</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>skip-links</code></td>
+                            <td>Container for skip navigation links.</td>
+                          </tr>
+                          <tr>
+                            <td><code>skip-link</code></td>
+                            <td>Individual skip link, visible only on focus.</td>
+                          </tr>
+                          <tr>
+                            <td><code>reduce-motion</code></td>
+                            <td>
+                              Added to <code>&lt;body&gt;</code> when user prefers reduced motion.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>sr-only</code></td>
+                            <td>Screen reader only content (visually hidden).</td>
+                          </tr>
+                          <tr>
+                            <td><code>live-region</code></td>
+                            <td>ARIA live region for dynamic announcements.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="notes">Notes</h5>
                     <ul>
                       <li>

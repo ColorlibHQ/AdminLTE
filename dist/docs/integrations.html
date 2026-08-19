@@ -896,104 +896,109 @@
                       against Select2’s ~50 kB once jQuery is counted.
                     </p>
                     <p>The API translates directly:</p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Select2</th>
-                          <th>Tom Select</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>$(&quot;#x&quot;).select2()</code></td>
-                          <td><code>new TomSelect(&quot;#x&quot;)</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>$(&quot;#x&quot;).select2({ tags: true })</code></td>
-                          <td><code>new TomSelect(&quot;#x&quot;, { create: true })</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>allowClear: true</code></td>
-                          <td><code>plugins: [&quot;clear_button&quot;]</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>closeOnSelect: false</code></td>
-                          <td><code>closeAfterSelect: false</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>maximumSelectionLength: 3</code></td>
-                          <td><code>maxItems: 3</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>minimumInputLength: 2</code></td>
-                          <td><code>shouldLoad: (q) =&gt; q.length &gt;= 2</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>ajax: { url, delay: 250 }</code></td>
-                          <td>
-                            <code>load(query, callback)</code> + <code>loadThrottle: 250</code>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>ajax: { …, processResults }</code></td>
-                          <td>
-                            <code>valueField</code> / <code>labelField</code> /
-                            <code>searchField</code>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>infinite scroll (<code>pagination.more</code>)</td>
-                          <td>
-                            <code>plugins: [&quot;virtual_scroll&quot;]</code> +
-                            <code>setNextUrl()</code>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>templateResult</code> / <code>templateSelection</code></td>
-                          <td><code>render: { option, item }</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>dropdownParent: $(&quot;#modal&quot;)</code></td>
-                          <td><em>(not needed — the dropdown is inline)</em></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <code
-                              >$(&quot;#x&quot;).val(&quot;2&quot;).trigger(&quot;change&quot;)</code
-                            >
-                          </td>
-                          <td><code>ts.setValue(&quot;2&quot;)</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>$(&quot;#x&quot;).val()</code></td>
-                          <td><code>ts.getValue()</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>$(&quot;#x&quot;).on(&quot;select2:select&quot;, fn)</code></td>
-                          <td><code>ts.on(&quot;item_add&quot;, fn)</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>$(&quot;#x&quot;).on(&quot;change&quot;, fn)</code></td>
-                          <td><code>ts.on(&quot;change&quot;, fn)</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>$(&quot;#x&quot;).select2(&quot;open&quot;)</code></td>
-                          <td><code>ts.open()</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>$(&quot;#x&quot;).prop(&quot;disabled&quot;, true)</code></td>
-                          <td><code>ts.disable()</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>$(&quot;#x&quot;).select2(&quot;destroy&quot;)</code></td>
-                          <td><code>ts.destroy()</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>$(&quot;#x&quot;).empty().select2({ data })</code></td>
-                          <td><code>ts.clearOptions(); ts.addOptions(data)</code></td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Select2</th>
+                            <th>Tom Select</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>$(&quot;#x&quot;).select2()</code></td>
+                            <td><code>new TomSelect(&quot;#x&quot;)</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>$(&quot;#x&quot;).select2({ tags: true })</code></td>
+                            <td><code>new TomSelect(&quot;#x&quot;, { create: true })</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>allowClear: true</code></td>
+                            <td><code>plugins: [&quot;clear_button&quot;]</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>closeOnSelect: false</code></td>
+                            <td><code>closeAfterSelect: false</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>maximumSelectionLength: 3</code></td>
+                            <td><code>maxItems: 3</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>minimumInputLength: 2</code></td>
+                            <td><code>shouldLoad: (q) =&gt; q.length &gt;= 2</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>ajax: { url, delay: 250 }</code></td>
+                            <td>
+                              <code>load(query, callback)</code> + <code>loadThrottle: 250</code>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>ajax: { …, processResults }</code></td>
+                            <td>
+                              <code>valueField</code> / <code>labelField</code> /
+                              <code>searchField</code>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>infinite scroll (<code>pagination.more</code>)</td>
+                            <td>
+                              <code>plugins: [&quot;virtual_scroll&quot;]</code> +
+                              <code>setNextUrl()</code>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>templateResult</code> / <code>templateSelection</code></td>
+                            <td><code>render: { option, item }</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>dropdownParent: $(&quot;#modal&quot;)</code></td>
+                            <td><em>(not needed — the dropdown is inline)</em></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code
+                                >$(&quot;#x&quot;).val(&quot;2&quot;).trigger(&quot;change&quot;)</code
+                              >
+                            </td>
+                            <td><code>ts.setValue(&quot;2&quot;)</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>$(&quot;#x&quot;).val()</code></td>
+                            <td><code>ts.getValue()</code></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code>$(&quot;#x&quot;).on(&quot;select2:select&quot;, fn)</code>
+                            </td>
+                            <td><code>ts.on(&quot;item_add&quot;, fn)</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>$(&quot;#x&quot;).on(&quot;change&quot;, fn)</code></td>
+                            <td><code>ts.on(&quot;change&quot;, fn)</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>$(&quot;#x&quot;).select2(&quot;open&quot;)</code></td>
+                            <td><code>ts.open()</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>$(&quot;#x&quot;).prop(&quot;disabled&quot;, true)</code></td>
+                            <td><code>ts.disable()</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>$(&quot;#x&quot;).select2(&quot;destroy&quot;)</code></td>
+                            <td><code>ts.destroy()</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>$(&quot;#x&quot;).empty().select2({ data })</code></td>
+                            <td><code>ts.clearOptions(); ts.addOptions(data)</code></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       A side-by-side version of this table with runnable code lives on the
                       <a href="../forms/advanced.html#select2">Advanced Elements</a> demo page.
@@ -1043,68 +1048,71 @@
 <span class="line"><span style="color:#DCDCAA">  $</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;#country&quot;</span><span style="color:#D4D4D4">).</span><span style="color:#DCDCAA">select2</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">width:</span><span style="color:#CE9178"> &quot;100%&quot;</span><span style="color:#D4D4D4"> })</span></span>
 <span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span></code></pre>
                     <p>What the theme handles for you:</p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th></th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Metrics</td>
-                          <td>
-                            Height, padding, font size and border radius match
-                            <code>.form-select</code> exactly
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Sizing</td>
-                          <td>
-                            <code>.form-select-sm</code> / <code>.form-select-lg</code> on the
-                            original <code>&lt;select&gt;</code> are honoured
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Focus</td>
-                          <td>Bootstrap’s focus ring instead of Select2’s black outline</td>
-                        </tr>
-                        <tr>
-                          <td>Dark mode</td>
-                          <td>
-                            Follows <code>data-bs-theme</code> — including the body-appended
-                            dropdown
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Validation</td>
-                          <td>
-                            <code>.is-invalid</code> / <code>.is-valid</code> on the original
-                            <code>&lt;select&gt;</code> colour the container
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Multi-select</td>
-                          <td>Choice pills styled as Bootstrap secondary badges</td>
-                        </tr>
-                        <tr>
-                          <td>Input groups</td>
-                          <td><code>.input-group</code> corner rounding and flex sizing</td>
-                        </tr>
-                        <tr>
-                          <td>Modals</td>
-                          <td>
-                            Dropdown <code>z-index</code> raised above <code>.modal</code> — fixes
-                            the single most-reported Select2 + Bootstrap 5 bug, so
-                            <code>dropdownParent</code> is no longer needed
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>RTL</td>
-                          <td>Generated automatically alongside the rest of the CSS</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Metrics</td>
+                            <td>
+                              Height, padding, font size and border radius match
+                              <code>.form-select</code> exactly
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Sizing</td>
+                            <td>
+                              <code>.form-select-sm</code> / <code>.form-select-lg</code> on the
+                              original <code>&lt;select&gt;</code> are honoured
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Focus</td>
+                            <td>Bootstrap’s focus ring instead of Select2’s black outline</td>
+                          </tr>
+                          <tr>
+                            <td>Dark mode</td>
+                            <td>
+                              Follows <code>data-bs-theme</code> — including the body-appended
+                              dropdown
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Validation</td>
+                            <td>
+                              <code>.is-invalid</code> / <code>.is-valid</code> on the original
+                              <code>&lt;select&gt;</code> colour the container
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Multi-select</td>
+                            <td>Choice pills styled as Bootstrap secondary badges</td>
+                          </tr>
+                          <tr>
+                            <td>Input groups</td>
+                            <td><code>.input-group</code> corner rounding and flex sizing</td>
+                          </tr>
+                          <tr>
+                            <td>Modals</td>
+                            <td>
+                              Dropdown <code>z-index</code> raised above <code>.modal</code> — fixes
+                              the single most-reported Select2 + Bootstrap 5 bug, so
+                              <code>dropdownParent</code> is no longer needed
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>RTL</td>
+                            <td>Generated automatically alongside the rest of the CSS</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       Using a bundler? The compiled sheet is reachable through the package’s
                       <code>exports</code> map — again, after Select2’s own CSS:
@@ -1478,47 +1486,50 @@
                       they’re SVG-based, ~1,900 icons, and used throughout the demo. If you need
                       more, these all work alongside AdminLTE:
                     </p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Library</th>
-                          <th>Icons</th>
-                          <th>Notes</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><a href="https://icons.getbootstrap.com/">Bootstrap Icons</a></td>
-                          <td>1,900+</td>
-                          <td>Default, SVG, MIT</td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://lucide.dev/">Lucide</a></td>
-                          <td>1,500+</td>
-                          <td>Modern, SVG, ISC, very consistent style</td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://tabler.io/icons">Tabler Icons</a></td>
-                          <td>5,800+</td>
-                          <td>MIT, broadest free set available</td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://fonts.google.com/icons">Material Symbols</a></td>
-                          <td>3,500+</td>
-                          <td>Google, Apache 2.0, variable font</td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://fontawesome.com/icons">FontAwesome Free</a></td>
-                          <td>2,000+ free</td>
-                          <td>Most-recognized, font-based</td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://phosphoricons.com/">Phosphor</a></td>
-                          <td>6,000+</td>
-                          <td>MIT, six weights</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Library</th>
+                            <th>Icons</th>
+                            <th>Notes</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><a href="https://icons.getbootstrap.com/">Bootstrap Icons</a></td>
+                            <td>1,900+</td>
+                            <td>Default, SVG, MIT</td>
+                          </tr>
+                          <tr>
+                            <td><a href="https://lucide.dev/">Lucide</a></td>
+                            <td>1,500+</td>
+                            <td>Modern, SVG, ISC, very consistent style</td>
+                          </tr>
+                          <tr>
+                            <td><a href="https://tabler.io/icons">Tabler Icons</a></td>
+                            <td>5,800+</td>
+                            <td>MIT, broadest free set available</td>
+                          </tr>
+                          <tr>
+                            <td><a href="https://fonts.google.com/icons">Material Symbols</a></td>
+                            <td>3,500+</td>
+                            <td>Google, Apache 2.0, variable font</td>
+                          </tr>
+                          <tr>
+                            <td><a href="https://fontawesome.com/icons">FontAwesome Free</a></td>
+                            <td>2,000+ free</td>
+                            <td>Most-recognized, font-based</td>
+                          </tr>
+                          <tr>
+                            <td><a href="https://phosphoricons.com/">Phosphor</a></td>
+                            <td>6,000+</td>
+                            <td>MIT, six weights</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>Mix and match — they all coexist.</p>
                     <h5 id="a-note-on-bundling">A note on bundling</h5>
                     <p>

@@ -770,216 +770,227 @@
                       the ones most likely to bite.
                     </p>
                     <h5 id="the-high-level-summary">The high-level summary</h5>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th></th>
-                          <th>AdminLTE 3</th>
-                          <th>AdminLTE 4</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>CSS framework</td>
-                          <td>Bootstrap 4.6</td>
-                          <td><strong>Bootstrap 5.3</strong></td>
-                        </tr>
-                        <tr>
-                          <td>JavaScript</td>
-                          <td>jQuery + vanilla</td>
-                          <td><strong>Vanilla TypeScript only</strong></td>
-                        </tr>
-                        <tr>
-                          <td>Dark mode</td>
-                          <td>Manual <code>.dark-mode</code> class</td>
-                          <td>
-                            <strong><code>data-bs-theme</code> attribute (Bootstrap-native)</strong>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>RTL</td>
-                          <td>Separate <code>rtl.css</code> build</td>
-                          <td><strong>Generated automatically via rtlcss</strong></td>
-                        </tr>
-                        <tr>
-                          <td>Browser support</td>
-                          <td>IE 11 forks available</td>
-                          <td>Modern evergreen browsers only</td>
-                        </tr>
-                        <tr>
-                          <td>Build tooling</td>
-                          <td>Gulp</td>
-                          <td><strong>Rollup + Sass + PostCSS</strong></td>
-                        </tr>
-                        <tr>
-                          <td>Icon library</td>
-                          <td>FontAwesome</td>
-                          <td>
-                            <strong>Bootstrap Icons</strong> (Lucide / Tabler Icons documented as
-                            alternatives)
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Form widgets</td>
-                          <td>~25 jQuery plugins bundled in <code>plugins/</code></td>
-                          <td>
-                            <strong>None bundled</strong> — vanilla-JS equivalents
-                            <a href="#third-party-plugin-replacements">documented</a> instead
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th>AdminLTE 3</th>
+                            <th>AdminLTE 4</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>CSS framework</td>
+                            <td>Bootstrap 4.6</td>
+                            <td><strong>Bootstrap 5.3</strong></td>
+                          </tr>
+                          <tr>
+                            <td>JavaScript</td>
+                            <td>jQuery + vanilla</td>
+                            <td><strong>Vanilla TypeScript only</strong></td>
+                          </tr>
+                          <tr>
+                            <td>Dark mode</td>
+                            <td>Manual <code>.dark-mode</code> class</td>
+                            <td>
+                              <strong
+                                ><code>data-bs-theme</code> attribute (Bootstrap-native)</strong
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>RTL</td>
+                            <td>Separate <code>rtl.css</code> build</td>
+                            <td><strong>Generated automatically via rtlcss</strong></td>
+                          </tr>
+                          <tr>
+                            <td>Browser support</td>
+                            <td>IE 11 forks available</td>
+                            <td>Modern evergreen browsers only</td>
+                          </tr>
+                          <tr>
+                            <td>Build tooling</td>
+                            <td>Gulp</td>
+                            <td><strong>Rollup + Sass + PostCSS</strong></td>
+                          </tr>
+                          <tr>
+                            <td>Icon library</td>
+                            <td>FontAwesome</td>
+                            <td>
+                              <strong>Bootstrap Icons</strong> (Lucide / Tabler Icons documented as
+                              alternatives)
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Form widgets</td>
+                            <td>~25 jQuery plugins bundled in <code>plugins/</code></td>
+                            <td>
+                              <strong>None bundled</strong> — vanilla-JS equivalents
+                              <a href="#third-party-plugin-replacements">documented</a> instead
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       If your project relies on jQuery or IE 11, stay on AdminLTE 3 — those
                       constraints are not reversible in v4.
                     </p>
                     <h5 id="class-renames">Class renames</h5>
                     <p>The most common find-and-replace work:</p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>AdminLTE 3</th>
-                          <th>AdminLTE 4</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>.wrapper</code></td>
-                          <td><code>.app-wrapper</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.main-header</code></td>
-                          <td><code>.app-header</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.main-sidebar</code></td>
-                          <td><code>.app-sidebar</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.content-wrapper</code></td>
-                          <td><code>.app-main</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.main-footer</code></td>
-                          <td><code>.app-footer</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.content-header</code></td>
-                          <td><code>.app-content-header</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.content</code></td>
-                          <td><code>.app-content</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.brand-link</code> (inside <code>.main-sidebar</code>)</td>
-                          <td><code>.sidebar-brand &gt; .brand-link</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>data-widget=&quot;pushmenu&quot;</code></td>
-                          <td><code>data-lte-toggle=&quot;sidebar&quot;</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>data-widget=&quot;treeview&quot;</code></td>
-                          <td>
-                            <code>data-lte-toggle=&quot;treeview&quot;</code> (on the parent menu)
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>data-widget=&quot;card-widget&quot;</code></td>
-                          <td>
-                            <code>data-lte-toggle=&quot;card-collapse&quot;</code>,
-                            <code>card-remove</code>, <code>card-maximize</code>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>data-widget=&quot;fullscreen&quot;</code></td>
-                          <td><code>data-lte-toggle=&quot;fullscreen&quot;</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>data-widget=&quot;control-sidebar&quot;</code></td>
-                          <td>(removed — Bootstrap offcanvas replaces this)</td>
-                        </tr>
-                        <tr>
-                          <td><code>.dark-mode</code> (on <code>&lt;body&gt;</code>)</td>
-                          <td><code>data-bs-theme=&quot;dark&quot;</code> (on any element)</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>AdminLTE 3</th>
+                            <th>AdminLTE 4</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>.wrapper</code></td>
+                            <td><code>.app-wrapper</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.main-header</code></td>
+                            <td><code>.app-header</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.main-sidebar</code></td>
+                            <td><code>.app-sidebar</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.content-wrapper</code></td>
+                            <td><code>.app-main</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.main-footer</code></td>
+                            <td><code>.app-footer</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.content-header</code></td>
+                            <td><code>.app-content-header</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.content</code></td>
+                            <td><code>.app-content</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.brand-link</code> (inside <code>.main-sidebar</code>)</td>
+                            <td><code>.sidebar-brand &gt; .brand-link</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>data-widget=&quot;pushmenu&quot;</code></td>
+                            <td><code>data-lte-toggle=&quot;sidebar&quot;</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>data-widget=&quot;treeview&quot;</code></td>
+                            <td>
+                              <code>data-lte-toggle=&quot;treeview&quot;</code> (on the parent menu)
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>data-widget=&quot;card-widget&quot;</code></td>
+                            <td>
+                              <code>data-lte-toggle=&quot;card-collapse&quot;</code>,
+                              <code>card-remove</code>, <code>card-maximize</code>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>data-widget=&quot;fullscreen&quot;</code></td>
+                            <td><code>data-lte-toggle=&quot;fullscreen&quot;</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>data-widget=&quot;control-sidebar&quot;</code></td>
+                            <td>(removed — Bootstrap offcanvas replaces this)</td>
+                          </tr>
+                          <tr>
+                            <td><code>.dark-mode</code> (on <code>&lt;body&gt;</code>)</td>
+                            <td><code>data-bs-theme=&quot;dark&quot;</code> (on any element)</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="bootstrap-4--5-utility-renames">Bootstrap 4 → 5 utility renames</h5>
                     <p>
                       These come from Bootstrap itself, not AdminLTE, but they affect every page:
                     </p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Bootstrap 4</th>
-                          <th>Bootstrap 5</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>data-toggle</code></td>
-                          <td><code>data-bs-toggle</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>data-target</code></td>
-                          <td><code>data-bs-target</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>data-dismiss</code></td>
-                          <td><code>data-bs-dismiss</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>data-parent</code></td>
-                          <td><code>data-bs-parent</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>data-spy</code></td>
-                          <td><code>data-bs-spy</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>data-ride</code></td>
-                          <td><code>data-bs-ride</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.ml-*</code>, <code>.mr-*</code></td>
-                          <td><code>.ms-*</code>, <code>.me-*</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.pl-*</code>, <code>.pr-*</code></td>
-                          <td><code>.ps-*</code>, <code>.pe-*</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.float-left</code>, <code>.float-right</code></td>
-                          <td><code>.float-start</code>, <code>.float-end</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.text-left</code>, <code>.text-right</code></td>
-                          <td><code>.text-start</code>, <code>.text-end</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.border-left</code>, <code>.border-right</code></td>
-                          <td><code>.border-start</code>, <code>.border-end</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.rounded-left</code>, <code>.rounded-right</code></td>
-                          <td><code>.rounded-start</code>, <code>.rounded-end</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.font-weight-*</code></td>
-                          <td><code>.fw-*</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.font-italic</code></td>
-                          <td><code>.fst-italic</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>.text-monospace</code></td>
-                          <td><code>.font-monospace</code></td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Bootstrap 4</th>
+                            <th>Bootstrap 5</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>data-toggle</code></td>
+                            <td><code>data-bs-toggle</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>data-target</code></td>
+                            <td><code>data-bs-target</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>data-dismiss</code></td>
+                            <td><code>data-bs-dismiss</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>data-parent</code></td>
+                            <td><code>data-bs-parent</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>data-spy</code></td>
+                            <td><code>data-bs-spy</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>data-ride</code></td>
+                            <td><code>data-bs-ride</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.ml-*</code>, <code>.mr-*</code></td>
+                            <td><code>.ms-*</code>, <code>.me-*</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.pl-*</code>, <code>.pr-*</code></td>
+                            <td><code>.ps-*</code>, <code>.pe-*</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.float-left</code>, <code>.float-right</code></td>
+                            <td><code>.float-start</code>, <code>.float-end</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.text-left</code>, <code>.text-right</code></td>
+                            <td><code>.text-start</code>, <code>.text-end</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.border-left</code>, <code>.border-right</code></td>
+                            <td><code>.border-start</code>, <code>.border-end</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.rounded-left</code>, <code>.rounded-right</code></td>
+                            <td><code>.rounded-start</code>, <code>.rounded-end</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.font-weight-*</code></td>
+                            <td><code>.fw-*</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.font-italic</code></td>
+                            <td><code>.fst-italic</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.text-monospace</code></td>
+                            <td><code>.font-monospace</code></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       A regex find-replace handles most of this in a few minutes. The migration tool
                       <a href="https://github.com/dbtek/bootstrap-5-migration"
@@ -1031,278 +1042,291 @@
                       best-in-class vanilla-JS equivalents instead. Every replacement below is
                       MIT-licensed, actively maintained, and needs no jQuery:
                     </p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>AdminLTE 3 plugin (jQuery)</th>
-                          <th>AdminLTE 4 replacement</th>
-                          <th>Notes</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><a href="https://select2.org/">Select2</a></td>
-                          <td>
-                            <strong><a href="https://tom-select.js.org/">Tom Select</a></strong>
-                          </td>
-                          <td>
-                            Search, multi-select, tagging, remote data, virtual scrolling. See the
-                            <a href="../forms/advanced.html#select2">API mapping</a> and the
-                            <a href="integrations.html#coming-from-select2"
-                              >Select2 compatibility theme</a
-                            >
-                            if you must keep Select2.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="https://www.virtuosoft.eu/code/bootstrap-duallistbox/"
-                              >Bootstrap4 Duallistbox</a
-                            >
-                          </td>
-                          <td>
-                            <strong><a href="https://tom-select.js.org/">Tom Select</a></strong>
-                          </td>
-                          <td>
-                            A <code>multiple</code> Tom Select covers the same job with less UI.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://datatables.net/">DataTables</a></td>
-                          <td>
-                            <strong><a href="https://tabulator.info/">Tabulator</a></strong>
-                          </td>
-                          <td>
-                            Sorting, filtering, pagination, inline edit, export. Used in
-                            <code>tables/data.html</code>.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="https://github.com/uxsolutions/bootstrap-datepicker"
-                              >bootstrap-datepicker</a
-                            >
-                          </td>
-                          <td>
-                            <strong><a href="https://flatpickr.js.org/">Flatpickr</a></strong>
-                          </td>
-                          <td>One library replaces all four v3 date/time plugins.</td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://www.daterangepicker.com/">daterangepicker</a></td>
-                          <td>
-                            <strong><a href="https://flatpickr.js.org/">Flatpickr</a></strong>
-                            (<code>mode: &quot;range&quot;</code>)
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="https://github.com/jdewit/bootstrap-timepicker"
-                              >Bootstrap Timepicker</a
-                            >
-                          </td>
-                          <td>
-                            <strong><a href="https://flatpickr.js.org/">Flatpickr</a></strong>
-                            (<code>noCalendar: true</code>)
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://getdatepicker.com/">tempusdominus</a></td>
-                          <td>
-                            <strong><a href="https://flatpickr.js.org/">Flatpickr</a></strong>
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://summernote.org/">Summernote</a></td>
-                          <td>
-                            <strong><a href="https://quilljs.com/">Quill</a></strong>
-                          </td>
-                          <td>Snow + bubble themes demoed in <code>forms/editors.html</code>.</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a
-                              href="https://github.com/bootstrap-wysiwyg/bootstrap3-wysihtml5-bower"
-                              >bootstrap4-wysihtml5</a
-                            >
-                          </td>
-                          <td>
-                            <strong><a href="https://quilljs.com/">Quill</a></strong>
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://simplemde.com/">SimpleMDE</a></td>
-                          <td>
-                            <strong
-                              ><a href="https://github.com/Ionaru/easy-markdown-editor"
-                                >EasyMDE</a
-                              ></strong
-                            >
-                          </td>
-                          <td>EasyMDE <em>is</em> the maintained SimpleMDE fork — same API.</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="https://github.com/seiyria/bootstrap-slider"
-                              >bootstrap-slider</a
-                            >
-                          </td>
-                          <td>
-                            <strong
-                              ><a href="https://refreshless.com/nouislider/">noUiSlider</a></strong
-                            >
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="https://github.com/bantikyan/icheck-bootstrap"
-                              >iCheck / icheck-bootstrap</a
-                            >
-                          </td>
-                          <td>
-                            <strong>Native <code>.form-check</code></strong>
-                          </td>
-                          <td>Bootstrap 5.3’s own checkboxes and switches need no plugin.</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="https://itsjavi.com/bootstrap-colorpicker/"
-                              >bootstrap-colorpicker</a
-                            >
-                          </td>
-                          <td>
-                            <strong><a href="https://github.com/Simonwep/pickr">Pickr</a></strong>
-                          </td>
-                          <td>
-                            Or the native
-                            <code
-                              >&lt;input type=&quot;color&quot; class=&quot;form-control
-                              form-control-color&quot;&gt;</code
-                            >.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="https://github.com/RobinHerbots/Inputmask">jQuery InputMask</a>
-                          </td>
-                          <td>
-                            <strong><a href="https://imask.js.org/">IMask</a></strong>
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://github.com/aterrien/jQuery-Knob">jQuery Knob</a></td>
-                          <td>
-                            <strong><a href="https://apexcharts.com/">ApexCharts</a></strong> radial
-                            bar
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://www.vincentbroute.fr/mapael/">jQuery Mapael</a></td>
-                          <td>
-                            <strong
-                              ><a href="https://github.com/themustafaomar/jsvectormap"
-                                >jsVectorMap</a
-                              ></strong
-                            >
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://jqueryui.com/sortable/">jQuery UI sortable</a></td>
-                          <td>
-                            <strong
-                              ><a href="https://sortablejs.github.io/Sortable/"
-                                >SortableJS</a
-                              ></strong
-                            >
-                          </td>
-                          <td>Powers the kanban demo.</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="https://fullcalendar.io/">fullCalendar</a> (jQuery build)
-                          </td>
-                          <td>
-                            <strong><a href="https://fullcalendar.io/">FullCalendar 6</a></strong>
-                          </td>
-                          <td>
-                            Same project — v5+ dropped jQuery. Used in
-                            <code>pages/calendar.html</code>.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://www.chartjs.org/">Chart.js 2</a></td>
-                          <td>
-                            <strong><a href="https://www.chartjs.org/">Chart.js 4</a></strong> /
-                            <strong><a href="https://apexcharts.com/">ApexCharts</a></strong>
-                          </td>
-                          <td>Chart.js was never jQuery-based; just a major bump.</td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://www.dropzone.dev/">dropzone</a></td>
-                          <td>
-                            <strong><a href="https://www.dropzone.dev/">Dropzone 6</a></strong> or
-                            <strong><a href="https://pqina.nl/filepond/">FilePond</a></strong>
-                          </td>
-                          <td>v6 is a plain-JS rewrite.</td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://github.com/ashleydw/lightbox">Ekko Lightbox</a></td>
-                          <td>
-                            <strong
-                              ><a href="https://biati-digital.github.io/glightbox/"
-                                >GLightbox</a
-                              ></strong
-                            >
-                          </td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="https://kingsora.github.io/OverlayScrollbars/"
-                              >jQuery Overlay Scrollbars</a
-                            >
-                          </td>
-                          <td>
-                            <strong>Native <code>scrollbar-*</code> CSS</strong>
-                          </td>
-                          <td>AdminLTE 4 styles the sidebar scrollbar in CSS.</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="https://github.com/CodeSeven/toastr">toastr</a> /
-                            <a href="https://sweetalert2.github.io/">SweetAlert2</a>
-                          </td>
-                          <td>
-                            <strong
-                              >Bootstrap
-                              <a href="https://getbootstrap.com/docs/5.3/components/toasts/"
-                                >toasts</a
-                              ></strong
-                            >
-                            /
-                            <strong
-                              ><a href="https://sweetalert2.github.io/">SweetAlert2</a></strong
-                            >
-                          </td>
-                          <td>SweetAlert2 has been jQuery-free since v7.</td>
-                        </tr>
-                        <tr>
-                          <td><a href="https://js-grid.com/">jsGrid</a></td>
-                          <td>
-                            <strong><a href="https://tabulator.info/">Tabulator</a></strong>
-                          </td>
-                          <td></td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>AdminLTE 3 plugin (jQuery)</th>
+                            <th>AdminLTE 4 replacement</th>
+                            <th>Notes</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><a href="https://select2.org/">Select2</a></td>
+                            <td>
+                              <strong><a href="https://tom-select.js.org/">Tom Select</a></strong>
+                            </td>
+                            <td>
+                              Search, multi-select, tagging, remote data, virtual scrolling. See the
+                              <a href="../forms/advanced.html#select2">API mapping</a> and the
+                              <a href="integrations.html#coming-from-select2"
+                                >Select2 compatibility theme</a
+                              >
+                              if you must keep Select2.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="https://www.virtuosoft.eu/code/bootstrap-duallistbox/"
+                                >Bootstrap4 Duallistbox</a
+                              >
+                            </td>
+                            <td>
+                              <strong><a href="https://tom-select.js.org/">Tom Select</a></strong>
+                            </td>
+                            <td>
+                              A <code>multiple</code> Tom Select covers the same job with less UI.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a href="https://datatables.net/">DataTables</a></td>
+                            <td>
+                              <strong><a href="https://tabulator.info/">Tabulator</a></strong>
+                            </td>
+                            <td>
+                              Sorting, filtering, pagination, inline edit, export. Used in
+                              <code>tables/data.html</code>.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="https://github.com/uxsolutions/bootstrap-datepicker"
+                                >bootstrap-datepicker</a
+                              >
+                            </td>
+                            <td>
+                              <strong><a href="https://flatpickr.js.org/">Flatpickr</a></strong>
+                            </td>
+                            <td>One library replaces all four v3 date/time plugins.</td>
+                          </tr>
+                          <tr>
+                            <td><a href="https://www.daterangepicker.com/">daterangepicker</a></td>
+                            <td>
+                              <strong><a href="https://flatpickr.js.org/">Flatpickr</a></strong>
+                              (<code>mode: &quot;range&quot;</code>)
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="https://github.com/jdewit/bootstrap-timepicker"
+                                >Bootstrap Timepicker</a
+                              >
+                            </td>
+                            <td>
+                              <strong><a href="https://flatpickr.js.org/">Flatpickr</a></strong>
+                              (<code>noCalendar: true</code>)
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td><a href="https://getdatepicker.com/">tempusdominus</a></td>
+                            <td>
+                              <strong><a href="https://flatpickr.js.org/">Flatpickr</a></strong>
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td><a href="https://summernote.org/">Summernote</a></td>
+                            <td>
+                              <strong><a href="https://quilljs.com/">Quill</a></strong>
+                            </td>
+                            <td>Snow + bubble themes demoed in <code>forms/editors.html</code>.</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a
+                                href="https://github.com/bootstrap-wysiwyg/bootstrap3-wysihtml5-bower"
+                                >bootstrap4-wysihtml5</a
+                              >
+                            </td>
+                            <td>
+                              <strong><a href="https://quilljs.com/">Quill</a></strong>
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td><a href="https://simplemde.com/">SimpleMDE</a></td>
+                            <td>
+                              <strong
+                                ><a href="https://github.com/Ionaru/easy-markdown-editor"
+                                  >EasyMDE</a
+                                ></strong
+                              >
+                            </td>
+                            <td>EasyMDE <em>is</em> the maintained SimpleMDE fork — same API.</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="https://github.com/seiyria/bootstrap-slider"
+                                >bootstrap-slider</a
+                              >
+                            </td>
+                            <td>
+                              <strong
+                                ><a href="https://refreshless.com/nouislider/"
+                                  >noUiSlider</a
+                                ></strong
+                              >
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="https://github.com/bantikyan/icheck-bootstrap"
+                                >iCheck / icheck-bootstrap</a
+                              >
+                            </td>
+                            <td>
+                              <strong>Native <code>.form-check</code></strong>
+                            </td>
+                            <td>Bootstrap 5.3’s own checkboxes and switches need no plugin.</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="https://itsjavi.com/bootstrap-colorpicker/"
+                                >bootstrap-colorpicker</a
+                              >
+                            </td>
+                            <td>
+                              <strong><a href="https://github.com/Simonwep/pickr">Pickr</a></strong>
+                            </td>
+                            <td>
+                              Or the native
+                              <code
+                                >&lt;input type=&quot;color&quot; class=&quot;form-control
+                                form-control-color&quot;&gt;</code
+                              >.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="https://github.com/RobinHerbots/Inputmask"
+                                >jQuery InputMask</a
+                              >
+                            </td>
+                            <td>
+                              <strong><a href="https://imask.js.org/">IMask</a></strong>
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="https://github.com/aterrien/jQuery-Knob">jQuery Knob</a>
+                            </td>
+                            <td>
+                              <strong><a href="https://apexcharts.com/">ApexCharts</a></strong>
+                              radial bar
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="https://www.vincentbroute.fr/mapael/">jQuery Mapael</a>
+                            </td>
+                            <td>
+                              <strong
+                                ><a href="https://github.com/themustafaomar/jsvectormap"
+                                  >jsVectorMap</a
+                                ></strong
+                              >
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td><a href="https://jqueryui.com/sortable/">jQuery UI sortable</a></td>
+                            <td>
+                              <strong
+                                ><a href="https://sortablejs.github.io/Sortable/"
+                                  >SortableJS</a
+                                ></strong
+                              >
+                            </td>
+                            <td>Powers the kanban demo.</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="https://fullcalendar.io/">fullCalendar</a> (jQuery build)
+                            </td>
+                            <td>
+                              <strong><a href="https://fullcalendar.io/">FullCalendar 6</a></strong>
+                            </td>
+                            <td>
+                              Same project — v5+ dropped jQuery. Used in
+                              <code>pages/calendar.html</code>.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a href="https://www.chartjs.org/">Chart.js 2</a></td>
+                            <td>
+                              <strong><a href="https://www.chartjs.org/">Chart.js 4</a></strong> /
+                              <strong><a href="https://apexcharts.com/">ApexCharts</a></strong>
+                            </td>
+                            <td>Chart.js was never jQuery-based; just a major bump.</td>
+                          </tr>
+                          <tr>
+                            <td><a href="https://www.dropzone.dev/">dropzone</a></td>
+                            <td>
+                              <strong><a href="https://www.dropzone.dev/">Dropzone 6</a></strong> or
+                              <strong><a href="https://pqina.nl/filepond/">FilePond</a></strong>
+                            </td>
+                            <td>v6 is a plain-JS rewrite.</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="https://github.com/ashleydw/lightbox">Ekko Lightbox</a>
+                            </td>
+                            <td>
+                              <strong
+                                ><a href="https://biati-digital.github.io/glightbox/"
+                                  >GLightbox</a
+                                ></strong
+                              >
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="https://kingsora.github.io/OverlayScrollbars/"
+                                >jQuery Overlay Scrollbars</a
+                              >
+                            </td>
+                            <td>
+                              <strong>Native <code>scrollbar-*</code> CSS</strong>
+                            </td>
+                            <td>AdminLTE 4 styles the sidebar scrollbar in CSS.</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="https://github.com/CodeSeven/toastr">toastr</a> /
+                              <a href="https://sweetalert2.github.io/">SweetAlert2</a>
+                            </td>
+                            <td>
+                              <strong
+                                >Bootstrap
+                                <a href="https://getbootstrap.com/docs/5.3/components/toasts/"
+                                  >toasts</a
+                                ></strong
+                              >
+                              /
+                              <strong
+                                ><a href="https://sweetalert2.github.io/">SweetAlert2</a></strong
+                              >
+                            </td>
+                            <td>SweetAlert2 has been jQuery-free since v7.</td>
+                          </tr>
+                          <tr>
+                            <td><a href="https://js-grid.com/">jsGrid</a></td>
+                            <td>
+                              <strong><a href="https://tabulator.info/">Tabulator</a></strong>
+                            </td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       Install snippets and wiring code for each replacement live on the
                       <a href="integrations.html">Recommended Integrations</a> page.

@@ -803,45 +803,48 @@
                       files are useful in development for readable source-map debugging — never
                       serve them to users.
                     </p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Asset</th>
-                          <th>Dev</th>
-                          <th>Production</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Stylesheet</td>
-                          <td><code>dist/css/adminlte.css</code></td>
-                          <td>
-                            <strong><code>dist/css/adminlte.min.css</code></strong>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Script</td>
-                          <td><code>dist/js/adminlte.js</code></td>
-                          <td>
-                            <strong><code>dist/js/adminlte.min.js</code></strong>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>RTL stylesheet</td>
-                          <td><code>dist/css/adminlte.rtl.css</code></td>
-                          <td>
-                            <strong><code>dist/css/adminlte.rtl.min.css</code></strong>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Select2 theme <em>(optional)</em></td>
-                          <td><code>dist/css/adminlte-select2.css</code></td>
-                          <td>
-                            <strong><code>dist/css/adminlte-select2.min.css</code></strong>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Asset</th>
+                            <th>Dev</th>
+                            <th>Production</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Stylesheet</td>
+                            <td><code>dist/css/adminlte.css</code></td>
+                            <td>
+                              <strong><code>dist/css/adminlte.min.css</code></strong>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Script</td>
+                            <td><code>dist/js/adminlte.js</code></td>
+                            <td>
+                              <strong><code>dist/js/adminlte.min.js</code></strong>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>RTL stylesheet</td>
+                            <td><code>dist/css/adminlte.rtl.css</code></td>
+                            <td>
+                              <strong><code>dist/css/adminlte.rtl.min.css</code></strong>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Select2 theme <em>(optional)</em></td>
+                            <td><code>dist/css/adminlte-select2.css</code></td>
+                            <td>
+                              <strong><code>dist/css/adminlte-select2.min.css</code></strong>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       <code>adminlte-select2.css</code> is opt-in and only needed if your app loads
                       <a href="integrations.html#select2-compatibility-theme">Select2</a>; it is not
@@ -927,7 +930,7 @@
                       data-language="html"
                     ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span></span>
 <span class="line"><span style="color:#9CDCFE">  rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span></span>
-<span class="line"><span style="color:#9CDCFE">  href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.8.3/dist/css/adminlte.min.css&quot;</span></span>
+<span class="line"><span style="color:#9CDCFE">  href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.8.4/dist/css/adminlte.min.css&quot;</span></span>
 <span class="line"><span style="color:#9CDCFE">  integrity</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;sha384-PASTE_THE_HASH_HERE&quot;</span></span>
 <span class="line"><span style="color:#9CDCFE">  crossorigin</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;anonymous&quot;</span></span>
 <span class="line"><span style="color:#808080">/&gt;</span></span></code></pre>
@@ -961,7 +964,7 @@
 <span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6A9955">  &lt;!-- 3. AdminLTE — includes Bootstrap CSS via its imports --&gt;</span></span>
-<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.8.3/dist/css/adminlte.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.8.4/dist/css/adminlte.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">head</span><span style="color:#808080">&gt;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">body</span><span style="color:#808080">&gt;</span></span>
@@ -978,7 +981,7 @@
 <span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6A9955">  &lt;!-- 7. AdminLTE — must load AFTER Bootstrap --&gt;</span></span>
-<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.8.3/dist/js/adminlte.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.8.4/dist/js/adminlte.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">body</span><span style="color:#808080">&gt;</span></span></code></pre>
                     <h5 id="defer-or-async">Defer or async?</h5>
                     <p>
@@ -1056,28 +1059,31 @@
 <span class="line"><span style="color:#569CD6">const</span><span style="color:#DCDCAA"> Calendar</span><span style="color:#D4D4D4"> = () </span><span style="color:#569CD6">=&gt;</span><span style="color:#569CD6"> import</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;./Calendar.vue&quot;</span><span style="color:#D4D4D4">)</span></span></code></pre>
                     <h5 id="bundle-size-budget">Bundle size budget</h5>
                     <p>The current published <code>dist/</code> artefacts gzip to:</p>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Asset</th>
-                          <th>Size (gzip)</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>adminlte.min.css</code></td>
-                          <td>~40 KB</td>
-                        </tr>
-                        <tr>
-                          <td><code>adminlte.rtl.min.css</code></td>
-                          <td>~40 KB</td>
-                        </tr>
-                        <tr>
-                          <td><code>adminlte.min.js</code></td>
-                          <td>~5 KB</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Asset</th>
+                            <th>Size (gzip)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>adminlte.min.css</code></td>
+                            <td>~40 KB</td>
+                          </tr>
+                          <tr>
+                            <td><code>adminlte.rtl.min.css</code></td>
+                            <td>~40 KB</td>
+                          </tr>
+                          <tr>
+                            <td><code>adminlte.min.js</code></td>
+                            <td>~5 KB</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       The full first-page payload (HTML + Bootstrap + AdminLTE + Bootstrap Icons +
                       Popper + OverlayScrollbars) is around <strong>180 KB gzipped</strong> when

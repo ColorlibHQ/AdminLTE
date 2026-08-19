@@ -1,5 +1,36 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
+import { visit } from 'unist-util-visit'
+
+/**
+ * Wrap Markdown pipe-tables in `.table-responsive` with a tab stop.
+ *
+ * A bare `<table>` has no scroll container, so a reference table with more than
+ * three columns pushed the whole page sideways on a phone (265px of it on the
+ * Colors page). The hand-written tables in these docs are already wrapped this
+ * way; `tabindex` keeps the scrollable region keyboard-reachable, which the axe
+ * gate requires.
+ */
+function wrapTable(node, index, parent) {
+  if (node.tagName !== 'table' || !parent || parent.properties?.className?.includes?.('table-responsive')) {
+    return
+  }
+
+  parent.children[index] = {
+    type: 'element',
+    tagName: 'div',
+    properties: { className: ['table-responsive'], tabIndex: 0 },
+    children: [node]
+  }
+}
+
+const wrapTables = tree => {
+  visit(tree, 'element', wrapTable)
+}
+
+function rehypeResponsiveTables() {
+  return wrapTables
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,7 +43,8 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       theme: 'dark-plus'
-    }
+    },
+    rehypePlugins: [rehypeResponsiveTables]
   },
   integrations: [mdx()],
   srcDir: './src/html',

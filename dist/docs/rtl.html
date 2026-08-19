@@ -879,47 +879,50 @@
 <span class="line"><span style="color:#9CDCFE">  margin-left</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">.5rem</span><span style="color:#D4D4D4">;   </span><span style="color:#6A9955">// stays left-margin in both LTR and RTL</span></span>
 <span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
                     <h5 id="what-flips-automatically">What flips automatically</h5>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Direction-aware property</th>
-                          <th>Behaviour in RTL</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>margin-left</code> / <code>padding-left</code></td>
-                          <td>Swapped to right</td>
-                        </tr>
-                        <tr>
-                          <td><code>left</code>, <code>right</code> positioning</td>
-                          <td>Swapped</td>
-                        </tr>
-                        <tr>
-                          <td><code>text-align: left</code> / <code>right</code></td>
-                          <td>Swapped</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            Bootstrap <code>.ms-*</code>, <code>.me-*</code>,
-                            <code>.float-start</code>, <code>.float-end</code>
-                          </td>
-                          <td>Mirror via Bootstrap’s logical properties</td>
-                        </tr>
-                        <tr>
-                          <td><code>transform: translateX()</code></td>
-                          <td>Sign inverted</td>
-                        </tr>
-                        <tr>
-                          <td>Sidebar position</td>
-                          <td>Docks to the right</td>
-                        </tr>
-                        <tr>
-                          <td>Dropdown menu open direction</td>
-                          <td>Flips automatically (Bootstrap handles this)</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Direction-aware property</th>
+                            <th>Behaviour in RTL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>margin-left</code> / <code>padding-left</code></td>
+                            <td>Swapped to right</td>
+                          </tr>
+                          <tr>
+                            <td><code>left</code>, <code>right</code> positioning</td>
+                            <td>Swapped</td>
+                          </tr>
+                          <tr>
+                            <td><code>text-align: left</code> / <code>right</code></td>
+                            <td>Swapped</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              Bootstrap <code>.ms-*</code>, <code>.me-*</code>,
+                              <code>.float-start</code>, <code>.float-end</code>
+                            </td>
+                            <td>Mirror via Bootstrap’s logical properties</td>
+                          </tr>
+                          <tr>
+                            <td><code>transform: translateX()</code></td>
+                            <td>Sign inverted</td>
+                          </tr>
+                          <tr>
+                            <td>Sidebar position</td>
+                            <td>Docks to the right</td>
+                          </tr>
+                          <tr>
+                            <td>Dropdown menu open direction</td>
+                            <td>Flips automatically (Bootstrap handles this)</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="what-doesnt-flip">What doesn’t flip</h5>
                     <ul>
                       <li>

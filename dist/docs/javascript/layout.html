@@ -801,30 +801,33 @@
                       </li>
                     </ol>
                     <h5 id="css-classes">CSS Classes</h5>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Class</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>hold-transition</code></td>
-                          <td>
-                            Temporarily disables CSS transitions on layout elements. Applied during
-                            window resize.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><code>app-loaded</code></td>
-                          <td>
-                            Added to <code>&lt;body&gt;</code> after the initial layout is ready.
-                            Use for entrance animations.
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Class</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>hold-transition</code></td>
+                            <td>
+                              Temporarily disables CSS transitions on layout elements. Applied
+                              during window resize.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>app-loaded</code></td>
+                            <td>
+                              Added to <code>&lt;body&gt;</code> after the initial layout is ready.
+                              Use for entrance animations.
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="usage-in-css">Usage in CSS</h5>
                     <pre
                       class="astro-code dark-plus"
@@ -859,26 +862,30 @@
 <span class="line"><span style="color:#6A9955">// ... do something that would otherwise animate awkwardly</span></span>
 <span class="line"><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">body</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">classList</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">toggle</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;sidebar-mini&quot;</span><span style="color:#D4D4D4">)</span></span></code></pre>
                     <h6 id="methods">Methods</h6>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Method</th>
-                          <th>Returns</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>holdTransition(time?)</code></td>
-                          <td><code>void</code></td>
-                          <td>
-                            Adds <code>hold-transition</code> to <code>&lt;body&gt;</code>, removes
-                            it after <code>time</code> milliseconds (default <code>100</code>). Use
-                            to suppress CSS transitions during programmatic layout changes.
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Method</th>
+                            <th>Returns</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>holdTransition(time?)</code></td>
+                            <td><code>void</code></td>
+                            <td>
+                              Adds <code>hold-transition</code> to <code>&lt;body&gt;</code>,
+                              removes it after <code>time</code> milliseconds (default
+                              <code>100</code>). Use to suppress CSS transitions during programmatic
+                              layout changes.
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="notes">Notes</h5>
                     <ul>
                       <li>

@@ -804,52 +804,55 @@
                       pick this up automatically.
                     </p>
                     <h6 id="common-variables-worth-knowing">Common variables worth knowing</h6>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Variable</th>
-                          <th>Default</th>
-                          <th>What it controls</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>--bs-primary</code></td>
-                          <td><code>#0d6efd</code></td>
-                          <td>Brand colour, used in active sidebar items, primary buttons</td>
-                        </tr>
-                        <tr>
-                          <td><code>--bs-body-bg</code></td>
-                          <td><code>#fff</code> (light) / <code>#212529</code> (dark)</td>
-                          <td>Page background</td>
-                        </tr>
-                        <tr>
-                          <td><code>--bs-body-color</code></td>
-                          <td><code>#212529</code></td>
-                          <td>Default text colour</td>
-                        </tr>
-                        <tr>
-                          <td><code>--bs-border-color</code></td>
-                          <td><code>#dee2e6</code></td>
-                          <td>All hairline borders</td>
-                        </tr>
-                        <tr>
-                          <td><code>--bs-border-radius</code></td>
-                          <td><code>.375rem</code></td>
-                          <td>Default radius for cards, buttons, inputs</td>
-                        </tr>
-                        <tr>
-                          <td><code>--bs-border-radius-lg</code></td>
-                          <td><code>.5rem</code></td>
-                          <td>Larger radius, used for modals</td>
-                        </tr>
-                        <tr>
-                          <td><code>--bs-font-sans-serif</code></td>
-                          <td><code>system-ui, ...</code></td>
-                          <td>Default font stack</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Variable</th>
+                            <th>Default</th>
+                            <th>What it controls</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>--bs-primary</code></td>
+                            <td><code>#0d6efd</code></td>
+                            <td>Brand colour, used in active sidebar items, primary buttons</td>
+                          </tr>
+                          <tr>
+                            <td><code>--bs-body-bg</code></td>
+                            <td><code>#fff</code> (light) / <code>#212529</code> (dark)</td>
+                            <td>Page background</td>
+                          </tr>
+                          <tr>
+                            <td><code>--bs-body-color</code></td>
+                            <td><code>#212529</code></td>
+                            <td>Default text colour</td>
+                          </tr>
+                          <tr>
+                            <td><code>--bs-border-color</code></td>
+                            <td><code>#dee2e6</code></td>
+                            <td>All hairline borders</td>
+                          </tr>
+                          <tr>
+                            <td><code>--bs-border-radius</code></td>
+                            <td><code>.375rem</code></td>
+                            <td>Default radius for cards, buttons, inputs</td>
+                          </tr>
+                          <tr>
+                            <td><code>--bs-border-radius-lg</code></td>
+                            <td><code>.5rem</code></td>
+                            <td>Larger radius, used for modals</td>
+                          </tr>
+                          <tr>
+                            <td><code>--bs-font-sans-serif</code></td>
+                            <td><code>system-ui, ...</code></td>
+                            <td>Default font stack</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       For the full list, see
                       <a href="https://getbootstrap.com/docs/5.3/customize/css-variables/"
@@ -1044,52 +1047,55 @@
                     <h5 id="when-to-recompile-vs-override-at-runtime">
                       When to recompile vs. override at runtime
                     </h5>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Customization</th>
-                          <th>CSS variables</th>
-                          <th>SCSS rebuild</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Brand colours</td>
-                          <td>✅</td>
-                          <td>✅</td>
-                        </tr>
-                        <tr>
-                          <td>Body / text colours</td>
-                          <td>✅</td>
-                          <td>✅</td>
-                        </tr>
-                        <tr>
-                          <td>Border radius</td>
-                          <td>✅</td>
-                          <td>✅</td>
-                        </tr>
-                        <tr>
-                          <td>Sidebar width</td>
-                          <td>❌ (not a CSS var)</td>
-                          <td>✅</td>
-                        </tr>
-                        <tr>
-                          <td>Breakpoint changes</td>
-                          <td>❌</td>
-                          <td>✅</td>
-                        </tr>
-                        <tr>
-                          <td>Spacing scale</td>
-                          <td>❌</td>
-                          <td>✅</td>
-                        </tr>
-                        <tr>
-                          <td>Font sizes</td>
-                          <td>partial</td>
-                          <td>✅ (full control)</td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Customization</th>
+                            <th>CSS variables</th>
+                            <th>SCSS rebuild</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Brand colours</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                          </tr>
+                          <tr>
+                            <td>Body / text colours</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                          </tr>
+                          <tr>
+                            <td>Border radius</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                          </tr>
+                          <tr>
+                            <td>Sidebar width</td>
+                            <td>❌ (not a CSS var)</td>
+                            <td>✅</td>
+                          </tr>
+                          <tr>
+                            <td>Breakpoint changes</td>
+                            <td>❌</td>
+                            <td>✅</td>
+                          </tr>
+                          <tr>
+                            <td>Spacing scale</td>
+                            <td>❌</td>
+                            <td>✅</td>
+                          </tr>
+                          <tr>
+                            <td>Font sizes</td>
+                            <td>partial</td>
+                            <td>✅ (full control)</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
                       Use CSS variables for everything you can — it survives AdminLTE upgrades
                       without merge conflicts. Reserve SCSS overrides for structural changes
