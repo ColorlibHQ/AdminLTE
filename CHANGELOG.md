@@ -5,6 +5,16 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.8.0] - 2026-08-19
+
+### Added
+
+- **`data-lte-contrast="aa"` — WCAG AA text on the AdminLTE 3 palette, without changing a single colour.** The v3 sheet reproduces v3's YIQ text rule faithfully, and that rule assigns white text to eight colours that do not reach 4.5:1 for normal text: `teal` (2.13:1), `cyan` (3.04), `green` (3.13), `olive` (3.51), `lightblue` (3.67), `fuchsia` (3.79), `pink` (3.82) and `blue` (3.98). The attribute — on `<html>`, `<body>` or any container — flips exactly those eight to the ink that passes (5.28:1 to 9.86:1), leaving every background byte-identical, and covers everywhere the palette paints text on its own colour: `.text-bg-*`, `.bg-gradient-*`, `.card-*` headers, `.direct-chat-*` and the button, badge and pill text `data-lte-primary` produces. It has to be true black: AdminLTE 3's own dark ink `#1f2d3d` clears 4.5:1 on only two of the eight, so the colours that already carry dark text (`lime`, `orange`, `yellow`) keep `#1f2d3d` and are left alone. Rules are emitted per colour only where the palette's own rule falls short, so the designed palette — every colour AA with white by construction — emits nothing and the switch costs it nothing. **UI → Colors** and **Theme Customize** gained a toggle that also re-pairs a flipped sidebar or header with `data-bs-theme="light"` so its nav links follow (#6110, reported by @johnnyq).
+
+### Fixed
+
+- **`data-lte-primary` gave Bootstrap's `info` white text on the v3 sheet.** The primary presets applied the active sheet's contrast rule to Bootstrap's own theme colours too, and v3's YIQ test puts `#0dcaf0` at 149.8 against a threshold of 150 — one tenth of a point from dark text — so `data-lte-primary="info"` produced white on cyan at 1.96:1 while `.btn-info` on the same page stayed black. Bootstrap's theme colours now keep Bootstrap's own contrast rule; the palette colours keep the sheet's.
+
 ## [4.7.0] - 2026-08-18
 
 ### Added

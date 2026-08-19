@@ -808,6 +808,30 @@
                         >
                       </span>
                     </div>
+                    <div class="form-check form-switch mb-3" data-astro-cid-5q2uqagc>
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id="contrast-aa"
+                        data-astro-cid-5q2uqagc
+                      />
+                      <label class="form-check-label" for="contrast-aa" data-astro-cid-5q2uqagc>
+                        Force WCAG AA text —
+                        <code class="text-body-emphasis" data-astro-cid-5q2uqagc
+                          >data-lte-contrast="aa"</code
+                        >
+                        <span class="text-body-secondary small ms-1" data-astro-cid-5q2uqagc>
+                          <span data-palette-set="designed" data-astro-cid-5q2uqagc
+                            >nothing changes: every designed colour already clears 4.5:1.</span
+                          >
+                          <span data-palette-set="v3" hidden data-astro-cid-5q2uqagc
+                            >flips the text on the 8 v3 colours whose assigned text misses 4.5:1;
+                            backgrounds keep their values.</span
+                          >
+                        </span>
+                      </label>
+                    </div>
                     <div class="theme-presets" data-palette-set="designed" data-astro-cid-5q2uqagc>
                       <div class="mb-3" data-astro-cid-5q2uqagc>
                         <p class="fw-semibold mb-1" data-astro-cid-5q2uqagc>Light</p>
@@ -3219,6 +3243,23 @@
               'text-bg-graphite': 'white',
               'text-bg-midnight': 'white',
             },
+            textAA: {
+              'text-bg-orange': 'white',
+              'text-bg-amber': 'white',
+              'text-bg-olive': 'white',
+              'text-bg-teal': 'white',
+              'text-bg-sky': 'white',
+              'text-bg-indigo': 'white',
+              'text-bg-violet': 'white',
+              'text-bg-fuchsia': 'white',
+              'text-bg-pink': 'white',
+              'text-bg-navy': 'white',
+              'text-bg-steel': 'white',
+              'text-bg-slate': 'white',
+              'text-bg-graphite': 'white',
+              'text-bg-midnight': 'white',
+            },
+            aaFlips: 0,
             primaries: [
               'orange',
               'amber',
@@ -3279,6 +3320,27 @@
               'text-bg-gray': 'white',
               'text-bg-gray-dark': 'white',
             },
+            textAA: {
+              'text-bg-lightblue': 'black',
+              'text-bg-navy': 'white',
+              'text-bg-olive': 'black',
+              'text-bg-lime': 'black',
+              'text-bg-fuchsia': 'black',
+              'text-bg-maroon': 'white',
+              'text-bg-blue': 'black',
+              'text-bg-indigo': 'white',
+              'text-bg-purple': 'white',
+              'text-bg-pink': 'black',
+              'text-bg-red': 'white',
+              'text-bg-orange': 'black',
+              'text-bg-yellow': 'black',
+              'text-bg-green': 'black',
+              'text-bg-teal': 'black',
+              'text-bg-cyan': 'black',
+              'text-bg-gray': 'white',
+              'text-bg-gray-dark': 'white',
+            },
+            aaFlips: 8,
             primaries: [
               'lightblue',
               'navy',
@@ -3340,7 +3402,14 @@
           // `.text-bg-*` so the contrast text comes with the background, and its
           // `.bg-gradient-*` variants.
           const stylesheet = document.getElementById('palette-stylesheet');
+          const contrastToggle = document.querySelector('#contrast-aa');
           let activeSet = paletteSetsJson[0];
+          let aaContrast = false;
+          // The automatic text colour of a background class, in the mode that is on
+          const textOf = (bg) =>
+            (aaContrast ? activeSet.textAA : activeSet.text)[
+              bg.replace('bg-gradient-', 'text-bg-')
+            ] || 'white';
           // Every class any palette can put on an element — so switching palettes cleans up.
           const allBg = [
             ...bootstrapBg,
@@ -3517,8 +3586,7 @@
               // A palette colour pairs with the mode that matches its text colour
               // (dark for white-text colours) when no mode was chosen yet.
               if ((bg.startsWith('text-bg-') || bg.startsWith('bg-gradient-')) && !mode) {
-                const text = activeSet.text[bg.replace('bg-gradient-', 'text-bg-')] || 'white';
-                mode = text === 'white' ? 'dark' : 'light';
+                mode = textOf(bg) === 'white' ? 'dark' : 'light';
                 modeSelect.value = mode;
               }
               render();
@@ -3541,6 +3609,23 @@
               primary?.set(button.getAttribute('data-preset-primary'));
             });
           }
+
+          // WCAG AA text: `data-lte-contrast="aa"` on <html>. A region whose colour
+          // flips to dark text needs the light colour mode so its links follow.
+          contrastToggle?.addEventListener('change', () => {
+            aaContrast = contrastToggle.checked;
+            if (aaContrast) {
+              document.documentElement.setAttribute('data-lte-contrast', 'aa');
+            } else {
+              document.documentElement.removeAttribute('data-lte-contrast');
+            }
+            for (const controller of Object.values(controllers)) {
+              const { bg } = controller.get();
+              if (bg && (bg.startsWith('text-bg-') || bg.startsWith('bg-gradient-'))) {
+                controller.set(bg, textOf(bg) === 'white' ? 'dark' : 'light');
+              }
+            }
+          });
 
           // Palette switch: swap the stylesheet, show that palette's presets, rebuild the pickers.
           for (const button of document.querySelectorAll('[data-palette-switch]')) {

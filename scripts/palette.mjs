@@ -150,7 +150,17 @@ function check() {
     }
   }
 
-  // 5. Every skin's `data-lte-primary` is a colour that sheet actually has
+  // 5. `data-lte-contrast="aa"` has to leave every colour at or above AA
+  for (const [label, colors] of [['', palette], ['v3 ', paletteV3]]) {
+    for (const c of colors) {
+      const ratio = c.textColorAA === 'white' ? c.contrastWhite : c.contrastBlack
+      if (ratio < MIN_WHITE_CONTRAST) {
+        problems.push(`${label}${c.name} ${c.hex}: still ${ratio.toFixed(2)}:1 with ${c.textColorAA} text under data-lte-contrast="aa"`)
+      }
+    }
+  }
+
+  // 6. Every skin's `data-lte-primary` is a colour that sheet actually has
   //    (Bootstrap's own theme colours are always available)
   const themeColors = new Set(['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark'])
   for (const [label, list, colors] of [['', skins, palette], ['v3 ', skinsV3, paletteV3]]) {
@@ -174,7 +184,7 @@ function check() {
     return
   }
 
-  console.log(`palette check passed: ${palette.length} colours, all ≥ ${MIN_WHITE_CONTRAST}:1 with white text, SCSS and JS in step; v3 sheet: ${paletteV3.length} colours in step; ${skins.length + skinsV3.length} skins name a primary that exists.`)
+  console.log(`palette check passed: ${palette.length} colours, all ≥ ${MIN_WHITE_CONTRAST}:1 with white text, SCSS and JS in step; v3 sheet: ${paletteV3.length} colours in step; ${skins.length + skinsV3.length} skins name a primary that exists; every colour clears ${MIN_WHITE_CONTRAST}:1 under data-lte-contrast="aa".`)
   for (const c of palette) {
     console.log(`  ${c.name.padEnd(9)} ${c.hex}  ${fmt(hexToOklch(c.hex)).padEnd(24)} white ${contrastWhite(c.hex).toFixed(2)}:1`)
   }

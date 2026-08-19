@@ -38,11 +38,11 @@
     },
     {
       "path": "./dist/css/adminlte-colors-v3.min.css",
-      "maxSize": "10 kB"
+      "maxSize": "11 kB"
     },
     {
       "path": "./dist/css/adminlte-colors-v3.rtl.min.css",
-      "maxSize": "10 kB"
+      "maxSize": "11 kB"
     },
     {
       "path": "./dist/js/adminlte.js",

@@ -113,6 +113,24 @@ $lte-palette-yiq-text-light: $white !default;
   @return string.unquote("##{lte-hex-channel($r)}#{lte-hex-channel($g)}#{lte-hex-channel($b)}");
 }
 
+// The text colour WCAG AA needs on this background, whatever rule the sheet
+// itself uses. Bootstrap's `color-contrast()` keeps white where white clears the
+// ratio and returns black where it does not — note that AdminLTE 3's own dark
+// ink (#1f2d3d) is NOT enough here: it reaches 4.5:1 on only two of the eight
+// v3 colours that fall short (#6110).
+@function lte-contrast-aa($color) {
+  @return color-contrast($color, $min-contrast-ratio: 4.5);
+}
+
+// True only when the text colour this sheet assigns actually falls short. The
+// test is the ratio, not "is it a different colour": v3 writes dark text as
+// #1f2d3d, which clears AA on lime, orange and yellow — those must not flip
+// just because AA's dark ink is pure black.
+@function lte-needs-aa($color, $text: null) {
+  $on: if($text == null, lte-contrast($color), $text);
+  @return contrast-ratio($color, $on) < 4.5;
+}
+
 @function lte-contrast($color) {
   @if $lte-palette-contrast == "yiq" {
     // stylelint-disable scss/at-function-named-arguments -- `$space` is required by color.channel()

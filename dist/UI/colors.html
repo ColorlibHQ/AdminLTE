@@ -113,40 +113,80 @@
     <script type="application/json" id="palette-text">
       {
         "designed": {
-          "orange": "white",
-          "amber": "white",
-          "olive": "white",
-          "teal": "white",
-          "sky": "white",
-          "indigo": "white",
-          "violet": "white",
-          "fuchsia": "white",
-          "pink": "white",
-          "navy": "white",
-          "steel": "white",
-          "slate": "white",
-          "graphite": "white",
-          "midnight": "white"
+          "default": {
+            "orange": "white",
+            "amber": "white",
+            "olive": "white",
+            "teal": "white",
+            "sky": "white",
+            "indigo": "white",
+            "violet": "white",
+            "fuchsia": "white",
+            "pink": "white",
+            "navy": "white",
+            "steel": "white",
+            "slate": "white",
+            "graphite": "white",
+            "midnight": "white"
+          },
+          "aa": {
+            "orange": "white",
+            "amber": "white",
+            "olive": "white",
+            "teal": "white",
+            "sky": "white",
+            "indigo": "white",
+            "violet": "white",
+            "fuchsia": "white",
+            "pink": "white",
+            "navy": "white",
+            "steel": "white",
+            "slate": "white",
+            "graphite": "white",
+            "midnight": "white"
+          }
         },
         "v3": {
-          "lightblue": "white",
-          "navy": "white",
-          "olive": "white",
-          "lime": "black",
-          "fuchsia": "white",
-          "maroon": "white",
-          "blue": "white",
-          "indigo": "white",
-          "purple": "white",
-          "pink": "white",
-          "red": "white",
-          "orange": "black",
-          "yellow": "black",
-          "green": "white",
-          "teal": "white",
-          "cyan": "white",
-          "gray": "white",
-          "gray-dark": "white"
+          "default": {
+            "lightblue": "white",
+            "navy": "white",
+            "olive": "white",
+            "lime": "black",
+            "fuchsia": "white",
+            "maroon": "white",
+            "blue": "white",
+            "indigo": "white",
+            "purple": "white",
+            "pink": "white",
+            "red": "white",
+            "orange": "black",
+            "yellow": "black",
+            "green": "white",
+            "teal": "white",
+            "cyan": "white",
+            "gray": "white",
+            "gray-dark": "white"
+          },
+          "aa": {
+            "lightblue": "black",
+            "navy": "white",
+            "olive": "black",
+            "lime": "black",
+            "fuchsia": "black",
+            "maroon": "white",
+            "blue": "black",
+            "indigo": "white",
+            "purple": "white",
+            "pink": "black",
+            "red": "white",
+            "orange": "black",
+            "yellow": "black",
+            "green": "black",
+            "teal": "black",
+            "cyan": "black",
+            "gray": "white",
+            "gray-dark": "white"
+          }
         }
       }
     </script>
@@ -1424,6 +1464,48 @@
                     AdminLTE 3 originals
                   </button>
                 </div>
+              </div>
+              <div class="card-footer" data-astro-cid-ghactkgv>
+                <div class="form-check form-switch mb-2" data-astro-cid-ghactkgv>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="contrast-aa"
+                    data-astro-cid-ghactkgv
+                  />
+                  <label class="form-check-label" for="contrast-aa" data-astro-cid-ghactkgv>
+                    Force WCAG AA text —
+                    <code class="text-body-emphasis" data-astro-cid-ghactkgv
+                      >data-lte-contrast="aa"</code
+                    >
+                  </label>
+                </div>
+                <p
+                  class="text-body-secondary small mb-0"
+                  data-palette-set="designed"
+                  data-astro-cid-ghactkgv
+                >
+                  Nothing changes for this palette: every colour already clears 4.5:1 with the text
+                  it is given.
+                </p>
+                <p
+                  class="text-body-secondary small mb-0"
+                  data-palette-set="v3"
+                  hidden
+                  data-astro-cid-ghactkgv
+                >
+                  Flips the text on 8 of 18 colours whose assigned text misses 4.5:1 —
+                  <code data-astro-cid-ghactkgv>lightblue</code> (3.67:1 → 5.73:1),
+                  <code data-astro-cid-ghactkgv>olive</code> (3.51:1 → 5.99:1),
+                  <code data-astro-cid-ghactkgv>fuchsia</code> (3.79:1 → 5.54:1),
+                  <code data-astro-cid-ghactkgv>blue</code> (3.98:1 → 5.28:1),
+                  <code data-astro-cid-ghactkgv>pink</code> (3.82:1 → 5.50:1),
+                  <code data-astro-cid-ghactkgv>green</code> (3.13:1 → 6.70:1),
+                  <code data-astro-cid-ghactkgv>teal</code> (2.13:1 → 9.86:1),
+                  <code data-astro-cid-ghactkgv>cyan</code> (3.04:1 → 6.90:1). Backgrounds keep
+                  their exact values.
+                </p>
               </div>
             </div>
             <!--end::Palette switch-->
@@ -6294,6 +6376,7 @@
         const markup = document.getElementById('skin-markup');
         const pickers = document.querySelectorAll('[data-skin-picker]');
         const primaryPickers = document.querySelectorAll('[data-primary-picker]');
+        const contrastToggle = document.getElementById('contrast-aa');
         const primaryMarkup = document.getElementById('primary-markup');
         // Automatic text colour per palette (the v3 sheet gives some colours dark text)
         const PALETTE_TEXT = JSON.parse(document.getElementById('palette-text').textContent);
@@ -6304,12 +6387,19 @@
           header: { cls: 'bg-body', theme: 'light' },
           // `data-lte-primary` on <html>: "default" leaves the attribute off
           primary: 'default',
+          // `data-lte-contrast="aa"`: flips the text on colours that miss AA
+          aa: false,
         };
         const DEFAULTS = {
           sidebar: { cls: 'bg-body-secondary', theme: 'dark' },
           header: { cls: 'bg-body', theme: 'light' },
         };
         const isSkinClass = (c) => /^(text-bg-|bg-body|bg-gradient-)/.test(c);
+        // The automatic text colour for a palette colour, in the mode that is on:
+        // a coloured sidebar or header pairs with data-bs-theme="dark" only while
+        // its text is white.
+        const textOf = (color) =>
+          ((PALETTE_TEXT[activeSet] || {})[state.aa ? 'aa' : 'default'] || {})[color] || 'white';
 
         const paint = (el, role) => {
           const stale = [...el.classList].filter((c) => isSkinClass(c));
@@ -6320,12 +6410,28 @@
         };
 
         const render = () => {
+          // Pair first, paint second: a colour whose text flipped to dark needs
+          // the light colour mode on the region carrying it, so its nav links
+          // follow the heading.
+          for (const role of ['sidebar', 'header']) {
+            const cls = state[role].cls;
+            if (cls.startsWith('text-bg-') || cls.startsWith('bg-gradient-')) {
+              state[role].theme =
+                textOf(cls.replace(/^(text-bg-|bg-gradient-)/, '')) === 'white' ? 'dark' : 'light';
+            }
+          }
+
           paint(sidebar, 'sidebar');
           paint(header, 'header');
           if (state.primary === 'default') {
             document.documentElement.removeAttribute('data-lte-primary');
           } else {
             document.documentElement.setAttribute('data-lte-primary', state.primary);
+          }
+          if (state.aa) {
+            document.documentElement.setAttribute('data-lte-contrast', 'aa');
+          } else {
+            document.documentElement.removeAttribute('data-lte-contrast');
           }
           for (const picker of primaryPickers) {
             for (const chip of picker.querySelectorAll('[data-color]')) {
@@ -6336,9 +6442,12 @@
             }
           }
           primaryMarkup.textContent =
-            state.primary === 'default'
+            (state.aa && state.primary !== 'default'
+              ? '<!-- with data-lte-contrast="aa" the text on this colour flips -->\n'
+              : '') +
+            (state.primary === 'default'
               ? '<html lang="en">   <!-- no attribute: Bootstrap\'s blue -->'
-              : `<html lang="en" data-lte-primary="${state.primary}">`;
+              : `<html lang="en" data-lte-primary="${state.primary}"${state.aa ? ' data-lte-contrast="aa"' : ''}>`);
           for (const picker of pickers) {
             const role = picker.getAttribute('data-skin-picker');
             const cls = state[role].cls;
@@ -6364,6 +6473,7 @@
             button.setAttribute('aria-pressed', String(matches));
           }
           markup.textContent =
+            (state.aa ? '<html lang="en" data-lte-contrast="aa">\n' : '') +
             `<nav class="app-header navbar navbar-expand ${state.header.cls}" data-bs-theme="${state.header.theme}">\n` +
             `<aside class="app-sidebar ${state.sidebar.cls} shadow" data-bs-theme="${state.sidebar.theme}">`;
         };
@@ -6378,7 +6488,7 @@
             const color = chip.getAttribute('data-color');
             // A coloured sidebar or header pairs with data-bs-theme="dark" when the
             // colour takes white text (every designed colour; most v3 colours).
-            const text = (PALETTE_TEXT[activeSet] || {})[color] || 'white';
+            const text = textOf(color);
             state[role] =
               color === 'default'
                 ? { ...DEFAULTS[role] }
@@ -6397,6 +6507,11 @@
             render();
           });
         }
+
+        contrastToggle?.addEventListener('change', () => {
+          state.aa = contrastToggle.checked;
+          render();
+        });
 
         for (const container of document.querySelectorAll('.skin-presets')) {
           container.addEventListener('click', (event) => {

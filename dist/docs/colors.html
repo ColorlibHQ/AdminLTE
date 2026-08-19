@@ -994,7 +994,11 @@
                           </td>
                           <td>
                             AdminLTE 3’s rule (Bootstrap 4 YIQ): white on lightblue, olive, teal,
-                            cyan …; dark on lime, orange, yellow
+                            cyan …; dark on lime, orange, yellow. Eight miss WCAG AA —
+                            <a href="#making-the-v3-colours-pass-aa"
+                              ><code>data-lte-contrast=&quot;aa&quot;</code></a
+                            >
+                            flips those
                           </td>
                         </tr>
                       </tbody>
@@ -1223,6 +1227,199 @@
                         </tbody>
                       </table>
                     </div>
+                    <h5 id="making-the-v3-colours-pass-aa">Making the v3 colours pass AA</h5>
+                    <p>
+                      <strong
+                        ><code>data-lte-contrast=&quot;aa&quot;</code> fixes the eight without
+                        touching a single value.</strong
+                      >
+                      The v3 rule assigns white text to eight colours that do not reach WCAG AA’s
+                      4.5:1 for normal text. The attribute flips just those to the ink that does,
+                      leaving every background byte-identical:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">html</span><span style="color:#9CDCFE"> lang</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;en&quot;</span><span style="color:#9CDCFE"> data-lte-contrast</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;aa&quot;</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <div class="table-responsive">
+                      <table class="table align-middle">
+                        <thead>
+                          <tr>
+                            <th scope="col">Colour</th>
+                            <th scope="col">Default (v3 rule)</th>
+                            <th scope="col">With <code>aa</code></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #3c8dbc">   </span
+                              ><code>lightblue</code>
+                              <span class="text-body-secondary">#3c8dbc</span>
+                            </td>
+                            <td class="text-nowrap">
+                              white text —
+                              <span class="text-danger-emphasis fw-semibold">3.67:1</span>
+                            </td>
+                            <td class="text-nowrap">
+                              black text —
+                              <span class="text-success-emphasis fw-semibold">5.73:1</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #3d9970">   </span
+                              ><code>olive</code> <span class="text-body-secondary">#3d9970</span>
+                            </td>
+                            <td class="text-nowrap">
+                              white text —
+                              <span class="text-danger-emphasis fw-semibold">3.51:1</span>
+                            </td>
+                            <td class="text-nowrap">
+                              black text —
+                              <span class="text-success-emphasis fw-semibold">5.99:1</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #f012be">   </span
+                              ><code>fuchsia</code> <span class="text-body-secondary">#f012be</span>
+                            </td>
+                            <td class="text-nowrap">
+                              white text —
+                              <span class="text-danger-emphasis fw-semibold">3.79:1</span>
+                            </td>
+                            <td class="text-nowrap">
+                              black text —
+                              <span class="text-success-emphasis fw-semibold">5.54:1</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #007bff">   </span
+                              ><code>blue</code> <span class="text-body-secondary">#007bff</span>
+                            </td>
+                            <td class="text-nowrap">
+                              white text —
+                              <span class="text-danger-emphasis fw-semibold">3.98:1</span>
+                            </td>
+                            <td class="text-nowrap">
+                              black text —
+                              <span class="text-success-emphasis fw-semibold">5.28:1</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #e83e8c">   </span
+                              ><code>pink</code> <span class="text-body-secondary">#e83e8c</span>
+                            </td>
+                            <td class="text-nowrap">
+                              white text —
+                              <span class="text-danger-emphasis fw-semibold">3.82:1</span>
+                            </td>
+                            <td class="text-nowrap">
+                              black text —
+                              <span class="text-success-emphasis fw-semibold">5.50:1</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #28a745">   </span
+                              ><code>green</code> <span class="text-body-secondary">#28a745</span>
+                            </td>
+                            <td class="text-nowrap">
+                              white text —
+                              <span class="text-danger-emphasis fw-semibold">3.13:1</span>
+                            </td>
+                            <td class="text-nowrap">
+                              black text —
+                              <span class="text-success-emphasis fw-semibold">6.70:1</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #20c997">   </span
+                              ><code>teal</code> <span class="text-body-secondary">#20c997</span>
+                            </td>
+                            <td class="text-nowrap">
+                              white text —
+                              <span class="text-danger-emphasis fw-semibold">2.13:1</span>
+                            </td>
+                            <td class="text-nowrap">
+                              black text —
+                              <span class="text-success-emphasis fw-semibold">9.86:1</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #17a2b8">   </span
+                              ><code>cyan</code> <span class="text-body-secondary">#17a2b8</span>
+                            </td>
+                            <td class="text-nowrap">
+                              white text —
+                              <span class="text-danger-emphasis fw-semibold">3.04:1</span>
+                            </td>
+                            <td class="text-nowrap">
+                              black text —
+                              <span class="text-success-emphasis fw-semibold">6.90:1</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <p>
+                      The ratios are stated rather than shown, because rendering the failing
+                      combination would put text on this page that fails the same check — flip the
+                      switch on the <a href="../UI/colors.html">Colors demo</a> to see both side by
+                      side on real components. It covers everywhere the palette paints text on its
+                      own colour: <code>.text-bg-*</code>, <code>.bg-gradient-*</code>,
+                      <code>.card-*</code> headers, <code>.direct-chat-*</code>, and the button,
+                      badge and pill text that <code>data-lte-primary</code> produces. Three things
+                      worth knowing:
+                    </p>
+                    <ul>
+                      <li>
+                        <strong>It has to be black.</strong> AdminLTE 3’s own dark ink,
+                        <code>#1f2d3d</code>, only clears 4.5:1 on two of the eight —
+                        <code>teal</code> and <code>cyan</code>. The others need true black, which
+                        is what <code>aa</code> uses. The colours that already take dark text
+                        (<code>lime</code>, <code>orange</code>, <code>yellow</code>) keep
+                        <code>#1f2d3d</code> and are not touched.
+                      </li>
+                      <li>
+                        <strong
+                          >Pair a flipped colour with
+                          <code>data-bs-theme=&quot;light&quot;</code>.</strong
+                        >
+                        A sidebar or header carrying one of the eight now has dark text, so its nav
+                        links should follow:
+                        <code
+                          >&lt;nav class=&quot;app-header navbar navbar-expand
+                          text-bg-lightblue&quot; data-bs-theme=&quot;light&quot;&gt;</code
+                        >. The demo pages do this for you when the switch is on.
+                      </li>
+                      <li>
+                        <strong
+                          ><code>.text-lightblue</code> and <code>.link-lightblue</code> are a
+                          different question.</strong
+                        >
+                        Those paint the colour <em>as text on the page background</em>, where the
+                        same eight are also thin. Use the emphasis token instead —
+                        <code>.text-lightblue-emphasis</code> equivalents come from
+                        <code>--bs-lightblue-text-emphasis</code>, which is the colour shaded 60%
+                        and readable on a light background.
+                      </li>
+                    </ul>
+                    <p>
+                      The attribute works with either sheet; on the designed palette it emits
+                      nothing at all, because every colour there clears AA with white text by
+                      construction — so it costs nothing to leave in your markup (<a
+                        href="https://github.com/ColorlibHQ/AdminLTE/issues/6110"
+                        >#6110</a
+                      >).
+                    </p>
                     <p>
                       The v3 sheet is built from the same Sass as the designed one —
                       <code>src/scss/adminlte-colors-v3.scss</code> sets
@@ -4164,9 +4361,15 @@
                     <h5 id="accessibility-and-dark-mode">Accessibility and dark mode</h5>
                     <ul>
                       <li>
-                        Every shipped colour clears 4.5:1 with white text (the lowest is 4.6:1), so
-                        <code>.text-bg-*</code> never needs a per-colour exception and the demo
-                        pages using them pass the axe gate.
+                        Every colour in the <strong>designed</strong> palette clears 4.5:1 with
+                        white text (the lowest is 4.6:1), so <code>.text-bg-*</code> never needs a
+                        per-colour exception and the demo pages using them pass the axe gate.
+                      </li>
+                      <li>
+                        The <strong>v3</strong> palette is the historical set, and eight of its
+                        eighteen colours miss 4.5:1 with the text v3 assigned them.
+                        <code>data-lte-contrast=&quot;aa&quot;</code> flips exactly those — see
+                        <a href="#making-the-v3-colours-pass-aa">Making the v3 colours pass AA</a>.
                       </li>
                       <li>
                         Solid utilities (<code>.bg-*</code>, <code>.text-bg-*</code>) are the same

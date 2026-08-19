@@ -153,6 +153,9 @@ export const bootstrapThemeColors = [
  * at (`designColor(hue)`); neutrals are given as explicit OKLCH.
  * `scripts/palette.mjs` regenerates the hexes from these.
  */
+// WCAG AA for normal text
+export const AA_RATIO = 4.5
+
 export const paletteTargets = {
   cap: 0.2,
   target: 4.6,
@@ -178,7 +181,9 @@ const describe = (name, hex, role, description, use) => {
     oklchLabel: `oklch(${lch.L.toFixed(2)} ${lch.C.toFixed(2)} ${lch.h.toFixed(0)})`,
     contrastWhite: contrastWhite(hex),
     contrastBlack: contrastBlack(hex),
-    textColor: contrastWhite(hex) >= 4.5 ? 'white' : 'black'
+    textColor: contrastWhite(hex) >= AA_RATIO ? 'white' : 'black',
+    // Same pick by construction: every designed colour clears AA with white
+    textColorAA: contrastWhite(hex) >= AA_RATIO ? 'white' : 'black'
   }
 }
 
@@ -273,7 +278,11 @@ const describeV3 = (name, hex, note) => {
     oklch: { L: lch.L, C: lch.C, h: lch.h },
     contrastWhite: contrastWhite(hex),
     contrastBlack: contrastBlack(hex),
-    textColor: yiqTextColor(hex) === 'white' ? 'white' : 'black'
+    textColor: yiqTextColor(hex) === 'white' ? 'white' : 'black',
+    // What `data-lte-contrast="aa"` uses: the same pick unless it falls short of
+    // WCAG AA for normal text, in which case the other one (#6110). Note v3's own
+    // dark ink (#1f2d3d) is not enough — it clears 4.5:1 on only two of the eight.
+    textColorAA: contrastWhite(hex) >= AA_RATIO ? 'white' : 'black'
   }
 }
 

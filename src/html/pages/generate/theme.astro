@@ -23,7 +23,18 @@ const primaryChoices = {
   designed: palette.map(c => c.name),
   v3: paletteV3.map(c => c.name)
 }
-const paletteSetsJson = paletteSets.map(({ key, file, classes, text }) => ({ key, file, classes, text, primaries: primaryChoices[key] }))
+// `data-lte-contrast="aa"` text colours, and how many colours it changes (#6110)
+const paletteTextAA = {
+  designed: Object.fromEntries(palette.map(c => [`text-bg-${c.name}`, c.textColorAA])),
+  v3: Object.fromEntries(paletteV3.map(c => [`text-bg-${c.name}`, c.textColorAA]))
+}
+const aaFlipCount = {
+  designed: palette.filter(c => c.textColor !== c.textColorAA).length,
+  v3: paletteV3.filter(c => c.textColor !== c.textColorAA).length
+}
+const paletteSetsJson = paletteSets.map(({ key, file, classes, text }) => ({
+  key, file, classes, text, textAA: paletteTextAA[key], aaFlips: aaFlipCount[key], primaries: primaryChoices[key]
+}))
 const path = "../../../dist"
 const htmlPath = convertPathToHtml(path);
 
@@ -264,6 +275,16 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                         <span data-palette-set="designed">Fourteen colours designed for 4.4 — every one takes white text.</span>
                         <span data-palette-set="v3" hidden>The eighteen AdminLTE 3 colours, values unchanged, with v3's text-colour rule.</span>
                       </span>
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                      <input class="form-check-input" type="checkbox" role="switch" id="contrast-aa" />
+                      <label class="form-check-label" for="contrast-aa">
+                        Force WCAG AA text — <code class="text-body-emphasis">data-lte-contrast="aa"</code>
+                        <span class="text-body-secondary small ms-1">
+                          <span data-palette-set="designed">nothing changes: every designed colour already clears 4.5:1.</span>
+                          <span data-palette-set="v3" hidden>flips the text on the 8 v3 colours whose assigned text misses 4.5:1; backgrounds keep their values.</span>
+                        </span>
+                      </label>
                     </div>
                     {
                       paletteSets.map((set, i) => (
@@ -669,7 +690,11 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
         // `.text-bg-*` so the contrast text comes with the background, and its
         // `.bg-gradient-*` variants.
         const stylesheet = document.getElementById("palette-stylesheet")
+        const contrastToggle = document.querySelector("#contrast-aa")
         let activeSet = paletteSetsJson[0]
+        let aaContrast = false
+        // The automatic text colour of a background class, in the mode that is on
+        const textOf = bg => (aaContrast ? activeSet.textAA : activeSet.text)[bg.replace("bg-gradient-", "text-bg-")] || "white"
         // Every class any palette can put on an element — so switching palettes cleans up.
         const allBg = [...bootstrapBg, ...paletteSetsJson.flatMap(set => [...set.classes, ...gradients(set)])]
         const availableBg = () => [...bootstrapBg, ...activeSet.classes, ...gradients(activeSet)]
@@ -820,8 +845,7 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
             // A palette colour pairs with the mode that matches its text colour
             // (dark for white-text colours) when no mode was chosen yet.
             if ((bg.startsWith("text-bg-") || bg.startsWith("bg-gradient-")) && !mode) {
-              const text = activeSet.text[bg.replace("bg-gradient-", "text-bg-")] || "white"
-              mode = text === "white" ? "dark" : "light"
+              mode = textOf(bg) === "white" ? "dark" : "light"
               modeSelect.value = mode
             }
             render()
@@ -838,6 +862,23 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
             primary?.set(button.getAttribute("data-preset-primary"))
           })
         }
+
+        // WCAG AA text: `data-lte-contrast="aa"` on <html>. A region whose colour
+        // flips to dark text needs the light colour mode so its links follow.
+        contrastToggle?.addEventListener("change", () => {
+          aaContrast = contrastToggle.checked
+          if (aaContrast) {
+            document.documentElement.setAttribute("data-lte-contrast", "aa")
+          } else {
+            document.documentElement.removeAttribute("data-lte-contrast")
+          }
+          for (const controller of Object.values(controllers)) {
+            const { bg } = controller.get()
+            if (bg && (bg.startsWith("text-bg-") || bg.startsWith("bg-gradient-"))) {
+              controller.set(bg, textOf(bg) === "white" ? "dark" : "light")
+            }
+          }
+        })
 
         // Palette switch: swap the stylesheet, show that palette's presets, rebuild the pickers.
         for (const button of document.querySelectorAll("[data-palette-switch]")) {

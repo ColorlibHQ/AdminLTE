@@ -137,6 +137,40 @@
   }
 }
 
+// `data-lte-contrast="aa"`
+// --------------------------------------------------------
+// Opt in to WCAG AA text on the backgrounds where this palette's own rule falls
+// short. Backgrounds are untouched — every colour keeps its exact value — only
+// the text on top of them flips. Emitted per colour only where the two rules
+// disagree, so the designed palette (every colour AA with white) adds nothing
+// here and the v3 sheet carries the eight that need it (#6110).
+//
+// A coloured sidebar or header carrying a flipped colour should also pair with
+// `data-bs-theme="light"` instead of `"dark"`, so its nav links follow the text.
+[data-lte-contrast="aa"] {
+  @each $name, $value in $lte-palette {
+    $aa: lte-contrast-aa($value);
+
+    @if lte-needs-aa($value) {
+      .text-bg-#{$name},
+      .bg-gradient-#{$name} {
+        color: $aa !important;
+      }
+
+      .card-#{$name},
+      .bg-#{$name},
+      .text-bg-#{$name} {
+        --#{$lte-prefix}card-variant-color: #{$aa};
+        --#{$lte-prefix}card-variant-color-rgb: #{to-rgb($aa)};
+      }
+
+      .direct-chat-#{$name} {
+        --#{$lte-prefix}direct-chat-color: #{$aa};
+      }
+    }
+  }
+}
+
 // Cascade order
 // --------------------------------------------------------
 // This sheet loads AFTER adminlte.css, so `.bg-navy { --bs-bg-opacity: 1 }`

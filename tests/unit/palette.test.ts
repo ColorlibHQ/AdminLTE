@@ -19,12 +19,24 @@ const THEME_COLORS = ['primary', 'secondary', 'success', 'info', 'warning', 'dan
 type PaletteColor = {
   name: string
   hex: string
+  textColor: string
+  textColorAA: string
+  contrastWhite: number
+  contrastBlack: number
   role: 'chromatic' | 'neutral'
   oklch: { L: number; C: number; h: number }
 }
 
 const colors = palette as PaletteColor[]
 const byName = (a: string, b: string) => a.localeCompare(b)
+
+function compileScss(entry: string): string {
+  return sass.compile(path.resolve(process.cwd(), entry), {
+    loadPaths: ['node_modules'],
+    quietDeps: true,
+    silenceDeprecations: ['import']
+  }).css
+}
 
 function readScssPalette(file = 'src/scss/colors/_variables.scss'): Record<string, string> {
   const source = readFileSync(path.resolve(process.cwd(), file), 'utf8')
@@ -112,11 +124,7 @@ describe('extended palette', () => {
     // on a build having run (`npm run production` cleans dist/ before testing).
     for (const entry of ['src/scss/adminlte-colors.scss', 'src/scss/adminlte-colors-v3.scss']) {
       const file = entry
-      const { css } = sass.compile(path.resolve(process.cwd(), entry), {
-        loadPaths: ['node_modules'],
-        quietDeps: true,
-        silenceDeprecations: ['import']
-      })
+      const css = compileScss(entry)
       // the components Bootstrap hard-codes #0d6efd into
       for (const selector of [
         '[data-lte-primary] .btn-primary',
@@ -141,6 +149,43 @@ describe('extended palette', () => {
       // dark mode has to match the attribute on the same element as data-bs-theme
       expect(css, file).toContain('[data-bs-theme=dark][data-lte-primary=')
     }
+  })
+
+  it('the v3 palette reaches WCAG AA under data-lte-contrast="aa"', () => {
+    const v3 = paletteV3 as PaletteColor[]
+    const flipped = v3.filter(c => c.textColor !== c.textColorAA)
+    // the eight the issue reports (#6110)
+    expect(flipped.map(c => c.name).toSorted(byName)).toEqual(
+      ['blue', 'cyan', 'fuchsia', 'green', 'lightblue', 'olive', 'pink', 'teal'].toSorted(byName)
+    )
+
+    for (const c of v3) {
+      const ratio = c.textColorAA === 'white' ? c.contrastWhite : c.contrastBlack
+      expect(ratio, `${c.name} ${c.hex} with ${c.textColorAA}`).toBeGreaterThanOrEqual(4.5)
+    }
+
+    // the designed palette needs no flips at all
+    for (const c of palette as PaletteColor[]) {
+      expect(c.textColorAA, c.name).toBe(c.textColor)
+    }
+  })
+
+  it('the AA switch is emitted for the v3 sheet only, and only for the colours that need it', () => {
+    const v3css = compileScss('src/scss/adminlte-colors-v3.scss')
+    const flipped = (paletteV3 as PaletteColor[]).filter(x => x.textColor !== x.textColorAA)
+    for (const c of flipped) {
+      expect(v3css, `text-bg-${c.name}`).toContain(`[data-lte-contrast=aa] .text-bg-${c.name}`)
+      expect(v3css, `primary ${c.name}`).toContain(`[data-lte-contrast=aa][data-lte-primary=${c.name}]`)
+    }
+
+    // colours that already pass are left alone — including the dark-text ones,
+    // which keep v3's #1f2d3d rather than flipping to black
+    for (const name of ['lime', 'orange', 'yellow', 'navy', 'maroon', 'red', 'gray']) {
+      expect(v3css, name).not.toContain(`[data-lte-contrast=aa] .text-bg-${name}`)
+    }
+
+    // and the designed sheet emits nothing, so the switch costs it nothing
+    expect(compileScss('src/scss/adminlte-colors.scss')).not.toContain('data-lte-contrast')
   })
 
   it('presets only reference colours that exist', () => {

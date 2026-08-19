@@ -45,7 +45,7 @@ You can have the colours **designed for 4.4** (this page's default, below) or th
 | File | What you get | Text colour rule |
 |---|---|---|
 | `dist/css/adminlte-colors.css` | 14 colours designed in OKLCH — orange, amber, olive, teal, sky, indigo, violet, fuchsia, pink, navy, steel, slate, graphite, midnight — every one readable with white text, placed to sit next to Bootstrap's theme colours | Bootstrap 5's `color-contrast()`, 4.5:1 |
-| `dist/css/adminlte-colors-v3.css` | the 18 AdminLTE 3 colours — lightblue, navy, olive, lime, fuchsia, maroon, blue, indigo, purple, pink, red, orange, yellow, green, teal, cyan, gray, gray-dark — values as they were in the 3.2 build | AdminLTE 3's rule (Bootstrap 4 YIQ): white on lightblue, olive, teal, cyan …; dark on lime, orange, yellow |
+| `dist/css/adminlte-colors-v3.css` | the 18 AdminLTE 3 colours — lightblue, navy, olive, lime, fuchsia, maroon, blue, indigo, purple, pink, red, orange, yellow, green, teal, cyan, gray, gray-dark — values as they were in the 3.2 build | AdminLTE 3's rule (Bootstrap 4 YIQ): white on lightblue, olive, teal, cyan …; dark on lime, orange, yellow. Eight miss WCAG AA — [`data-lte-contrast="aa"`](#making-the-v3-colours-pass-aa) flips those |
 
 Both emit exactly the same class families (`.bg-*`, `.text-bg-*`, `.text-*`, `.border-*`, `.link-*`, `.bg-gradient-*`, `.card-*`, `.callout-*`, `.direct-chat-*`, tokens with dark-mode variants), so everything on this page applies to either. The demo pages let you switch between them live: the <a href="../UI/colors.html">Colors demo</a> and <a href="../generate/theme.html">Theme Customize</a> both have a palette toggle.
 
@@ -85,6 +85,43 @@ The AdminLTE 3 originals, with the contrast ratio white text reaches on each —
     </tbody>
   </table>
 </div>
+
+##### Making the v3 colours pass AA
+
+**`data-lte-contrast="aa"` fixes the eight without touching a single value.** The v3 rule assigns white text to eight colours that do not reach WCAG AA's 4.5:1 for normal text. The attribute flips just those to the ink that does, leaving every background byte-identical:
+
+```html
+<html lang="en" data-lte-contrast="aa">
+```
+
+<div class="table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">Colour</th>
+        <th scope="col">Default (v3 rule)</th>
+        <th scope="col">With <code>aa</code></th>
+      </tr>
+    </thead>
+    <tbody>
+      {paletteV3.filter(c => c.textColor !== c.textColorAA).map(c => (
+        <tr>
+          <td class="text-nowrap"><span class="badge me-2" style={`background:${c.hex}`}>&nbsp;&nbsp;&nbsp;</span><code>{c.name}</code> <span class="text-body-secondary">{c.hex}</span></td>
+          <td class="text-nowrap">white text — <span class="text-danger-emphasis fw-semibold">{c.contrastWhite.toFixed(2)}:1</span></td>
+          <td class="text-nowrap">black text — <span class="text-success-emphasis fw-semibold">{c.contrastBlack.toFixed(2)}:1</span></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+The ratios are stated rather than shown, because rendering the failing combination would put text on this page that fails the same check — flip the switch on the <a href="../UI/colors.html">Colors demo</a> to see both side by side on real components. It covers everywhere the palette paints text on its own colour: `.text-bg-*`, `.bg-gradient-*`, `.card-*` headers, `.direct-chat-*`, and the button, badge and pill text that `data-lte-primary` produces. Three things worth knowing:
+
+- **It has to be black.** AdminLTE 3's own dark ink, `#1f2d3d`, only clears 4.5:1 on two of the eight — `teal` and `cyan`. The others need true black, which is what `aa` uses. The colours that already take dark text (`lime`, `orange`, `yellow`) keep `#1f2d3d` and are not touched.
+- **Pair a flipped colour with `data-bs-theme="light"`.** A sidebar or header carrying one of the eight now has dark text, so its nav links should follow: `<nav class="app-header navbar navbar-expand text-bg-lightblue" data-bs-theme="light">`. The demo pages do this for you when the switch is on.
+- **`.text-lightblue` and `.link-lightblue` are a different question.** Those paint the colour *as text on the page background*, where the same eight are also thin. Use the emphasis token instead — `.text-lightblue-emphasis` equivalents come from `--bs-lightblue-text-emphasis`, which is the colour shaded 60% and readable on a light background.
+
+The attribute works with either sheet; on the designed palette it emits nothing at all, because every colour there clears AA with white text by construction — so it costs nothing to leave in your markup ([#6110](https://github.com/ColorlibHQ/AdminLTE/issues/6110)).
 
 The v3 sheet is built from the same Sass as the designed one — `src/scss/adminlte-colors-v3.scss` sets `$lte-palette` to the v3 map and `$lte-palette-contrast: "yiq"` — so `$lte-palette-custom`, `$lte-palette-aliases` and the rest below apply to it too. Its skin presets are AdminLTE 2's: a coloured header over the v3 dark sidebar (`text-bg-gray-dark`, the exact `sidebar-dark-*` background) or over a white one:
 
@@ -360,7 +397,8 @@ The fourteen values are generated, not picked. `scripts/palette.mjs` derives the
 
 ##### Accessibility and dark mode
 
-- Every shipped colour clears 4.5:1 with white text (the lowest is 4.6:1), so `.text-bg-*` never needs a per-colour exception and the demo pages using them pass the axe gate.
+- Every colour in the **designed** palette clears 4.5:1 with white text (the lowest is 4.6:1), so `.text-bg-*` never needs a per-colour exception and the demo pages using them pass the axe gate.
+- The **v3** palette is the historical set, and eight of its eighteen colours miss 4.5:1 with the text v3 assigned them. `data-lte-contrast="aa"` flips exactly those — see [Making the v3 colours pass AA](#making-the-v3-colours-pass-aa).
 - Solid utilities (`.bg-*`, `.text-bg-*`) are the same in both colour modes, as Bootstrap's own are. The subtle tokens — and with them `.callout-*` — flip for `data-bs-theme="dark"` using the same derivation Bootstrap applies to `.alert-*`.
 - `.text-*` and `.link-*` on a coloured background are your responsibility, exactly as with Bootstrap's theme colours.
 

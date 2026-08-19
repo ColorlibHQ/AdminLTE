@@ -18,9 +18,7 @@
 
 // Which way a state moves: Bootstrap darkens a colour that carries white text
 // and lightens one that carries dark text (see its button-variant mixin).
-@function lte-primary-state($color, $shade, $tint) {
-  $text: lte-contrast($color);
-
+@function lte-primary-state($color, $shade, $tint, $text) {
   @if $text == $color-contrast-light or $text == $lte-palette-yiq-text-light {
     @return lte-hex(shade-color($color, $shade));
   }
@@ -58,7 +56,11 @@
 @each $name, $value in map.merge($theme-colors, $lte-palette) {
   @if $name != "primary" {
     $link-hover: shift-color($value, $link-shade-percentage);
-    $text: lte-contrast($value);
+    // Palette colours follow this sheet's contrast rule; Bootstrap's own theme
+    // colours keep Bootstrap's, so `data-lte-primary="info"` agrees with
+    // `.btn-info` and `.text-bg-info` on the same page rather than taking the
+    // v3 YIQ rule's white text on cyan (1.96:1).
+    $text: if(map.has-key($lte-palette, $name), lte-contrast($value), color-contrast($value));
 
     [data-lte-primary="#{$name}"] {
       --#{$prefix}primary: var(--#{$prefix}#{$name});
@@ -70,10 +72,10 @@
       --#{$prefix}link-color-rgb: var(--#{$prefix}#{$name}-rgb);
       --#{$prefix}link-hover-color: #{lte-hex($link-hover)};
       --#{$prefix}link-hover-color-rgb: #{to-rgb($link-hover)};
-      --#{$lte-prefix}primary-hover: #{lte-primary-state($value, $btn-hover-bg-shade-amount, $btn-hover-bg-tint-amount)};
-      --#{$lte-prefix}primary-hover-border: #{lte-primary-state($value, $btn-hover-border-shade-amount, $btn-hover-border-tint-amount)};
-      --#{$lte-prefix}primary-active: #{lte-primary-state($value, $btn-active-bg-shade-amount, $btn-active-bg-tint-amount)};
-      --#{$lte-prefix}primary-active-border: #{lte-primary-state($value, $btn-active-border-shade-amount, $btn-active-border-tint-amount)};
+      --#{$lte-prefix}primary-hover: #{lte-primary-state($value, $btn-hover-bg-shade-amount, $btn-hover-bg-tint-amount, $text)};
+      --#{$lte-prefix}primary-hover-border: #{lte-primary-state($value, $btn-hover-border-shade-amount, $btn-hover-border-tint-amount, $text)};
+      --#{$lte-prefix}primary-active: #{lte-primary-state($value, $btn-active-bg-shade-amount, $btn-active-bg-tint-amount, $text)};
+      --#{$lte-prefix}primary-active-border: #{lte-primary-state($value, $btn-active-border-shade-amount, $btn-active-border-tint-amount, $text)};
 
       // The shared block above already says white; only the light colours,
       // which carry dark text, need to say otherwise
@@ -102,6 +104,24 @@
           --#{$prefix}link-hover-color: #{lte-hex($link-dark-hover)};
           --#{$prefix}link-hover-color-rgb: #{to-rgb($link-dark-hover)};
         }
+      }
+    }
+  }
+}
+
+// `data-lte-contrast="aa"` for the primary text colour, same rule as the
+// utilities: flip only where the palette's own pick misses AA (#6110).
+@each $name, $value in map.merge($theme-colors, $lte-palette) {
+  @if $name != "primary" {
+    $aa: lte-contrast-aa($value);
+    $text: if(map.has-key($lte-palette, $name), lte-contrast($value), color-contrast($value));
+
+    @if lte-needs-aa($value, $text) {
+      // `data-lte-contrast` and `data-lte-primary` are usually the same element
+      [data-lte-contrast="aa"][data-lte-primary="#{$name}"],
+      [data-lte-contrast="aa"] [data-lte-primary="#{$name}"] {
+        --#{$lte-prefix}primary-color: #{$aa};
+        --#{$lte-prefix}primary-color-rgb: #{to-rgb($aa)};
       }
     }
   }

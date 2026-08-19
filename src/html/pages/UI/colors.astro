@@ -30,11 +30,24 @@ const paletteSets = [
   { key: "designed", label: "Designed palette (4.4)", file: "adminlte-colors.css", groups: skinGroups, skins, choices: ["default", ...palette.map(c => c.name)] },
   { key: "v3", label: "AdminLTE 3 originals", file: "adminlte-colors-v3.css", groups: skinGroupsV3, skins: skinsV3, choices: ["default", ...paletteV3.map(c => c.name)] }
 ]
-// name → automatic text colour, per set (v3 uses the YIQ rule: some take dark text)
+// name → automatic text colour, per set and per contrast mode. v3 uses the YIQ
+// rule (some colours take dark text); `data-lte-contrast="aa"` flips the ones
+// whose assigned text misses WCAG AA (#6110).
 const paletteText = JSON.stringify({
-  designed: Object.fromEntries(palette.map(c => [c.name, c.textColor])),
-  v3: Object.fromEntries(paletteV3.map(c => [c.name, c.textColor]))
+  designed: {
+    default: Object.fromEntries(palette.map(c => [c.name, c.textColor])),
+    aa: Object.fromEntries(palette.map(c => [c.name, c.textColorAA]))
+  },
+  v3: {
+    default: Object.fromEntries(paletteV3.map(c => [c.name, c.textColor])),
+    aa: Object.fromEntries(paletteV3.map(c => [c.name, c.textColorAA]))
+  }
 })
+// Which colours `data-lte-contrast="aa"` actually changes, per palette
+const aaFlips = {
+  designed: palette.filter(c => c.textColor !== c.textColorAA),
+  v3: paletteV3.filter(c => c.textColor !== c.textColorAA)
+}
 const utilityRows = [
   { label: ".bg-*", cell: (n: string) => `<div class="lte-swatch bg-${n}"></div>` },
   { label: ".text-bg-*", cell: (n: string) => `<div class="lte-swatch text-bg-${n}">Aa</div>` },
@@ -191,6 +204,29 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
                     ))
                   }
                 </div>
+              </div>
+              <div class="card-footer">
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" role="switch" id="contrast-aa" />
+                  <label class="form-check-label" for="contrast-aa">
+                    Force WCAG AA text — <code class="text-body-emphasis">data-lte-contrast="aa"</code>
+                  </label>
+                </div>
+                {
+                  paletteSets.map((set, i) => (
+                    <p class="text-body-secondary small mb-0" data-palette-set={set.key} hidden={i !== 0}>
+                      {
+                        aaFlips[set.key].length === 0 ?
+                          "Nothing changes for this palette: every colour already clears 4.5:1 with the text it is given." :
+                          <Fragment>
+                            Flips the text on {aaFlips[set.key].length} of {set.choices.length - 1} colours whose assigned text misses 4.5:1 — {aaFlips[set.key].map((c, j) => (
+                              <Fragment>{j > 0 ? ", " : ""}<code>{c.name}</code> ({c.contrastWhite.toFixed(2)}:1 → {c.contrastBlack.toFixed(2)}:1)</Fragment>
+                            ))}. Backgrounds keep their exact values.
+                          </Fragment>
+                      }
+                    </p>
+                  ))
+                }
               </div>
             </div>
             <!--end::Palette switch-->
@@ -653,6 +689,7 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
         const markup = document.getElementById("skin-markup")
         const pickers = document.querySelectorAll("[data-skin-picker]")
         const primaryPickers = document.querySelectorAll("[data-primary-picker]")
+        const contrastToggle = document.getElementById("contrast-aa")
         const primaryMarkup = document.getElementById("primary-markup")
         // Automatic text colour per palette (the v3 sheet gives some colours dark text)
         const PALETTE_TEXT = JSON.parse(document.getElementById("palette-text").textContent)
@@ -662,13 +699,19 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
           sidebar: { cls: "bg-body-secondary", theme: "dark" },
           header: { cls: "bg-body", theme: "light" },
           // `data-lte-primary` on <html>: "default" leaves the attribute off
-          primary: "default"
+          primary: "default",
+          // `data-lte-contrast="aa"`: flips the text on colours that miss AA
+          aa: false
         }
         const DEFAULTS = {
           sidebar: { cls: "bg-body-secondary", theme: "dark" },
           header: { cls: "bg-body", theme: "light" }
         }
         const isSkinClass = c => /^(text-bg-|bg-body|bg-gradient-)/.test(c)
+        // The automatic text colour for a palette colour, in the mode that is on:
+        // a coloured sidebar or header pairs with data-bs-theme="dark" only while
+        // its text is white.
+        const textOf = color => ((PALETTE_TEXT[activeSet] || {})[state.aa ? "aa" : "default"] || {})[color] || "white"
 
         const paint = (el, role) => {
           const stale = [...el.classList].filter(c => isSkinClass(c))
@@ -679,6 +722,16 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
         }
 
         const render = () => {
+          // Pair first, paint second: a colour whose text flipped to dark needs
+          // the light colour mode on the region carrying it, so its nav links
+          // follow the heading.
+          for (const role of ["sidebar", "header"]) {
+            const cls = state[role].cls
+            if (cls.startsWith("text-bg-") || cls.startsWith("bg-gradient-")) {
+              state[role].theme = textOf(cls.replace(/^(text-bg-|bg-gradient-)/, "")) === "white" ? "dark" : "light"
+            }
+          }
+
           paint(sidebar, "sidebar")
           paint(header, "header")
           if (state.primary === "default") {
@@ -686,15 +739,21 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
           } else {
             document.documentElement.setAttribute("data-lte-primary", state.primary)
           }
+          if (state.aa) {
+            document.documentElement.setAttribute("data-lte-contrast", "aa")
+          } else {
+            document.documentElement.removeAttribute("data-lte-contrast")
+          }
           for (const picker of primaryPickers) {
             for (const chip of picker.querySelectorAll("[data-color]")) {
               chip.setAttribute("aria-pressed", String(chip.getAttribute("data-color") === state.primary))
             }
           }
           primaryMarkup.textContent =
-            state.primary === "default" ?
+            (state.aa && state.primary !== "default" ? '<!-- with data-lte-contrast="aa" the text on this colour flips -->\n' : "") +
+            (state.primary === "default" ?
               '<html lang="en">   <!-- no attribute: Bootstrap\'s blue -->' :
-              `<html lang="en" data-lte-primary="${state.primary}">`
+              `<html lang="en" data-lte-primary="${state.primary}"${state.aa ? ' data-lte-contrast="aa"' : ""}>`)
           for (const picker of pickers) {
             const role = picker.getAttribute("data-skin-picker")
             const cls = state[role].cls
@@ -713,6 +772,7 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
             button.setAttribute("aria-pressed", String(matches))
           }
           markup.textContent =
+            (state.aa ? '<html lang="en" data-lte-contrast="aa">\n' : "") +
             `<nav class="app-header navbar navbar-expand ${state.header.cls}" data-bs-theme="${state.header.theme}">\n` +
             `<aside class="app-sidebar ${state.sidebar.cls} shadow" data-bs-theme="${state.sidebar.theme}">`
         }
@@ -727,7 +787,7 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
             const color = chip.getAttribute("data-color")
             // A coloured sidebar or header pairs with data-bs-theme="dark" when the
             // colour takes white text (every designed colour; most v3 colours).
-            const text = (PALETTE_TEXT[activeSet] || {})[color] || "white"
+            const text = textOf(color)
             state[role] = color === "default" ? { ...DEFAULTS[role] } : { cls: `text-bg-${color}`, theme: text === "white" ? "dark" : "light" }
             render()
           })
@@ -743,6 +803,11 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
             render()
           })
         }
+
+        contrastToggle?.addEventListener("change", () => {
+          state.aa = contrastToggle.checked
+          render()
+        })
 
         for (const container of document.querySelectorAll(".skin-presets")) {
           container.addEventListener("click", event => {
