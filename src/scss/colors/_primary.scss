@@ -60,7 +60,11 @@
     // colours keep Bootstrap's, so `data-lte-primary="info"` agrees with
     // `.btn-info` and `.text-bg-info` on the same page rather than taking the
     // v3 YIQ rule's white text on cyan (1.96:1).
-    $text: if(map.has-key($lte-palette, $name), lte-contrast($value), color-contrast($value));
+    $text: color-contrast($value);
+
+    @if map.has-key($lte-palette, $name) {
+      $text: lte-contrast($value);
+    }
 
     [data-lte-primary="#{$name}"] {
       --#{$prefix}primary: var(--#{$prefix}#{$name});
@@ -114,7 +118,11 @@
 @each $name, $value in map.merge($theme-colors, $lte-palette) {
   @if $name != "primary" {
     $aa: lte-contrast-aa($value);
-    $text: if(map.has-key($lte-palette, $name), lte-contrast($value), color-contrast($value));
+    $text: color-contrast($value);
+
+    @if map.has-key($lte-palette, $name) {
+      $text: lte-contrast($value);
+    }
 
     @if lte-needs-aa($value, $text) {
       // `data-lte-contrast` and `data-lte-primary` are usually the same element

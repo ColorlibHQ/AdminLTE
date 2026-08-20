@@ -127,7 +127,12 @@ $lte-palette-yiq-text-light: $white !default;
 // #1f2d3d, which clears AA on lime, orange and yellow — those must not flip
 // just because AA's dark ink is pure black.
 @function lte-needs-aa($color, $text: null) {
-  $on: if($text == null, lte-contrast($color), $text);
+  $on: $text;
+
+  @if $on == null {
+    $on: lte-contrast($color);
+  }
+
   @return contrast-ratio($color, $on) < 4.5;
 }
 

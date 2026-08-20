@@ -5,6 +5,14 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- **`npm run production` printed six Sass deprecation warnings.** The palette sheets used the ternary `if()` in three places — `lte-needs-aa()` in `colors/_variables.scss` and the text-colour pick in `colors/_primary.scss`, twice — and Sass 1.95.0 deprecated that syntax in favour of the CSS `if()`. Both `adminlte-colors.scss` and `adminlte-colors-v3.scss` pull those files in, hence six warnings for three call sites. They are now plain `@if` statements rather than Sass's suggested `if(sass(...): ...; else: ...)`, which would need Sass >= 1.95 of anyone compiling AdminLTE from source. Compiled output is byte-identical (#6111, reported by @lfiorini).
+
+  For the record, Bootstrap's own `if()` calls warn too — 82 of them across `bootstrap/scss` — but `css-compile` already passes `--quiet-deps`, so nothing under `node_modules` reaches the console. Every warning in that report was AdminLTE's own.
+
 ## [4.8.4] - 2026-08-19
 
 ### Fixed
