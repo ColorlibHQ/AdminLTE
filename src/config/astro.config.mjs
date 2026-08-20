@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
+import { unified } from '@astrojs/markdown-remark'
 import { visit } from 'unist-util-visit'
 
 /**
@@ -44,7 +45,9 @@ export default defineConfig({
     shikiConfig: {
       theme: 'dark-plus'
     },
-    rehypePlugins: [rehypeResponsiveTables]
+    // `markdown.rehypePlugins` was deprecated in Astro 7.2.4 in favour of an
+    // explicit processor; `unified()` is the same remark/rehype pipeline.
+    processor: unified({ rehypePlugins: [rehypeResponsiveTables] })
   },
   integrations: [mdx()],
   srcDir: './src/html',

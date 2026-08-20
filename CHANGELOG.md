@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
   For the record, Bootstrap's own `if()` calls warn too — 82 of them across `bootstrap/scss` — but `css-compile` already passes `--quiet-deps`, so nothing under `node_modules` reaches the console. Every warning in that report was AdminLTE's own.
 
+### Maintenance
+
+- **Dev dependencies refreshed** — sass 1.102.0 -> 1.103.0, astro 7.2.3 -> 7.2.4, @astrojs/mdx 7.0.6 -> 7.0.7, happy-dom 20.11.2 -> 20.11.6. All within their current majors; `dist/` is byte-identical, so this changes nothing for consumers.
+- **The docs build moved off Astro's deprecated `markdown.rehypePlugins`.** Astro 7.2.4 deprecates the top-level `remarkPlugins` / `rehypePlugins` / `remarkRehype` keys in favour of an explicit `markdown.processor`, so the bump above added a fresh warning to the very command #6111 was about. The responsive-tables plugin now goes through `unified()` from `@astrojs/markdown-remark` — the same remark/rehype pipeline, now a direct dev dependency. All 90 built pages are byte-identical, `.table-responsive` wrapping included.
+- **TypeScript stays on 6.0.3.** 7.0.2 is out, but `typescript-eslint` still declares `peerDependencies.typescript: ">=4.8.4 <6.1.0"` and `@astrojs/check` accepts `^5 || ^6`, so the toolchain still cannot move.
+
 ## [4.8.4] - 2026-08-19
 
 ### Fixed
