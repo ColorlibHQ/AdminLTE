@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Dev dependencies refreshed** — sass 1.102.0 -> 1.103.0, astro 7.2.3 -> 7.2.4, @astrojs/mdx 7.0.6 -> 7.0.7, happy-dom 20.11.2 -> 20.11.6. All within their current majors; `dist/` is byte-identical, so this changes nothing for consumers.
 - **The docs build moved off Astro's deprecated `markdown.rehypePlugins`.** Astro 7.2.4 deprecates the top-level `remarkPlugins` / `rehypePlugins` / `remarkRehype` keys in favour of an explicit `markdown.processor`, so the bump above added a fresh warning to the very command #6111 was about. The responsive-tables plugin now goes through `unified()` from `@astrojs/markdown-remark` — the same remark/rehype pipeline, now a direct dev dependency. All 90 built pages are byte-identical, `.table-responsive` wrapping included.
+- **`nanoid` bumped to 3.3.18 in the lockfile** — GHSA-2v37-7h3g-55p8 (high), a transitive dev-only dependency where a custom generator could loop forever on `size: 0`. `npm audit` now reports zero vulnerabilities; nothing shipped in `dist/` was ever affected.
 - **TypeScript stays on 6.0.3.** 7.0.2 is out, but `typescript-eslint` still declares `peerDependencies.typescript: ">=4.8.4 <6.1.0"` and `@astrojs/check` accepts `^5 || ^6`, so the toolchain still cannot move.
 
 ## [4.8.4] - 2026-08-19
