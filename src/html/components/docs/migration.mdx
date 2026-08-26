@@ -178,7 +178,7 @@ For an existing AdminLTE 3 project:
 5. **Audit jQuery calls.** Either remove them (use the data API) or import plugin classes directly.
 6. **Swap the third-party plugins** using the [replacement table](#third-party-plugin-replacements) above. Do this one widget at a time — it's the longest step, and each swap is independently testable.
 7. **Test responsive breakpoints** — Bootstrap 5 added `xxl`. If you use breakpoint-specific utilities, double-check the new scale.
-8. **Re-test print views** — AdminLTE 4 fixed a print-layout issue (#5996); if you had custom print CSS, verify it still works.
+8. **Re-test print views** — as in v3, printing leaves out the header, sidebar and footer and gives the content the full sheet; `data-lte-print="plain"` drops the printed link targets and button outlines for pages that print as documents, and `data-lte-print="app"` prints the whole layout instead. If you had custom print CSS, verify it still works.
 
 ##### Help and discussion
 

@@ -767,7 +767,7 @@
               </span>
               <h1 class="faq-hero-title">How can we help?</h1>
               <p class="faq-hero-lead">
-                Quick answers to the 25 questions we get asked most often. Use the search to jump to
+                Quick answers to the 26 questions we get asked most often. Use the search to jump to
                 anything, or click a topic below.
               </p>
               <form class="faq-search" role="search" onsubmit="return false;">
@@ -826,7 +826,7 @@
               ><a href="#troubleshooting" class="faq-chip faq-chip-danger">
                 <i class="bi bi-wrench-adjustable" aria-hidden="true"></i>
                 <span>Troubleshooting</span>
-                <span class="faq-chip-count">7</span>
+                <span class="faq-chip-count">8</span>
               </a>
             </nav>
 
@@ -1302,7 +1302,7 @@
                   </span>
                   <div>
                     <h2 class="faq-section-title">Troubleshooting</h2>
-                    <p class="faq-section-count">7 questions</p>
+                    <p class="faq-section-count">8 questions</p>
                   </div>
                 </header>
                 <div class="faq-section-items">
@@ -1398,12 +1398,30 @@
                       </span>
                     </summary>
                     <div class="faq-answer">
-                      Those are AdminLTE's print defaults, which suit printing a copy of a screen.
-                      For a page that prints as a document — an invoice or work order that goes to a
+                      Those are AdminLTE's print defaults, meant for reading a page on paper. For a
+                      page that prints as a document — an invoice or work order that goes to a
                       customer — add <code>&lt;html data-lte-print="plain"&gt;</code> (it works on
-                      any container too) and both go away, while text stays black on white. Hide the
-                      chrome with Bootstrap's <code>.d-print-none</code> on the sidebar and header.
-                      See the <a href="recipes.html">Recipes</a> page.
+                      any container too) and both go away, while text stays black on white. See the
+                      <a href="recipes.html">Recipes</a> page.
+                    </div>
+                  </details>
+                  <details class="faq-item" data-faq-item>
+                    <summary>
+                      <span class="faq-q-icon">
+                        <i class="bi bi-question-lg" aria-hidden="true"></i>
+                      </span>
+                      <span class="faq-q-text">The sidebar and header no longer print.</span>
+                      <span class="faq-q-chevron">
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                      </span>
+                    </summary>
+                    <div class="faq-answer">
+                      By design: the shell — header, sidebar and footer — is navigation, and
+                      printing it spent 200px of every sheet on a menu and pushed the content onto
+                      extra pages (#6113). The content now gets the full width of the paper, as it
+                      did in v3. Add <code>&lt;html data-lte-print="app"&gt;</code> to print the
+                      whole layout again, or Bootstrap's <code>.d-print-flex</code> /
+                      <code>.d-print-block</code> to bring back one piece of it.
                     </div>
                   </details>
                   <details class="faq-item" data-faq-item>

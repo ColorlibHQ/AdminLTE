@@ -163,7 +163,11 @@ const sections: Section[] = [
       },
       {
         q: "Printing adds the URL after every link and a box around buttons.",
-        a: `Those are AdminLTE's print defaults, which suit printing a copy of a screen. For a page that prints as a document — an invoice or work order that goes to a customer — add <code>&lt;html data-lte-print="plain"&gt;</code> (it works on any container too) and both go away, while text stays black on white. Hide the chrome with Bootstrap's <code>.d-print-none</code> on the sidebar and header. See the <a href="recipes.html">Recipes</a> page.`
+        a: `Those are AdminLTE's print defaults, meant for reading a page on paper. For a page that prints as a document — an invoice or work order that goes to a customer — add <code>&lt;html data-lte-print="plain"&gt;</code> (it works on any container too) and both go away, while text stays black on white. See the <a href="recipes.html">Recipes</a> page.`
+      },
+      {
+        q: "The sidebar and header no longer print.",
+        a: `By design: the shell — header, sidebar and footer — is navigation, and printing it spent 200px of every sheet on a menu and pushed the content onto extra pages (#6113). The content now gets the full width of the paper, as it did in v3. Add <code>&lt;html data-lte-print="app"&gt;</code> to print the whole layout again, or Bootstrap's <code>.d-print-flex</code> / <code>.d-print-block</code> to bring back one piece of it.`
       },
       {
         q: "My custom SCSS doesn't override AdminLTE's defaults.",

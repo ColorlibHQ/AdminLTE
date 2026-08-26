@@ -15987,50 +15987,60 @@ fieldset legend {
     font-size: 0.8em;
     content: " (" attr(href) ")";
   }
-  [data-lte-print=plain] a[href^=http]::after {
+  [data-lte-print~=plain] a[href^=http]::after {
     content: none;
   }
-  [data-lte-print=plain] .btn {
+  [data-lte-print~=plain] .btn {
     border-color: transparent !important;
   }
-  /* Print Layout Fix - Ensure sidebar and main content are both visible.
-     `:not(.d-print-none)` on the two rules that force `display`, so Bootstrap's
-     print display utilities keep working: these are defaults for the standard
-     layout, not something a page should have to fight to hide. */
+  /* Print Layout — paged media cannot scroll, so every sticky position and
+     every scroll container has to be unwound here or the browser clips what
+     is inside it: that is what printed the main content blank in 4.0.0
+     (#5982). `:not(.d-print-none)` on the rule that forces `display`, so
+     Bootstrap's print display utilities keep working (#6106). */
+  .app-header,
+  .app-sidebar,
+  .app-footer {
+    position: static !important;
+  }
   .app-wrapper:not(.d-print-none) {
     display: grid !important;
     grid-template-rows: auto 1fr auto !important;
     grid-template-columns: auto 1fr !important;
   }
-  .sidebar-overlay {
-    display: none !important;
+  .app-main {
+    width: auto !important;
   }
-  .app-sidebar:not(.d-print-none) {
-    position: static !important;
-    display: block !important;
-    min-width: 200px !important;
-    max-width: 200px !important;
-    max-height: none !important;
-    margin-left: 0 !important;
+  .app-main,
+  .app-content,
+  .sidebar-wrapper {
     overflow: visible !important;
   }
   .sidebar-wrapper {
     height: auto !important;
-    overflow: visible !important;
   }
-  .app-header {
-    position: static !important;
+  .app-sidebar {
+    min-width: 200px !important;
+    max-width: 200px !important;
+    max-height: none !important;
+    margin-left: 0 !important;
   }
-  .app-main {
-    width: auto !important;
-    max-width: 100% !important;
-    overflow: visible !important;
+  .app-wrapper {
+    min-height: 0 !important;
   }
-  .app-content {
-    overflow: visible !important;
-  }
+  .app-wrapper,
+  .app-header,
+  .app-main,
   .app-footer {
-    position: static !important;
+    max-width: none !important;
+  }
+  html:not([data-lte-print~=app]) body:not([data-lte-print~=app]) .app-header:not(.d-print-block):not(.d-print-flex),
+  html:not([data-lte-print~=app]) body:not([data-lte-print~=app]) .app-sidebar:not(.d-print-block):not(.d-print-flex),
+  html:not([data-lte-print~=app]) body:not([data-lte-print~=app]) .app-footer:not(.d-print-block):not(.d-print-flex) {
+    display: none !important;
+  }
+  .sidebar-overlay {
+    display: none !important;
   }
 }
 

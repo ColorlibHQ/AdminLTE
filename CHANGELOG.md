@@ -5,6 +5,20 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- **A printed page is a document again — the header, sidebar and footer no longer print.** v3 left all three off the paper; v4 printed them, and the result on a real document was the invoice page in the report: 200px of every sheet spent on a menu the reader cannot click, the invoice squeezed into what was left (its own table wrapping "Pro plan subscription" across three lines), and the sidebar's 85 menu items running past the foot of the first sheet — so a one-page invoice printed as two pages, the second one all but empty. The content now gets the full width of the paper. Print the whole shell again with `data-lte-print="app"` on `<html>` or `<body>`, or bring back one piece of it with Bootstrap's own utilities — `.d-print-flex` for the header, which is a navbar, `.d-print-block` for the sidebar and footer. `.d-print-none` still hides anything you don't want on paper, in either mode (#6113, reported by @johnnyq).
+
+  `data-lte-print` is now matched per token, so `data-lte-print="plain app"` sets both. `data-lte-print="plain"` is unaffected.
+
+### Fixed
+
+- **The layout kept its viewport-sized dimensions in print.** `.app-wrapper` carries `min-height: 100vh` and `max-width: 100vw`, and neither was cleared for print even though the print block deliberately rewrites that same element's grid. Paper has no viewport to fill: the wrapper reserved a full sheet however short the page was, which is why the printed invoice put its footer at the foot of a sheet of empty grey with the content in the top third, and why anything following the wrapper opened a new page. Both are now reset in print, together with the `max-width: 100vw` on the header, main and footer (#6113, reported by @johnnyq).
+
+- **The print block set `display` on elements it did not need to.** Forcing `display: block` on `.app-sidebar` was what made `.d-print-none` unable to hide it before 4.6.0, and the same shape would have made `.d-print-*` unable to show it now. Printing the shell is a matter of *not* hiding it, so the rules that hide it are simply scoped out instead, and nothing in the print block forces a `display` value on the header, sidebar or footer any more.
+
 ## [4.8.5] - 2026-08-20
 
 ### Fixed

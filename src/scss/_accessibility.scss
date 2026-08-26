@@ -309,7 +309,7 @@ fieldset {
   // quote, work order, packing slip) rather than as a copy of a web page: no
   // URLs after links, no outline around buttons. Goes on <html>, <body> or any
   // container; text stays black on white either way (#6108).
-  [data-lte-print="plain"] {
+  [data-lte-print~="plain"] {
     a[href^="http"]::after {
       content: none;
     }
@@ -319,50 +319,83 @@ fieldset {
     }
   }
 
-  /* Print Layout Fix - Ensure sidebar and main content are both visible.
-     `:not(.d-print-none)` on the two rules that force `display`, so Bootstrap's
-     print display utilities keep working: these are defaults for the standard
-     layout, not something a page should have to fight to hide. */
+  /* Print Layout — paged media cannot scroll, so every sticky position and
+     every scroll container has to be unwound here or the browser clips what
+     is inside it: that is what printed the main content blank in 4.0.0
+     (#5982). `:not(.d-print-none)` on the rule that forces `display`, so
+     Bootstrap's print display utilities keep working (#6106). */
+  .app-header,
+  .app-sidebar,
+  .app-footer {
+    position: static !important;
+  }
+
   .app-wrapper:not(.d-print-none) {
     display: grid !important;
     grid-template-rows: auto 1fr auto !important;
     grid-template-columns: auto 1fr !important;
   }
 
-  .sidebar-overlay {
-    display: none !important;
+  .app-main {
+    width: auto !important;
   }
 
-  .app-sidebar:not(.d-print-none) {
-    position: static !important;
-    display: block !important;
-    min-width: 200px !important;
-    max-width: 200px !important;
-    max-height: none !important;
-    margin-left: 0 !important;
+  .app-main,
+  .app-content,
+  .sidebar-wrapper {
     overflow: visible !important;
   }
 
   .sidebar-wrapper {
     height: auto !important;
-    overflow: visible !important;
   }
 
-  .app-header {
-    position: static !important;
+  .app-sidebar {
+    min-width: 200px !important;
+    max-width: 200px !important;
+    max-height: none !important;
+    margin-left: 0 !important;
   }
 
-  .app-main {
-    width: auto !important;
-    max-width: 100% !important;
-    overflow: visible !important;
+  // Paper has no viewport to fill. `vh` and `vw` resolve against the page area
+  // in print, so `min-height: 100vh` made the wrapper exactly one sheet tall
+  // however short the content was: a three-line page still reserved a whole
+  // sheet, the footer was pushed to the foot of it, and anything that followed
+  // opened a second page. `max-width: 100vw` is the same measurement applied
+  // sideways — it caps the layout at the width of one sheet, which says
+  // nothing useful once the content is being paginated (#6113).
+  .app-wrapper {
+    min-height: 0 !important;
   }
 
-  .app-content {
-    overflow: visible !important;
-  }
-
+  .app-wrapper,
+  .app-header,
+  .app-main,
   .app-footer {
-    position: static !important;
+    max-width: none !important;
+  }
+
+  // The shell — top bar, sidebar menu, footer — is navigation and chrome, not
+  // content. Printing it spent the first 200px of every sheet on a menu the
+  // reader cannot click and added the sidebar's own length to the page count,
+  // so an invoice came out squeezed into a narrow column and two pages long
+  // (#6113). v3 hid all three; v4 now does the same. Bring one back with
+  // Bootstrap's `.d-print-block` / `.d-print-flex`, or the whole shell with
+  // `data-lte-print="app"` on <html> or <body>, for a page that really does
+  // print as a copy of the screen.
+  html:not([data-lte-print~="app"]) body:not([data-lte-print~="app"]) {
+    .app-header,
+    .app-sidebar,
+    .app-footer {
+      &:not(.d-print-block):not(.d-print-flex) {
+        display: none !important;
+      }
+    }
+  }
+
+  // The backdrop behind the off-canvas sidebar has nothing to print in any
+  // mode.
+  .sidebar-overlay {
+    display: none !important;
   }
 }

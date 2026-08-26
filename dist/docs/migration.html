@@ -1457,8 +1457,12 @@
                         new scale.
                       </li>
                       <li>
-                        <strong>Re-test print views</strong> — AdminLTE 4 fixed a print-layout issue
-                        (#5996); if you had custom print CSS, verify it still works.
+                        <strong>Re-test print views</strong> — as in v3, printing leaves out the
+                        header, sidebar and footer and gives the content the full sheet;
+                        <code>data-lte-print=&quot;plain&quot;</code> drops the printed link targets
+                        and button outlines for pages that print as documents, and
+                        <code>data-lte-print=&quot;app&quot;</code> prints the whole layout instead.
+                        If you had custom print CSS, verify it still works.
                       </li>
                     </ol>
                     <h5 id="help-and-discussion">Help and discussion</h5>

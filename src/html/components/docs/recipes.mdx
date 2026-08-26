@@ -418,9 +418,9 @@ If you prefer the ColorMode event to the attribute observer, `document.addEventL
 
 ##### Printing a page as a document
 
-AdminLTE prints the whole layout — sidebar, header and content — with the styles you would want for reading a copy of a screen: the target of an external link is printed after it, buttons keep an outline so they still read as buttons, and everything goes black on white so backgrounds don't eat ink.
+A printed page is a document, not a screenshot of the app, so AdminLTE leaves the shell — header, sidebar menu and footer — off the paper and gives the content the full width of the sheet. What does print is styled for reading on paper: the target of an external link is printed after it, buttons keep an outline so they still read as buttons, and everything goes black on white so backgrounds don't eat ink.
 
-For pages that print as *documents* — an invoice, quote, work order or packing slip that goes to a customer — that is the wrong output: nobody wants `Pay online (https://pay.example.com/inv/12345?token=…)` on a printed invoice, or a box drawn around a button. Put `data-lte-print="plain"` on `<html>`, `<body>` or any container and both go away, while the text stays black on white:
+For pages that print as *documents* — an invoice, quote, work order or packing slip that goes to a customer — those last two are the wrong output: nobody wants `Pay online (https://pay.example.com/inv/12345?token=…)` on a printed invoice, or a box drawn around a button. Put `data-lte-print="plain"` on `<html>`, `<body>` or any container and both go away, while the text stays black on white:
 
 ```html
 <html lang="en" data-lte-print="plain">
@@ -432,14 +432,7 @@ Scope it to part of a page when only that part is the document:
 <div class="card" data-lte-print="plain">…the invoice…</div>
 ```
 
-Hide the chrome for that print with Bootstrap's own utility — `.d-print-none` works on any element, including the sidebar and the header:
-
-```html
-<aside class="app-sidebar bg-body-secondary shadow d-print-none" data-bs-theme="dark">…</aside>
-<nav class="app-header navbar navbar-expand bg-body d-print-none">…</nav>
-```
-
-And if a page only ever prints as a document, set the attribute once when you print:
+And if a page only ever prints as a document, set the attribute when you print:
 
 ```js
 document.querySelector("#print-invoice").addEventListener("click", () => {
@@ -447,6 +440,20 @@ document.querySelector("#print-invoice").addEventListener("click", () => {
   window.print()
 })
 ```
+
+Going the other way — a page that really does print as a copy of the screen, menu and all — `data-lte-print="app"` on `<html>` or `<body>` prints the whole shell:
+
+```html
+<html lang="en" data-lte-print="app">
+```
+
+To bring back one part of it rather than all three, use Bootstrap's own display utilities. `.d-print-flex` suits the header (it is a navbar), `.d-print-block` the sidebar and footer:
+
+```html
+<aside class="app-sidebar bg-body-secondary shadow d-print-block" data-bs-theme="dark">…</aside>
+```
+
+`.d-print-none` still hides anything you don't want on paper, in either mode — a toolbar of buttons above the invoice, say.
 
 ##### Where to next
 
