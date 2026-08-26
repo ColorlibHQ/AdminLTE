@@ -5,6 +5,12 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- **A page whose content ended near a sheet boundary still printed one blank sheet.** `.app-main` carries `padding-bottom: $grid-gutter-width * .5` — breathing room above the fold on screen, trailing whitespace on paper. 12px of it was enough to push a page that otherwise ended 1px inside the second sheet onto a third, empty one; `UI/ribbons.html` was the case in the demo set, printing three sheets for two sheets of content. The padding is now cleared in print, along with the negative `margin-bottom` on `.app-content-bottom-area` that exists only to cancel it. One page of the 90 in `dist/` changes page count; nothing else moves (#6113, reported by @johnnyq).
+
 ## [4.9.0] - 2026-08-26
 
 ### Changed

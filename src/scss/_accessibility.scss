@@ -336,8 +336,18 @@ fieldset {
     grid-template-columns: auto 1fr !important;
   }
 
+  // `.app-main`'s bottom padding is breathing room above the fold; on paper it
+  // is trailing whitespace, and 12px of it is enough to tip a page whose
+  // content ends near a sheet boundary onto one more, empty sheet — which is
+  // what UI/ribbons.html did. The bottom area's negative margin exists only to
+  // cancel that padding, so it goes with it (#6113).
   .app-main {
     width: auto !important;
+    padding-bottom: 0 !important;
+  }
+
+  .app-content-bottom-area {
+    margin-bottom: 0 !important;
   }
 
   .app-main,

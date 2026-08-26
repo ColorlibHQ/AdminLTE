@@ -16010,6 +16010,10 @@ fieldset legend {
   }
   .app-main {
     width: auto !important;
+    padding-bottom: 0 !important;
+  }
+  .app-content-bottom-area {
+    margin-bottom: 0 !important;
   }
   .app-main,
   .app-content,
