@@ -13399,6 +13399,7 @@ textarea.form-control-lg {
 .sidebar-mini.sidebar-collapse .brand-text {
   display: inline-block;
   max-width: 0;
+  margin-left: 0;
   overflow: hidden;
 }
 .sidebar-mini.sidebar-collapse .sidebar-menu .nav-link p,

@@ -5,6 +5,20 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- **The brand logo sat 4px left of centre in the collapsed mini sidebar.** `.brand-text` keeps its base `margin-left: .5rem` while `.sidebar-mini.sidebar-collapse` shrinks it to `max-width: 0`, so 8px of margin on a zero-width element pushed the logo off the rail's centre line. The margin is now cleared in that state — the hover rule that expands the rail already re-declared `margin-left: .5rem`, which is what the collapsed state should have mirrored all along (#6114, by @dfsmania).
+
+### Maintenance
+
+- **Dev dependencies refreshed** — eslint 10.8.1 -> 10.9.1, eslint-plugin-unicorn 73 -> 74, @typescript-eslint/* and typescript-eslint 8.67.0 -> 8.69.0, astro 7.2.4 -> 7.2.10, @astrojs/mdx 7.0.7 -> 8.0.0, @astrojs/markdown-remark 7.2.4 -> 7.3.0, rollup 4.62.4 -> 4.63.1, terser 5.50.0 -> 5.51.2, happy-dom 20.11.6 -> 20.12.0, sass 1.103.0 -> 1.103.1, globals 17.11.0 -> 17.12.0. Every one of the 114 built files in `dist/` is byte-identical afterwards, so this changes nothing for consumers.
+
+  `@astrojs/mdx` 8.0.0 is a major but not an Astro 8 requirement — it peers `astro@^7.2.6` — and it flattens the tree rather than growing it: four nested duplicates of `@astrojs/markdown-remark` and `@astrojs/internal-helpers` go away and `@astrojs/markdown-satteri` is hoisted to the top level. `npm ci` from a clean checkout resolves with no peer warnings.
+
+- **TypeScript stays on 6.0.3.** 7.0.2 is out and Dependabot proposes it monthly, but two peers still refuse it: `@astrojs/check@0.9.10` (the latest) declares `typescript@^5.0.0 || ^6.0.0`, and `typescript-eslint@8.69.0` declares `>=4.8.4 <6.1.0`. The upgrade fails at `npm ci` with `ERESOLVE`, so it cannot land until both move.
+
 ## [4.9.1] - 2026-08-26
 
 ### Fixed
