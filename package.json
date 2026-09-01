@@ -143,7 +143,7 @@
     "shx": "^0.4.0",
     "stylelint": "^17.14.1",
     "stylelint-config-twbs-bootstrap": "^16.1.0",
-    "terser": "^5.50.0",
+    "terser": "^5.51.2",
     "tslib": "^2.8.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.67.0",
