@@ -128,7 +128,7 @@
     "eslint-plugin-unicorn": "^74.0.0",
     "fs-extra": "^11.4.0",
     "globals": "^17.11.0",
-    "happy-dom": "^20.11.6",
+    "happy-dom": "^20.11.15",
     "lockfile-lint": "^5.0.1",
     "nodemon": "^3.1.14",
     "npm-run-all": "^4.1.5",
