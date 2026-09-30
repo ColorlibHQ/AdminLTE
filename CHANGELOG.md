@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **The demo charts are drawn with Chart.js (MIT) instead of ApexCharts.** From 5.2.0 ApexCharts is published under its own commercial "ApexCharts License" rather than MIT, and a template that thousands of projects copy into their products cannot carry that on to them. Every chart on Dashboard v1, v2 and v3 and on the charts showcase is rebuilt on Chart.js 4.5.1 with the same data, colours and sizes: area and line charts (gradient fills), grouped columns, doughnuts, the radial bar (concentric doughnut rings with the average in the middle), the mixed bar-and-line chart with two value axes, and the dashboard sparklines. Chart.js is loaded from jsDelivr with an SRI hash, only on the pages that draw charts, exactly as ApexCharts was — the `admin-lte` npm package has never depended on a chart library and still does not. Gzipped chart JavaScript per charted page drops from 131.5 kB (ApexCharts 3.37.1 JS + CSS) to 72.8 kB (Chart.js 4.5.1 plus the 2.3 kB inline theme preset below).
+
+  The showcase page is now `charts/chartjs.html` and the sidebar entry reads "Chart.js". `charts/apexcharts.html` stays as a redirect so existing links keep working.
+
+- **One chart theme preset, following the colour mode live.** The charted pages include a short preset (`src/html/components/_chartjs.astro`) that sets `Chart.defaults` from AdminLTE's CSS variables — body font, secondary text for ticks, 8% gridlines with no vertical grid on category axes, rounded bars, a tooltip and legend styled like a card — and restyles every chart on the page when `<html data-bs-theme>` changes (the ColorMode toggle, the OS in auto mode, or your own code) or when the web font finishes loading. Under `<html dir="rtl">` legends and tooltips are laid out right-to-left. The ApexCharts colour-mode helper that every demo page carried in its shared scripts (#6105) is gone with it, so the 85 pages without charts are 1.6 kB lighter too. The [dark-mode charts recipe](https://adminlte.io/themes/v4/docs/recipes.html#charts-that-follow-dark-mode), the Recommended Integrations, Migration and RTL docs are updated to match.
+
+  One Chart.js detail worth knowing if you adapt the preset: Chart.js copies the scale defaults into each chart's config when the chart is created, so changing `Chart.defaults` and calling `chart.update()` leaves existing axes in the old colours. The preset drops those copied colours before it updates; see the comment in the component.
+
 ### Fixed
 
 - **The brand logo sat 4px left of centre in the collapsed mini sidebar.** `.brand-text` keeps its base `margin-left: .5rem` while `.sidebar-mini.sidebar-collapse` shrinks it to `max-width: 0`, so 8px of margin on a zero-width element pushed the logo off the rail's centre line. The margin is now cleared in that state — the hover rule that expands the rail already re-declared `margin-left: .5rem`, which is what the collapsed state should have mirrored all along (#6114, by @dfsmania).

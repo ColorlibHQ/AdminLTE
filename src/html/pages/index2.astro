@@ -4,6 +4,7 @@ import Footer from "@components/dashboard/_footer.astro"
 import Topbar from "@components/dashboard/_topbar.astro"
 import Sidenav from "@components/dashboard/_sidenav.astro"
 import Scripts from "@components/_scripts.astro"
+import ChartJs from "@components/_chartjs.astro"
 
 const title = "AdminLTE | Dashboard v2"
 const path = "../../dist"
@@ -23,13 +24,6 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
   <head>
     <Head title={title} path={path} />
 
-    <!-- apexcharts -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"
-      integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0="
-      crossorigin="anonymous"
-    />
   </head>
 
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -196,7 +190,9 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                           <strong>Sales: 1 Jan, 2023 - 30 Jul, 2023</strong>
                         </p>
 
-                        <div id="sales-chart"></div>
+                        <div class="position-relative" style="height: 180px">
+                          <canvas id="sales-chart" role="img" aria-label="Area chart of digital goods and electronics sales, January to July 2023"></canvas>
+                        </div>
                       </div>
                       <!-- /.col -->
                       <div class="col-md-4">
@@ -843,7 +839,9 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                               </span>
                             </td>
                             <td>
-                              <div id="table-sparkline-1"></div>
+                              <div class="position-relative" style="width: 150px; height: 30px">
+                                <canvas id="table-sparkline-1" role="img" aria-label="Popularity trend"></canvas>
+                              </div>
                             </td>
                           </tr>
                           <tr>
@@ -855,7 +853,9 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                               <span class="badge text-bg-warning">Pending</span>
                             </td>
                             <td>
-                              <div id="table-sparkline-2"></div>
+                              <div class="position-relative" style="width: 150px; height: 30px">
+                                <canvas id="table-sparkline-2" role="img" aria-label="Popularity trend"></canvas>
+                              </div>
                             </td>
                           </tr>
                           <tr>
@@ -869,7 +869,9 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                               </span>
                             </td>
                             <td>
-                              <div id="table-sparkline-3"></div>
+                              <div class="position-relative" style="width: 150px; height: 30px">
+                                <canvas id="table-sparkline-3" role="img" aria-label="Popularity trend"></canvas>
+                              </div>
                             </td>
                           </tr>
                           <tr>
@@ -881,7 +883,9 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                               <span class="badge text-bg-info">Processing</span>
                             </td>
                             <td>
-                              <div id="table-sparkline-4"></div>
+                              <div class="position-relative" style="width: 150px; height: 30px">
+                                <canvas id="table-sparkline-4" role="img" aria-label="Popularity trend"></canvas>
+                              </div>
                             </td>
                           </tr>
                           <tr>
@@ -893,7 +897,9 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                               <span class="badge text-bg-warning">Pending</span>
                             </td>
                             <td>
-                              <div id="table-sparkline-5"></div>
+                              <div class="position-relative" style="width: 150px; height: 30px">
+                                <canvas id="table-sparkline-5" role="img" aria-label="Popularity trend"></canvas>
+                              </div>
                             </td>
                           </tr>
                           <tr>
@@ -907,7 +913,9 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                               </span>
                             </td>
                             <td>
-                              <div id="table-sparkline-6"></div>
+                              <div class="position-relative" style="width: 150px; height: 30px">
+                                <canvas id="table-sparkline-6" role="img" aria-label="Popularity trend"></canvas>
+                              </div>
                             </td>
                           </tr>
                           <tr>
@@ -919,7 +927,9 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                               <span class="badge text-bg-success">Shipped</span>
                             </td>
                             <td>
-                              <div id="table-sparkline-7"></div>
+                              <div class="position-relative" style="width: 150px; height: 30px">
+                                <canvas id="table-sparkline-7" role="img" aria-label="Popularity trend"></canvas>
+                              </div>
                             </td>
                           </tr>
                         </tbody>
@@ -1028,7 +1038,9 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                     <!--begin::Row-->
                     <div class="row">
                       <div class="col-12">
-                        <div id="pie-chart"></div>
+                        <div class="position-relative" style="height: 350px">
+                          <canvas id="pie-chart" role="img" aria-label="Donut chart of browser usage"></canvas>
+                        </div>
                       </div>
                       <!-- /.col -->
                     </div>
@@ -1210,122 +1222,115 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 
     <!-- OPTIONAL SCRIPTS -->
 
-    <!-- apexcharts -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"
-      integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8="
-      crossorigin="anonymous"></script>
+    <!-- Chart.js + AdminLTE chart theme -->
+    <ChartJs />
 
     <script is:inline>
 // NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
 // IT'S ALL JUST JUNK FOR DEMO
 // ++++++++++++++++++++++++++++++++++++++++++
 
-/* apexcharts
-       * -------
-       * Here we will create a few charts using apexcharts
+/* Chart.js
+       * --------
+       * Here we will create a few charts using Chart.js
        */
+
+const { cssVar, areaFill } = globalThis.lteChartTheme
 
 //-----------------------
 // - MONTHLY SALES CHART -
 //-----------------------
 
-const sales_chart_options = {
-  series: [
-    {
-      name: "Digital Goods",
-      data: [28, 48, 40, 19, 86, 27, 90]
-    },
-    {
-      name: "Electronics",
-      data: [65, 59, 80, 81, 56, 55, 40]
-    }
-  ],
-  chart: {
-    id: "sales-chart",
-    height: 180,
-    type: "area",
-    toolbar: {
-      show: false
-    }
-  },
-  legend: {
-    show: false
-  },
-  colors: ["#0d6efd", "#20c997"],
-  dataLabels: {
-    enabled: false
-  },
-  stroke: {
-    curve: "smooth"
-  },
-  xaxis: {
-    type: "datetime",
-    categories: [
-      "2023-01-01",
-      "2023-02-01",
-      "2023-03-01",
-      "2023-04-01",
-      "2023-05-01",
-      "2023-06-01",
-      "2023-07-01"
+new Chart(document.querySelector("#sales-chart"), {
+  type: "line",
+  data: {
+    labels: ["Jan '23", "Feb '23", "Mar '23", "Apr '23", "May '23", "Jun '23", "Jul '23"],
+    datasets: [
+      {
+        label: "Digital Goods",
+        data: [28, 48, 40, 19, 86, 27, 90],
+        borderColor: "#0d6efd",
+        backgroundColor: areaFill("#0d6efd"),
+        pointBackgroundColor: "#0d6efd",
+        fill: true,
+        tension: 0.4
+      },
+      {
+        label: "Electronics",
+        data: [65, 59, 80, 81, 56, 55, 40],
+        borderColor: "#20c997",
+        backgroundColor: areaFill("#20c997"),
+        pointBackgroundColor: "#20c997",
+        fill: true,
+        tension: 0.4
+      }
     ]
   },
-  tooltip: {
-    x: {
-      format: "MMMM yyyy"
+  options: {
+    plugins: {
+      legend: {
+        display: false
+      },
+      tooltip: {
+        callbacks: {
+          title: ([item]) => `${new Date(2023, item.dataIndex).toLocaleString("en", { month: "long" })} 2023`
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true
+      }
     }
   }
-}
-
-const sales_chart = new ApexCharts(
-  document.querySelector("#sales-chart"),
-  sales_chart_options
-)
-sales_chart.render()
+})
 
 //---------------------------
 // - END MONTHLY SALES CHART -
 //---------------------------
 
 function createSparklineChart(selector, data) {
-  const options = {
-    series: [{ data }],
-    chart: {
-      id: selector.replace(/^#/, ""),
-      type: "line",
-      width: 150,
-      height: 30,
-      sparkline: {
-        enabled: true
-      }
+  const primary = cssVar("--bs-primary", "#0d6efd")
+
+  return new Chart(document.querySelector(selector), {
+    type: "line",
+    data: {
+      labels: data.map((value, index) => index + 1),
+      datasets: [
+        {
+          data,
+          borderColor: primary,
+          backgroundColor: primary,
+          pointHoverRadius: 3
+        }
+      ]
     },
-    colors: ["var(--bs-primary)"],
-    stroke: {
-      width: 2
-    },
-    tooltip: {
-      fixed: {
-        enabled: false
+    options: {
+      layout: {
+        padding: 3
       },
-      x: {
-        show: false
-      },
-      y: {
-        title: {
-          formatter() {
-            return ''
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          displayColors: false,
+          padding: 6,
+          callbacks: {
+            title: () => ""
           }
         }
       },
-      marker: {
-        show: false
+      scales: {
+        x: {
+          display: false
+        },
+        y: {
+          display: false
+        }
       }
     }
-  }
-
-  const chart = new ApexCharts(document.querySelector(selector), options)
-  chart.render()
+  })
 }
 
 const table_sparkline_1_data = [
@@ -1362,34 +1367,34 @@ createSparklineChart("#table-sparkline-7", table_sparkline_7_data)
 // - PIE CHART -
 //-------------
 
-const pie_chart_options = {
-  series: [700, 500, 400, 600, 300, 100],
-  chart: {
-    id: "pie-chart",
-    type: "donut",
-    // Pin an explicit height to avoid an ApexCharts ResizeObserver feedback
-    // loop on browser zoom (most visible on Edge). Fixes #6019.
-    height: 350
+new Chart(document.querySelector("#pie-chart"), {
+  type: "doughnut",
+  data: {
+    labels: ["Chrome", "Edge", "FireFox", "Safari", "Opera", "IE"],
+    datasets: [
+      {
+        label: "Users",
+        data: [700, 500, 400, 600, 300, 100],
+        backgroundColor: [
+          "#0d6efd",
+          "#20c997",
+          "#ffc107",
+          "#d63384",
+          "#6f42c1",
+          "#adb5bd"
+        ]
+      }
+    ]
   },
-  labels: ["Chrome", "Edge", "FireFox", "Safari", "Opera", "IE"],
-  dataLabels: {
-    enabled: false
-  },
-  colors: [
-    "#0d6efd",
-    "#20c997",
-    "#ffc107",
-    "#d63384",
-    "#6f42c1",
-    "#adb5bd"
-  ]
-}
-
-const pie_chart = new ApexCharts(
-  document.querySelector("#pie-chart"),
-  pie_chart_options
-)
-pie_chart.render()
+  options: {
+    cutout: "65%",
+    plugins: {
+      legend: {
+        position: "right"
+      }
+    }
+  }
+})
 
 //-----------------
 // - END PIE CHART -

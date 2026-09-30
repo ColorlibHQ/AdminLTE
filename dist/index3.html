@@ -102,14 +102,6 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="./css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
-
-    <!-- apexcharts -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"
-      integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0="
-      crossorigin="anonymous"
-    />
   </head>
 
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -825,9 +817,9 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./charts/apexcharts.html" class="nav-link">
+                    <a href="./charts/chartjs.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>ApexCharts</p>
+                      <p>Chart.js</p>
                     </a>
                   </li>
                 </ul>
@@ -1181,8 +1173,12 @@
                     </div>
                     <!-- /.d-flex -->
 
-                    <div class="position-relative mb-4">
-                      <div id="visitors-chart"></div>
+                    <div class="position-relative mb-4" style="height: 200px">
+                      <canvas
+                        id="visitors-chart"
+                        role="img"
+                        aria-label="Line chart of online store visitors this week and last week"
+                      ></canvas>
                     </div>
 
                     <div class="d-flex flex-row justify-content-end">
@@ -1344,8 +1340,12 @@
                     </div>
                     <!-- /.d-flex -->
 
-                    <div class="position-relative mb-4">
-                      <div id="sales-chart"></div>
+                    <div class="position-relative mb-4" style="height: 200px">
+                      <canvas
+                        id="sales-chart"
+                        role="img"
+                        aria-label="Column chart of net profit, revenue and free cash flow, February to October"
+                      ></canvas>
                     </div>
 
                     <div class="d-flex flex-row justify-content-end">
@@ -1532,38 +1532,6 @@
       });
     </script>
     <!--end::OverlayScrollbars Configure-->
-    <!--begin::Charts follow the colour mode-->
-    <script>
-      // ApexCharts draws light-theme tooltips and axis text unless told otherwise,
-      // which is unreadable in dark mode (#6105). Give it the page's colour mode as
-      // a global default before any chart is created — this runs before the chart
-      // pages' own scripts — and keep every chart that has a `chart.id` in step
-      // when the mode changes (ColorMode, the OS in auto mode, or your own code).
-      (() => {
-        'use strict';
-        const mode = () =>
-          document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : 'light';
-        // `Apex` is ApexCharts' global-options object; it must exist before the library loads.
-        // theme.mode also sets a dark chart background — keep the card's instead.
-        // eslint-disable-next-line unicorn/no-global-object-property-assignment
-        globalThis.Apex ||= {};
-        const apex = globalThis.Apex;
-        apex.theme = { mode: mode() };
-        apex.chart = Object.assign(apex.chart || {}, { background: 'transparent' });
-        new MutationObserver(() => {
-          const next = mode();
-          apex.theme = { mode: next };
-          const instances = apex._chartInstances || [];
-          for (const { chart } of instances) {
-            chart.updateOptions({ theme: { mode: next } }, false, false);
-          }
-        }).observe(document.documentElement, {
-          attributes: true,
-          attributeFilter: ['data-bs-theme'],
-        });
-      })();
-    </script>
-    <!--end::Charts follow the colour mode-->
 
     <!--begin::Color Mode Toggle-->
     <!-- The light/dark/auto switcher ships in adminlte.js as the ColorMode
@@ -1573,123 +1541,247 @@
 
     <!-- OPTIONAL SCRIPTS -->
 
-    <!-- apexcharts -->
+    <!-- Chart.js + AdminLTE chart theme -->
+    <!--begin::Third Party Plugin(Chart.js)-->
     <script
-      src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"
-      integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8="
+      src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"
+      integrity="sha256-SERKgtTty1vsDxll+qzd4Y2cF9swY9BCq62i9wXJ9Uo="
       crossorigin="anonymous"
     ></script>
+    <!--end::Third Party Plugin(Chart.js)-->
+    <!--begin::Chart.js theme preset-->
+    <script>
+      // Styles every Chart.js chart on the page from AdminLTE's CSS variables —
+      // font, text, gridlines, tooltip and legend — and keeps them in step with the
+      // colour mode (ColorMode, the OS in auto mode, or your own code) and with
+      // `dir="rtl"`. Canvas can't read CSS, so the values are resolved here and
+      // re-applied to every chart whenever <html data-bs-theme> or dir changes.
+      (() => {
+        'use strict';
+        const { Chart } = globalThis;
+        if (!Chart) {
+          return;
+        }
+
+        const root = document.documentElement;
+        const cssVar = (name, fallback = '') =>
+          getComputedStyle(root).getPropertyValue(name).trim() || fallback;
+
+        // "#0d6efd" (or "#06f") + 0.3 -> "rgba(13, 110, 253, 0.3)"; anything else is returned as is.
+        const alpha = (color, opacity) => {
+          let hex = String(color).trim().replace(/^#/, '');
+          if (!/^[\da-f]{3}([\da-f]{3})?$/i.test(hex)) {
+            return color;
+          }
+
+          if (hex.length === 3) {
+            hex = [...hex].map((c) => c + c).join('');
+          }
+
+          const [r, g, b] = [0, 2, 4].map((i) => Number.parseInt(hex.slice(i, i + 2), 16));
+          return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+        };
+
+        // Scriptable backgroundColor for area charts: the line colour fading to transparent.
+        const areaFill =
+          (color, from = 0.35, to = 0) =>
+          (context) => {
+            const { ctx, chartArea } = context.chart;
+            if (!chartArea) {
+              return alpha(color, from);
+            }
+
+            const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+            gradient.addColorStop(0, alpha(color, from));
+            gradient.addColorStop(1, alpha(color, to));
+            return gradient;
+          };
+
+        // The theme colours currently in Chart.defaults.
+        let applied = [];
+
+        const apply = () => {
+          const text = cssVar('--bs-secondary-color', '#6c757d');
+          const body = cssVar('--bs-body-color', '#212529');
+          const surface = cssVar('--bs-body-bg', '#fff');
+          const grid = `rgba(${cssVar('--bs-emphasis-color-rgb', '0, 0, 0')}, 0.08)`;
+          const rtl = root.getAttribute('dir') === 'rtl';
+          const d = Chart.defaults;
+          applied = [text, grid];
+
+          d.font.family = cssVar('--bs-body-font-family', d.font.family);
+          d.font.size = 12;
+          d.color = text;
+          d.borderColor = grid;
+          d.maintainAspectRatio = false;
+
+          d.scale.grid.color = grid;
+          d.scale.border.color = grid;
+          d.scale.ticks.padding = 8;
+          // Value axes float, category axes keep only their baseline.
+          d.set('scales.linear', { border: { display: false } });
+          d.set('scales.category', { grid: { display: false } });
+
+          d.elements.line.borderWidth = 2;
+          d.elements.point.radius = 0;
+          d.elements.point.hoverRadius = 5;
+          d.elements.point.hitRadius = 8;
+          d.elements.point.hoverBorderWidth = 2;
+          d.elements.point.borderColor = surface;
+          d.elements.bar.borderRadius = 4;
+          d.elements.arc.borderColor = surface;
+          d.elements.arc.borderWidth = 2;
+
+          const { legend, tooltip } = d.plugins;
+          legend.position = 'bottom';
+          legend.rtl = rtl;
+          Object.assign(legend.labels, {
+            color: body,
+            usePointStyle: true,
+            pointStyle: 'circle',
+            boxWidth: 8,
+            boxHeight: 8,
+            padding: 16,
+          });
+
+          Object.assign(tooltip, {
+            rtl,
+            backgroundColor: surface,
+            borderColor: cssVar('--bs-border-color', '#dee2e6'),
+            borderWidth: 1,
+            titleColor: cssVar('--bs-emphasis-color', '#000'),
+            bodyColor: body,
+            titleFont: { weight: '600' },
+            padding: 10,
+            cornerRadius: 6,
+            caretSize: 5,
+            boxPadding: 4,
+            usePointStyle: true,
+          });
+
+          // Line and bar charts share one tooltip per x value, like a dashboard should.
+          for (const type of ['line', 'bar']) {
+            Chart.overrides[type].interaction = { mode: 'index', intersect: false };
+          }
+        };
+
+        // Chart.js copies the scale defaults (tick, grid, border and title colours)
+        // into each chart's config when the chart is created, so new defaults alone
+        // never reach an existing chart's axes. Drop the copies that still hold the
+        // previous theme's colours; update() then copies the new ones in. Colours a
+        // chart set for itself are left alone.
+        const forgetThemeColors = (options, stale) => {
+          for (const [key, value] of Object.entries(options)) {
+            if (value && typeof value === 'object' && !Array.isArray(value)) {
+              forgetThemeColors(value, stale);
+            } else if (/color$/i.test(key) && stale.includes(value)) {
+              delete options[key];
+            }
+          }
+        };
+
+        const refresh = () => {
+          const stale = applied;
+          apply();
+          for (const chart of Object.values(Chart.instances)) {
+            forgetThemeColors(chart.config.options.scales || {}, stale);
+            chart.update('none');
+          }
+        };
+
+        apply();
+        new MutationObserver(refresh).observe(root, {
+          attributes: true,
+          attributeFilter: ['data-bs-theme', 'dir'],
+        });
+        // The web font may arrive after the first draw; redraw so labels use it.
+        document.fonts?.addEventListener('loadingdone', refresh);
+
+        // Helpers for the page's own chart code.
+        // eslint-disable-next-line unicorn/no-global-object-property-assignment
+        globalThis.lteChartTheme = { cssVar, alpha, areaFill, refresh };
+      })();
+    </script>
+    <!--end::Chart.js theme preset-->
+
     <script>
       // NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
       // IT'S ALL JUST JUNK FOR DEMO
       // ++++++++++++++++++++++++++++++++++++++++++
 
-      const visitors_chart_options = {
-        series: [
-          {
-            name: 'High - 2023',
-            data: [100, 120, 170, 167, 180, 177, 160],
-          },
-          {
-            name: 'Low - 2023',
-            data: [60, 80, 70, 67, 80, 77, 100],
-          },
-        ],
-        chart: {
-          id: 'visitors-chart',
-          height: 200,
-          type: 'line',
-          toolbar: {
-            show: false,
-          },
+      new Chart(document.querySelector('#visitors-chart'), {
+        type: 'line',
+        data: {
+          labels: ['22th', '23th', '24th', '25th', '26th', '27th', '28th'],
+          datasets: [
+            {
+              label: 'High - 2023',
+              data: [100, 120, 170, 167, 180, 177, 160],
+              borderColor: '#0d6efd',
+              backgroundColor: '#0d6efd',
+              pointRadius: 3,
+              tension: 0.4,
+            },
+            {
+              label: 'Low - 2023',
+              data: [60, 80, 70, 67, 80, 77, 100],
+              borderColor: '#adb5bd',
+              backgroundColor: '#adb5bd',
+              pointRadius: 3,
+              tension: 0.4,
+            },
+          ],
         },
-        colors: ['#0d6efd', '#adb5bd'],
-        stroke: {
-          curve: 'smooth',
-        },
-        grid: {
-          borderColor: '#e7e7e7',
-          row: {
-            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-            opacity: 0.5,
-          },
-        },
-        legend: {
-          show: false,
-        },
-        markers: {
-          size: 1,
-        },
-        xaxis: {
-          categories: ['22th', '23th', '24th', '25th', '26th', '27th', '28th'],
-        },
-      };
-
-      const visitors_chart = new ApexCharts(
-        document.querySelector('#visitors-chart'),
-        visitors_chart_options,
-      );
-      visitors_chart.render();
-
-      const sales_chart_options = {
-        series: [
-          {
-            name: 'Net Profit',
-            data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
-          },
-          {
-            name: 'Revenue',
-            data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
-          },
-          {
-            name: 'Free Cash Flow',
-            data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
-          },
-        ],
-        chart: {
-          id: 'sales-chart',
-          type: 'bar',
-          height: 200,
-        },
-        plotOptions: {
-          bar: {
-            horizontal: false,
-            columnWidth: '55%',
-            endingShape: 'rounded',
-          },
-        },
-        legend: {
-          show: false,
-        },
-        colors: ['#0d6efd', '#20c997', '#ffc107'],
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          show: true,
-          width: 2,
-          colors: ['transparent'],
-        },
-        xaxis: {
-          categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-        },
-        fill: {
-          opacity: 1,
-        },
-        tooltip: {
-          y: {
-            formatter: function (val) {
-              return '$ ' + val + ' thousands';
+        options: {
+          plugins: {
+            legend: {
+              display: false,
             },
           },
         },
-      };
+      });
 
-      const sales_chart = new ApexCharts(
-        document.querySelector('#sales-chart'),
-        sales_chart_options,
-      );
-      sales_chart.render();
+      new Chart(document.querySelector('#sales-chart'), {
+        type: 'bar',
+        data: {
+          labels: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+          datasets: [
+            {
+              label: 'Net Profit',
+              data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
+              backgroundColor: '#0d6efd',
+            },
+            {
+              label: 'Revenue',
+              data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
+              backgroundColor: '#20c997',
+            },
+            {
+              label: 'Free Cash Flow',
+              data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
+              backgroundColor: '#ffc107',
+            },
+          ],
+        },
+        options: {
+          datasets: {
+            bar: {
+              categoryPercentage: 0.55,
+              barPercentage: 0.9,
+            },
+          },
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              callbacks: {
+                label: (context) => ` ${context.dataset.label}: $ ${context.parsed.y} thousands`,
+              },
+            },
+          },
+        },
+      });
     </script>
     <!--end::Script-->
   </body>

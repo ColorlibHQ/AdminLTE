@@ -84,7 +84,7 @@ The conversion is handled by [`postcss`](https://postcss.org/) running [`rtlcss`
 ##### What doesn't flip
 
 - Bootstrap Icons (SVG glyphs) — most icons are direction-neutral; arrows that *do* indicate direction (`bi-arrow-right`, `bi-chevron-right`, etc.) need to be manually swapped to their `-left` siblings.
-- Inline images, charts, and third-party widgets — their internal layout doesn't react to `dir`. Check each integration (ApexCharts, FullCalendar, Tabulator) for an RTL option.
+- Inline images, charts, and third-party widgets — their internal layout doesn't react to `dir`. Check each integration (Chart.js, FullCalendar, Tabulator) for an RTL option. The demo's Chart.js preset sets `rtl: true` on legends and tooltips when `<html dir="rtl">`.
 - Numbers — digits stay LTR even in RTL contexts (this is standard Unicode bidi behaviour, not a bug).
 
 ##### Common gotchas

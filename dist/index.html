@@ -103,14 +103,6 @@
     <link rel="stylesheet" href="./css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
 
-    <!-- apexcharts -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"
-      integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0="
-      crossorigin="anonymous"
-    />
-
     <!-- jsvectormap -->
     <link
       rel="stylesheet"
@@ -834,9 +826,9 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./charts/apexcharts.html" class="nav-link">
+                    <a href="./charts/chartjs.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>ApexCharts</p>
+                      <p>Chart.js</p>
                     </a>
                   </li>
                 </ul>
@@ -1303,7 +1295,13 @@
                   </div>
 
                   <div class="card-body">
-                    <div id="revenue-chart"></div>
+                    <div class="position-relative" style="height: 300px">
+                      <canvas
+                        id="revenue-chart"
+                        role="img"
+                        aria-label="Area chart of digital goods and electronics sales, January to July 2023"
+                      ></canvas>
+                    </div>
                   </div>
                 </div>
                 <!-- /.card -->
@@ -1597,15 +1595,21 @@
                     <!--begin::Row-->
                     <div class="row">
                       <div class="col-4 text-center">
-                        <div id="sparkline-1" class="text-dark"></div>
+                        <div class="position-relative" style="height: 50px">
+                          <canvas id="sparkline-1" role="img" aria-label="Visitors trend"></canvas>
+                        </div>
                         <div class="text-white">Visitors</div>
                       </div>
                       <div class="col-4 text-center">
-                        <div id="sparkline-2" class="text-dark"></div>
+                        <div class="position-relative" style="height: 50px">
+                          <canvas id="sparkline-2" role="img" aria-label="Online trend"></canvas>
+                        </div>
                         <div class="text-white">Online</div>
                       </div>
                       <div class="col-4 text-center">
-                        <div id="sparkline-3" class="text-dark"></div>
+                        <div class="position-relative" style="height: 50px">
+                          <canvas id="sparkline-3" role="img" aria-label="Sales trend"></canvas>
+                        </div>
                         <div class="text-white">Sales</div>
                       </div>
                     </div>
@@ -1687,38 +1691,6 @@
       });
     </script>
     <!--end::OverlayScrollbars Configure-->
-    <!--begin::Charts follow the colour mode-->
-    <script>
-      // ApexCharts draws light-theme tooltips and axis text unless told otherwise,
-      // which is unreadable in dark mode (#6105). Give it the page's colour mode as
-      // a global default before any chart is created — this runs before the chart
-      // pages' own scripts — and keep every chart that has a `chart.id` in step
-      // when the mode changes (ColorMode, the OS in auto mode, or your own code).
-      (() => {
-        'use strict';
-        const mode = () =>
-          document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : 'light';
-        // `Apex` is ApexCharts' global-options object; it must exist before the library loads.
-        // theme.mode also sets a dark chart background — keep the card's instead.
-        // eslint-disable-next-line unicorn/no-global-object-property-assignment
-        globalThis.Apex ||= {};
-        const apex = globalThis.Apex;
-        apex.theme = { mode: mode() };
-        apex.chart = Object.assign(apex.chart || {}, { background: 'transparent' });
-        new MutationObserver(() => {
-          const next = mode();
-          apex.theme = { mode: next };
-          const instances = apex._chartInstances || [];
-          for (const { chart } of instances) {
-            chart.updateOptions({ theme: { mode: next } }, false, false);
-          }
-        }).observe(document.documentElement, {
-          attributes: true,
-          attributeFilter: ['data-bs-theme'],
-        });
-      })();
-    </script>
-    <!--end::Charts follow the colour mode-->
 
     <!--begin::Color Mode Toggle-->
     <!-- The light/dark/auto switcher ships in adminlte.js as the ColorMode
@@ -1745,71 +1717,221 @@
         cardHeader.style.cursor = 'move';
       });
     </script>
-    <!-- apexcharts -->
+    <!-- Chart.js + AdminLTE chart theme -->
+    <!--begin::Third Party Plugin(Chart.js)-->
     <script
-      src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"
-      integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8="
+      src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"
+      integrity="sha256-SERKgtTty1vsDxll+qzd4Y2cF9swY9BCq62i9wXJ9Uo="
       crossorigin="anonymous"
     ></script>
-    <!-- ChartJS -->
+    <!--end::Third Party Plugin(Chart.js)-->
+    <!--begin::Chart.js theme preset-->
+    <script>
+      // Styles every Chart.js chart on the page from AdminLTE's CSS variables —
+      // font, text, gridlines, tooltip and legend — and keeps them in step with the
+      // colour mode (ColorMode, the OS in auto mode, or your own code) and with
+      // `dir="rtl"`. Canvas can't read CSS, so the values are resolved here and
+      // re-applied to every chart whenever <html data-bs-theme> or dir changes.
+      (() => {
+        'use strict';
+        const { Chart } = globalThis;
+        if (!Chart) {
+          return;
+        }
+
+        const root = document.documentElement;
+        const cssVar = (name, fallback = '') =>
+          getComputedStyle(root).getPropertyValue(name).trim() || fallback;
+
+        // "#0d6efd" (or "#06f") + 0.3 -> "rgba(13, 110, 253, 0.3)"; anything else is returned as is.
+        const alpha = (color, opacity) => {
+          let hex = String(color).trim().replace(/^#/, '');
+          if (!/^[\da-f]{3}([\da-f]{3})?$/i.test(hex)) {
+            return color;
+          }
+
+          if (hex.length === 3) {
+            hex = [...hex].map((c) => c + c).join('');
+          }
+
+          const [r, g, b] = [0, 2, 4].map((i) => Number.parseInt(hex.slice(i, i + 2), 16));
+          return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+        };
+
+        // Scriptable backgroundColor for area charts: the line colour fading to transparent.
+        const areaFill =
+          (color, from = 0.35, to = 0) =>
+          (context) => {
+            const { ctx, chartArea } = context.chart;
+            if (!chartArea) {
+              return alpha(color, from);
+            }
+
+            const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+            gradient.addColorStop(0, alpha(color, from));
+            gradient.addColorStop(1, alpha(color, to));
+            return gradient;
+          };
+
+        // The theme colours currently in Chart.defaults.
+        let applied = [];
+
+        const apply = () => {
+          const text = cssVar('--bs-secondary-color', '#6c757d');
+          const body = cssVar('--bs-body-color', '#212529');
+          const surface = cssVar('--bs-body-bg', '#fff');
+          const grid = `rgba(${cssVar('--bs-emphasis-color-rgb', '0, 0, 0')}, 0.08)`;
+          const rtl = root.getAttribute('dir') === 'rtl';
+          const d = Chart.defaults;
+          applied = [text, grid];
+
+          d.font.family = cssVar('--bs-body-font-family', d.font.family);
+          d.font.size = 12;
+          d.color = text;
+          d.borderColor = grid;
+          d.maintainAspectRatio = false;
+
+          d.scale.grid.color = grid;
+          d.scale.border.color = grid;
+          d.scale.ticks.padding = 8;
+          // Value axes float, category axes keep only their baseline.
+          d.set('scales.linear', { border: { display: false } });
+          d.set('scales.category', { grid: { display: false } });
+
+          d.elements.line.borderWidth = 2;
+          d.elements.point.radius = 0;
+          d.elements.point.hoverRadius = 5;
+          d.elements.point.hitRadius = 8;
+          d.elements.point.hoverBorderWidth = 2;
+          d.elements.point.borderColor = surface;
+          d.elements.bar.borderRadius = 4;
+          d.elements.arc.borderColor = surface;
+          d.elements.arc.borderWidth = 2;
+
+          const { legend, tooltip } = d.plugins;
+          legend.position = 'bottom';
+          legend.rtl = rtl;
+          Object.assign(legend.labels, {
+            color: body,
+            usePointStyle: true,
+            pointStyle: 'circle',
+            boxWidth: 8,
+            boxHeight: 8,
+            padding: 16,
+          });
+
+          Object.assign(tooltip, {
+            rtl,
+            backgroundColor: surface,
+            borderColor: cssVar('--bs-border-color', '#dee2e6'),
+            borderWidth: 1,
+            titleColor: cssVar('--bs-emphasis-color', '#000'),
+            bodyColor: body,
+            titleFont: { weight: '600' },
+            padding: 10,
+            cornerRadius: 6,
+            caretSize: 5,
+            boxPadding: 4,
+            usePointStyle: true,
+          });
+
+          // Line and bar charts share one tooltip per x value, like a dashboard should.
+          for (const type of ['line', 'bar']) {
+            Chart.overrides[type].interaction = { mode: 'index', intersect: false };
+          }
+        };
+
+        // Chart.js copies the scale defaults (tick, grid, border and title colours)
+        // into each chart's config when the chart is created, so new defaults alone
+        // never reach an existing chart's axes. Drop the copies that still hold the
+        // previous theme's colours; update() then copies the new ones in. Colours a
+        // chart set for itself are left alone.
+        const forgetThemeColors = (options, stale) => {
+          for (const [key, value] of Object.entries(options)) {
+            if (value && typeof value === 'object' && !Array.isArray(value)) {
+              forgetThemeColors(value, stale);
+            } else if (/color$/i.test(key) && stale.includes(value)) {
+              delete options[key];
+            }
+          }
+        };
+
+        const refresh = () => {
+          const stale = applied;
+          apply();
+          for (const chart of Object.values(Chart.instances)) {
+            forgetThemeColors(chart.config.options.scales || {}, stale);
+            chart.update('none');
+          }
+        };
+
+        apply();
+        new MutationObserver(refresh).observe(root, {
+          attributes: true,
+          attributeFilter: ['data-bs-theme', 'dir'],
+        });
+        // The web font may arrive after the first draw; redraw so labels use it.
+        document.fonts?.addEventListener('loadingdone', refresh);
+
+        // Helpers for the page's own chart code.
+        // eslint-disable-next-line unicorn/no-global-object-property-assignment
+        globalThis.lteChartTheme = { cssVar, alpha, areaFill, refresh };
+      })();
+    </script>
+    <!--end::Chart.js theme preset-->
+
+    <!-- Chart.js -->
     <script>
       // NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
       // IT'S ALL JUST JUNK FOR DEMO
       // ++++++++++++++++++++++++++++++++++++++++++
 
-      const sales_chart_options = {
-        series: [
-          {
-            name: 'Digital Goods',
-            data: [28, 48, 40, 19, 86, 27, 90],
-          },
-          {
-            name: 'Electronics',
-            data: [65, 59, 80, 81, 56, 55, 40],
-          },
-        ],
-        chart: {
-          id: 'revenue-chart',
-          height: 300,
-          type: 'area',
-          toolbar: {
-            show: false,
-          },
-        },
-        legend: {
-          show: false,
-        },
-        colors: ['#0d6efd', '#20c997'],
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          curve: 'smooth',
-        },
-        xaxis: {
-          type: 'datetime',
-          categories: [
-            '2023-01-01',
-            '2023-02-01',
-            '2023-03-01',
-            '2023-04-01',
-            '2023-05-01',
-            '2023-06-01',
-            '2023-07-01',
+      const { areaFill } = globalThis.lteChartTheme;
+
+      new Chart(document.querySelector('#revenue-chart'), {
+        type: 'line',
+        data: {
+          labels: ["Jan '23", "Feb '23", "Mar '23", "Apr '23", "May '23", "Jun '23", "Jul '23"],
+          datasets: [
+            {
+              label: 'Digital Goods',
+              data: [28, 48, 40, 19, 86, 27, 90],
+              borderColor: '#0d6efd',
+              backgroundColor: areaFill('#0d6efd'),
+              pointBackgroundColor: '#0d6efd',
+              fill: true,
+              tension: 0.4,
+            },
+            {
+              label: 'Electronics',
+              data: [65, 59, 80, 81, 56, 55, 40],
+              borderColor: '#20c997',
+              backgroundColor: areaFill('#20c997'),
+              pointBackgroundColor: '#20c997',
+              fill: true,
+              tension: 0.4,
+            },
           ],
         },
-        tooltip: {
-          x: {
-            format: 'MMMM yyyy',
+        options: {
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              callbacks: {
+                title: ([item]) =>
+                  `${new Date(2023, item.dataIndex).toLocaleString('en', { month: 'long' })} 2023`,
+              },
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
           },
         },
-      };
-
-      const sales_chart = new ApexCharts(
-        document.querySelector('#revenue-chart'),
-        sales_chart_options,
-      );
-      sales_chart.render();
+      });
     </script>
     <!-- jsvectormap -->
     <script
@@ -1831,92 +1953,40 @@
       });
 
       // Sparkline charts
-      const option_sparkline1 = {
-        series: [
-          {
-            data: [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021],
+      const sparkline = (selector, data) =>
+        new Chart(document.querySelector(selector), {
+          type: 'line',
+          data: {
+            labels: data.map((value, index) => index + 1),
+            datasets: [
+              {
+                data,
+                borderColor: '#DCE6EC',
+                backgroundColor: 'rgba(220, 230, 236, 0.3)',
+                pointBackgroundColor: '#DCE6EC',
+                fill: true,
+              },
+            ],
           },
-        ],
-        chart: {
-          id: 'sparkline-1',
-          type: 'area',
-          height: 50,
-          sparkline: {
-            enabled: true,
+          options: {
+            layout: { padding: { top: 2 } },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                displayColors: false,
+                callbacks: { title: () => '' },
+              },
+            },
+            scales: {
+              x: { display: false },
+              y: { display: false, min: 0 },
+            },
           },
-        },
-        stroke: {
-          curve: 'straight',
-        },
-        fill: {
-          opacity: 0.3,
-        },
-        yaxis: {
-          min: 0,
-        },
-        colors: ['#DCE6EC'],
-      };
+        });
 
-      const sparkline1 = new ApexCharts(document.querySelector('#sparkline-1'), option_sparkline1);
-      sparkline1.render();
-
-      const option_sparkline2 = {
-        series: [
-          {
-            data: [515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921],
-          },
-        ],
-        chart: {
-          id: 'sparkline-2',
-          type: 'area',
-          height: 50,
-          sparkline: {
-            enabled: true,
-          },
-        },
-        stroke: {
-          curve: 'straight',
-        },
-        fill: {
-          opacity: 0.3,
-        },
-        yaxis: {
-          min: 0,
-        },
-        colors: ['#DCE6EC'],
-      };
-
-      const sparkline2 = new ApexCharts(document.querySelector('#sparkline-2'), option_sparkline2);
-      sparkline2.render();
-
-      const option_sparkline3 = {
-        series: [
-          {
-            data: [15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21],
-          },
-        ],
-        chart: {
-          id: 'sparkline-3',
-          type: 'area',
-          height: 50,
-          sparkline: {
-            enabled: true,
-          },
-        },
-        stroke: {
-          curve: 'straight',
-        },
-        fill: {
-          opacity: 0.3,
-        },
-        yaxis: {
-          min: 0,
-        },
-        colors: ['#DCE6EC'],
-      };
-
-      const sparkline3 = new ApexCharts(document.querySelector('#sparkline-3'), option_sparkline3);
-      sparkline3.render();
+      sparkline('#sparkline-1', [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021]);
+      sparkline('#sparkline-2', [515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921]);
+      sparkline('#sparkline-3', [15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21]);
     </script>
     <!--end::Script-->
   </body>

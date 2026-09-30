@@ -292,6 +292,9 @@ AdminLTE is an open source project by [AdminLTE.io](https://adminlte.io) license
 [MIT](https://opensource.org/licenses/MIT). AdminLTE.io reserves the right to change
 the license of future releases.
 
+The charts on the demo pages are drawn with [Chart.js](https://www.chartjs.org/) (MIT),
+loaded from a CDN on the pages that use it — it is not a dependency of the `admin-lte` package.
+
 ## Image credits
 
 [Pixeden](http://www.pixeden.com/psd-web-elements/flat-responsive-showcase-psd),

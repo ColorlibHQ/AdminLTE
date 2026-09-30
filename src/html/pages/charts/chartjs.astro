@@ -1,0 +1,574 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+import ChartJs from "@components/_chartjs.astro"
+
+const title = "AdminLTE 4 | Chart.js"
+const path = "../../../dist"
+const mainPage = "charts"
+const page = "chartjs";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <!--begin::Head-->
+  <head>
+    <Head title={title} path={path} />
+  </head>
+  <!--end::Head-->
+  <!--begin::Body-->
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <!--begin::App Wrapper-->
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <!--begin::App Main-->
+      <main class="app-main">
+        <!--begin::App Content Header-->
+        <div class="app-content-header">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 class="mb-0 fs-3">Chart.js</h1>
+              </div>
+              <div class="col-sm-6">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Chart.js
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
+        <div class="app-content">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row g-4">
+              <!--begin::Col-->
+              <div class="col-12 col-lg-6">
+                <!--begin::Card-->
+                <div class="card h-100">
+                  <div class="card-header">
+                    <h3 class="card-title">Line Chart</h3>
+
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-collapse"
+                        aria-label="Collapse card"
+                      >
+                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="position-relative" style="height: 300px">
+                      <canvas id="line-chart" role="img" aria-label="Line chart of monthly revenue, January to December"></canvas>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!--end::Card-->
+              </div>
+              <!--end::Col-->
+              <!--begin::Col-->
+              <div class="col-12 col-lg-6">
+                <!--begin::Card-->
+                <div class="card h-100">
+                  <div class="card-header">
+                    <h3 class="card-title">Area Chart</h3>
+
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-collapse"
+                        aria-label="Collapse card"
+                      >
+                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="position-relative" style="height: 300px">
+                      <canvas id="area-chart" role="img" aria-label="Area chart of new and returning visitors, January to July 2025"></canvas>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!--end::Card-->
+              </div>
+              <!--end::Col-->
+              <!--begin::Col-->
+              <div class="col-12 col-lg-6">
+                <!--begin::Card-->
+                <div class="card h-100">
+                  <div class="card-header">
+                    <h3 class="card-title">Column Chart</h3>
+
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-collapse"
+                        aria-label="Collapse card"
+                      >
+                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="position-relative" style="height: 300px">
+                      <canvas id="column-chart" role="img" aria-label="Column chart of online store and retail store sales per quarter of 2025"></canvas>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!--end::Card-->
+              </div>
+              <!--end::Col-->
+              <!--begin::Col-->
+              <div class="col-12 col-lg-6">
+                <!--begin::Card-->
+                <div class="card h-100">
+                  <div class="card-header">
+                    <h3 class="card-title">Donut Chart</h3>
+
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-collapse"
+                        aria-label="Collapse card"
+                      >
+                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="position-relative" style="height: 350px">
+                      <canvas id="donut-chart" role="img" aria-label="Donut chart of traffic sources"></canvas>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!--end::Card-->
+              </div>
+              <!--end::Col-->
+              <!--begin::Col-->
+              <div class="col-12 col-lg-6">
+                <!--begin::Card-->
+                <div class="card h-100">
+                  <div class="card-header">
+                    <h3 class="card-title">Radial Bar Chart</h3>
+
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-collapse"
+                        aria-label="Collapse card"
+                      >
+                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="position-relative" style="height: 350px">
+                      <canvas id="radialbar-chart" role="img" aria-label="Radial bar chart of goal completion for sales, marketing and support"></canvas>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!--end::Card-->
+              </div>
+              <!--end::Col-->
+              <!--begin::Col-->
+              <div class="col-12 col-lg-6">
+                <!--begin::Card-->
+                <div class="card h-100">
+                  <div class="card-header">
+                    <h3 class="card-title">Mixed Chart</h3>
+
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-collapse"
+                        aria-label="Collapse card"
+                      >
+                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="position-relative" style="height: 300px">
+                      <canvas id="mixed-chart" role="img" aria-label="Mixed chart of monthly orders and revenue"></canvas>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!--end::Card-->
+              </div>
+              <!--end::Col-->
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content-->
+      </main>
+      <!--end::App Main-->
+      <Footer />
+    </div>
+    <!--end::App Wrapper-->
+    <!--begin::Script-->
+    <Scripts path={path} />
+
+    <!-- OPTIONAL SCRIPTS -->
+
+    <!-- Chart.js + AdminLTE chart theme -->
+    <ChartJs />
+
+    <script is:inline>
+// NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
+// IT'S ALL JUST JUNK FOR DEMO
+// ++++++++++++++++++++++++++++++++++++++++++
+
+/* Chart.js
+ * --------
+ * A small showcase of the most common Chart.js chart types.
+ * Each canvas sits in a wrapper with a fixed height; the charts
+ * fill it and follow its width (sidebar toggle included).
+ */
+
+const { cssVar, alpha, areaFill } = globalThis.lteChartTheme
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec"
+]
+const thousands = value => `$${Math.round(value / 1000)}k`
+const dollars = context => ` ${context.dataset.label}: $${context.parsed.y.toLocaleString()}`
+
+//--------------
+// - LINE CHART -
+//--------------
+
+new Chart(document.querySelector("#line-chart"), {
+  type: "line",
+  data: {
+    labels: months,
+    datasets: [
+      {
+        label: "Revenue",
+        data: [
+          31200, 34800, 32600, 39400, 42100, 45800, 44300, 49700, 52400,
+          56900, 60200, 65800
+        ],
+        borderColor: "#0d6efd",
+        backgroundColor: "#0d6efd",
+        borderWidth: 3,
+        pointRadius: 4
+      }
+    ]
+  },
+  options: {
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: dollars } }
+    },
+    scales: {
+      y: { ticks: { callback: thousands } }
+    }
+  }
+})
+
+//------------------
+// - END LINE CHART -
+//------------------
+
+//--------------
+// - AREA CHART -
+//--------------
+
+new Chart(document.querySelector("#area-chart"), {
+  type: "line",
+  data: {
+    labels: months.slice(0, 7).map(month => `${month} '25`),
+    datasets: [
+      {
+        label: "New Visitors",
+        data: [8100, 9300, 8700, 10400, 12200, 11600, 13900],
+        borderColor: "#0d6efd",
+        backgroundColor: areaFill("#0d6efd"),
+        pointBackgroundColor: "#0d6efd",
+        fill: true,
+        tension: 0.4
+      },
+      {
+        label: "Returning Visitors",
+        data: [4200, 4600, 5100, 4900, 5800, 6300, 6900],
+        borderColor: "#20c997",
+        backgroundColor: areaFill("#20c997"),
+        pointBackgroundColor: "#20c997",
+        fill: true,
+        tension: 0.4
+      }
+    ]
+  },
+  options: {
+    plugins: {
+      tooltip: {
+        callbacks: {
+          title: ([item]) => `${new Date(2025, item.dataIndex).toLocaleString("en", { month: "long" })} 2025`
+        }
+      }
+    },
+    scales: {
+      y: { beginAtZero: true }
+    }
+  }
+})
+
+//------------------
+// - END AREA CHART -
+//------------------
+
+//----------------
+// - COLUMN CHART -
+//----------------
+
+new Chart(document.querySelector("#column-chart"), {
+  type: "bar",
+  data: {
+    labels: ["Q1 2025", "Q2 2025", "Q3 2025", "Q4 2025"],
+    datasets: [
+      {
+        label: "Online Store",
+        data: [44300, 55600, 57200, 61400],
+        backgroundColor: "#6f42c1"
+      },
+      {
+        label: "Retail Stores",
+        data: [35100, 41200, 36800, 45300],
+        backgroundColor: "#20c997"
+      }
+    ]
+  },
+  options: {
+    datasets: {
+      bar: { categoryPercentage: 0.55, barPercentage: 0.9 }
+    },
+    plugins: {
+      tooltip: { callbacks: { label: dollars } }
+    },
+    scales: {
+      y: { ticks: { callback: thousands } }
+    }
+  }
+})
+
+//--------------------
+// - END COLUMN CHART -
+//--------------------
+
+//---------------
+// - DONUT CHART -
+//---------------
+
+new Chart(document.querySelector("#donut-chart"), {
+  type: "doughnut",
+  data: {
+    labels: ["Organic Search", "Direct", "Referral", "Social Media", "Email"],
+    datasets: [
+      {
+        label: "Sessions",
+        data: [3450, 2210, 1160, 940, 620],
+        backgroundColor: ["#0d6efd", "#20c997", "#ffc107", "#d63384", "#6f42c1"]
+      }
+    ]
+  },
+  options: {
+    cutout: "65%",
+    plugins: {
+      legend: { position: "right" }
+    }
+  }
+})
+
+//-------------------
+// - END DONUT CHART -
+//-------------------
+
+//--------------------
+// - RADIAL BAR CHART -
+//--------------------
+
+// Concentric doughnut rings, one per value, each drawn over a track.
+// A tiny inline plugin writes the average in the middle.
+const radial_values = [76, 67, 61]
+const radial_labels = ["Sales", "Marketing", "Support"]
+const radial_colors = ["#0d6efd", "#20c997", "#ffc107"]
+const radial_track = () => cssVar("--bs-secondary-bg", "#e9ecef")
+
+const centerText = {
+  id: "centerText",
+  afterDatasetsDraw(chart, args, options) {
+    const { ctx, chartArea } = chart
+    const x = (chartArea.left + chartArea.right) / 2
+    const y = (chartArea.top + chartArea.bottom) / 2
+    ctx.save()
+    ctx.textAlign = "center"
+    ctx.textBaseline = "middle"
+    ctx.fillStyle = cssVar("--bs-secondary-color")
+    ctx.font = `14px ${Chart.defaults.font.family}`
+    ctx.fillText(options.label, x, y - 14)
+    ctx.fillStyle = cssVar("--bs-emphasis-color")
+    ctx.font = `600 24px ${Chart.defaults.font.family}`
+    ctx.fillText(options.value, x, y + 12)
+    ctx.restore()
+  }
+}
+
+new Chart(document.querySelector("#radialbar-chart"), {
+  type: "doughnut",
+  data: {
+    labels: ["value", "rest"],
+    datasets: radial_values.map((value, index) => ({
+      label: radial_labels[index],
+      data: [value, 100 - value],
+      // A function, so the track colour is re-read when the colour mode changes.
+      backgroundColor: context => context.dataIndex === 0 ? radial_colors[index] : radial_track(),
+      hoverBackgroundColor: context => context.dataIndex === 0 ? radial_colors[index] : radial_track(),
+      borderWidth: 4,
+      hoverBorderWidth: 4
+    }))
+  },
+  options: {
+    cutout: "50%",
+    plugins: {
+      legend: { display: false },
+      centerText: {
+        label: "Average",
+        value: `${Math.round(radial_values.reduce((sum, value) => sum + value, 0) / radial_values.length)}%`
+      },
+      tooltip: {
+        filter: item => item.dataIndex === 0,
+        callbacks: {
+          title: () => "",
+          label: item => ` ${item.dataset.label}: ${item.raw}%`,
+          labelColor: item => ({ backgroundColor: radial_colors[item.datasetIndex], borderColor: radial_colors[item.datasetIndex] })
+        }
+      }
+    }
+  },
+  plugins: [centerText]
+})
+
+//------------------------
+// - END RADIAL BAR CHART -
+//------------------------
+
+//---------------
+// - MIXED CHART -
+//---------------
+
+new Chart(document.querySelector("#mixed-chart"), {
+  type: "bar",
+  data: {
+    labels: months.slice(0, 9),
+    datasets: [
+      {
+        label: "Orders",
+        data: [440, 505, 414, 671, 227, 413, 201, 352, 752],
+        backgroundColor: alpha("#20c997", 0.85),
+        hoverBackgroundColor: "#20c997",
+        categoryPercentage: 0.55,
+        yAxisID: "y",
+        order: 1
+      },
+      {
+        type: "line",
+        label: "Revenue",
+        data: [23100, 26200, 22800, 34100, 18300, 24400, 15600, 21900, 38200],
+        borderColor: "#0d6efd",
+        backgroundColor: "#0d6efd",
+        borderWidth: 3,
+        tension: 0.4,
+        yAxisID: "y1",
+        order: 0
+      }
+    ]
+  },
+  options: {
+    plugins: {
+      // `order` puts the line on top of the bars; list them in dataset order.
+      legend: {
+        labels: { sort: (a, b) => a.datasetIndex - b.datasetIndex }
+      },
+      tooltip: {
+        itemSort: (a, b) => a.datasetIndex - b.datasetIndex,
+        callbacks: {
+          label: context => context.dataset.yAxisID === "y1" ? dollars(context) : ` ${context.dataset.label}: ${context.parsed.y}`
+        }
+      }
+    },
+    scales: {
+      y: {
+        position: "left",
+        title: { display: true, text: "Orders" }
+      },
+      y1: {
+        position: "right",
+        title: { display: true, text: "Revenue" },
+        grid: { drawOnChartArea: false },
+        ticks: { callback: thousands }
+      }
+    }
+  }
+})
+
+//-------------------
+// - END MIXED CHART -
+//-------------------
+    </script>
+    <!--end::Script-->
+  </body><!--end::Body-->
+</html>

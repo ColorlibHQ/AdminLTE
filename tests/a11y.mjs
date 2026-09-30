@@ -23,6 +23,7 @@ const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 
 const PAGES = [
   '/index.html',
+  '/charts/chartjs.html',
   '/starter.html',
   '/users.html',
   '/examples/login.html',
