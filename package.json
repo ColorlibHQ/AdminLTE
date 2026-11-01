@@ -148,7 +148,7 @@
     "nodemon": "^3.1.14",
     "npm-run-all2": "^9.0.3",
     "playwright": "^1.64.0",
-    "postcss": "^8.5.29",
+    "postcss": "^8.5.32",
     "postcss-cli": "^12.0.0",
     "prettier": "^3.9.9",
     "prettier-plugin-astro": "^1.1.0",
