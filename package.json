@@ -146,7 +146,7 @@
     "happy-dom": "^20.14.5",
     "lockfile-lint": "^5.0.1",
     "nodemon": "^3.1.14",
-    "npm-run-all2": "^9.0.3",
+    "npm-run-all2": "^9.0.4",
     "playwright": "^1.64.0",
     "postcss": "^8.5.29",
     "postcss-cli": "^12.0.0",
