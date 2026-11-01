@@ -123,14 +123,14 @@
     "postcss-selector-parser": "^7.1.6"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.10",
-    "@astrojs/markdown-remark": "^7.3.2",
-    "@astrojs/mdx": "^8.0.3",
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/markdown-remark": "^7.3.5",
+    "@astrojs/mdx": "^8.1.2",
     "@eslint/js": "^10.0.1",
     "@rollup/plugin-typescript": "^12.3.0",
     "@typescript-eslint/eslint-plugin": "^8.71.1",
     "@typescript-eslint/parser": "^8.71.1",
-    "astro": "^7.3.7",
+    "astro": "^7.4.4",
     "autoprefixer": "^10.6.1",
     "axe-core": "^4.14.0",
     "bootstrap": "^5.3.8",
