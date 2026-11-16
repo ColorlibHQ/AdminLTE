@@ -235,7 +235,7 @@ including editions built for the same stacks AdminLTE integrates with:
 ## Browser & platform support
 
 AdminLTE supports the latest versions of all modern browsers (Chrome, Firefox, Safari,
-Edge) via Bootstrap 5.3.8. The build scripts run cross-platform — Windows (CMD,
+Edge) via Bootstrap 5.3.9. The build scripts run cross-platform — Windows (CMD,
 PowerShell, Git Bash), macOS and Linux — using cross-platform npm utilities throughout.
 
 ## Security & production deployment

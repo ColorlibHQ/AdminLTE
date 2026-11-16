@@ -114,7 +114,8 @@ try {
       await checkPage(page, 'pages/calendar.html', async current => {
         const onboarding = current.getByText('Onboarding session', { exact: true })
         assert.ok(await onboarding.count(), 'Calendar should render events')
-        const day = current.locator('#calendar [role="gridcell"]').filter({ has: onboarding })
+        // Day cells carry data-date; FullCalendar 7.1.5 changed their role from gridcell to cell.
+        const day = current.locator('#calendar [data-date]').filter({ has: onboarding })
         assert.equal(await day.getAttribute('data-date'), '2026-10-08', 'All-day events must retain their local date')
         const buttons = current.locator('#calendar button')
         assert.ok(await buttons.count() >= 7, 'Calendar should render navigation and view controls')

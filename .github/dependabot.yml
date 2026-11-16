@@ -11,6 +11,7 @@ updates:
           - "eslint"
           - "eslint-*"
           - "@typescript-eslint/*"
+          - "typescript-eslint"
       stylelint:
         patterns:
           - "stylelint"
