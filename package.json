@@ -121,7 +121,12 @@
     },
     "yaml": "^2.9.1",
     "postcss-selector-parser": "^7.1.6",
-    "minimatch@^10.0.0": "^11.0.8"
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "^11.0.8"
+    },
+    "nodemon": {
+      "minimatch": "^11.0.8"
+    }
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
