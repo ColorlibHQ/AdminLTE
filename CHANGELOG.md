@@ -5,6 +5,22 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.10.2] - 2026-11-16
+
+### Changed
+
+- The compiled CSS is built on **Bootstrap 5.3.9** (was 5.3.8). Upstream changes include the new `.modal-xxl` size and placeholder glow/wave animations that now respect `prefers-reduced-motion`. The demo pages load Bootstrap JS 5.3.9, which includes the tooltip/popover fix that preserves literal text from data attributes. The `bootstrap` peer dependency stays at `^5.3.8`.
+- Update the pinned demo libraries: Bootstrap Icons 1.13.2, Source Sans 3 5.3.1, Chart.js 4.6.1, FullCalendar 7.1.5, OverlayScrollbars 2.17.0, Tabulator 6.7.1, Tom Select 2.7.0, Pickr 1.10.3 and FilePond 4.32.14. Every CDN integrity hash was recomputed and verified.
+- Refresh every build, lint, formatting and testing dependency to its latest release, including Astro 7.4.12, ESLint 10.15.0, eslint-plugin-unicorn 80, happy-dom 21, bundlewatch 1.2, Playwright 1.65.1, Rollup 4.68.4, Sass 1.108.2 and Vitest 5.1.0, and regenerate the lockfile so transitive packages are current. Two tools stay where they are. TypeScript stays on 6.0.3, because typescript-eslint and the Astro checker do not yet support TypeScript 7. Stylelint stays on 17.16.0, because Bootstrap's shared Stylelint config still extends rules that Stylelint 18 removed.
+
+### Fixed
+
+- Fix the broken `src/ts/` GitHub link on the JavaScript plugins overview page ([#6154](https://github.com/ColorlibHQ/AdminLTE/pull/6154), @reynoldsalec).
+
+### Security
+
+- `npm audit` reports 0 vulnerabilities. The `braces` advisory noted in 4.10.1 is resolved, as are new advisories against Astro, undici, happy-dom, follow-redirects and fast-uri. minimatch is overridden to `^11.0.8` for typescript-eslint and nodemon ([GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249)).
+
 ## [4.10.1] - 2026-10-08
 
 ### Changed
