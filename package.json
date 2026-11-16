@@ -163,7 +163,7 @@
     "rtlcss": "^4.3.0",
     "sass": "^1.108.2",
     "shx": "^0.4.0",
-    "stylelint": "^17.16.0",
+    "stylelint": "^18.0.0",
     "stylelint-config-twbs-bootstrap": "^16.1.0",
     "terser": "^5.51.2",
     "tslib": "^2.9.1",
