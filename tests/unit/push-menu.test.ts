@@ -47,6 +47,23 @@ describe('PushMenu', () => {
     expect(document.body.classList.contains('sidebar-collapse')).toBe(true)
   })
 
+  it('a vetoed toggle does not persist the state it did not reach', () => {
+    localStorage.clear()
+    const sidebar = buildLayout()
+    const menu = new PushMenu(sidebar, { enablePersistence: true })
+
+    sidebar.addEventListener('collapse.lte.push-menu', event => {
+      event.preventDefault()
+    }, { once: true })
+
+    menu.toggle()
+    expect(document.body.classList.contains('sidebar-collapse')).toBe(false)
+
+    // The next page load restores whatever was saved.
+    new PushMenu(buildLayout(), { enablePersistence: true }).init()
+    expect(document.body.classList.contains('sidebar-collapse')).toBe(false)
+  })
+
   it('is retrievable via getInstance for programmatic control', () => {
     const sidebar = buildLayout()
     const menu = PushMenu.getOrCreateInstance(sidebar, { enablePersistence: false })

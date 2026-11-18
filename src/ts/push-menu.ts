@@ -200,19 +200,18 @@ class PushMenu extends BaseComponent {
   toggle(): void {
     // Toggle the sidebar state.
 
-    const isCollapsed = this.isCollapsed()
-
-    if (isCollapsed) {
+    if (this.isCollapsed()) {
       this.expand()
     } else {
       this.collapse()
     }
 
-    // If persistence is enabled, save the new state to localStorage.
+    // If persistence is enabled, save the resulting state to localStorage. It
+    // is read back after the action because a listener may have vetoed it.
 
     if (this._config.enablePersistence) {
       this.saveSidebarState(
-        isCollapsed ? CLASS_NAME_SIDEBAR_OPEN : CLASS_NAME_SIDEBAR_COLLAPSE
+        this.isCollapsed() ? CLASS_NAME_SIDEBAR_COLLAPSE : CLASS_NAME_SIDEBAR_OPEN
       )
     }
   }
