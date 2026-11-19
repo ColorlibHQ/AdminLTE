@@ -47,6 +47,55 @@ describe('PushMenu', () => {
     expect(document.body.classList.contains('sidebar-collapse')).toBe(true)
   })
 
+  it('a vetoed toggle does not persist the state it did not reach', () => {
+    localStorage.clear()
+    const sidebar = buildLayout()
+    const menu = new PushMenu(sidebar, { enablePersistence: true })
+
+    sidebar.addEventListener('collapse.lte.push-menu', event => {
+      event.preventDefault()
+    }, { once: true })
+
+    menu.toggle()
+    expect(document.body.classList.contains('sidebar-collapse')).toBe(false)
+
+    // The next page load restores whatever was saved.
+    new PushMenu(buildLayout(), { enablePersistence: true }).init()
+    expect(document.body.classList.contains('sidebar-collapse')).toBe(false)
+  })
+
+  it('a vetoed toggle leaves an earlier saved preference untouched', () => {
+    // The user chose "expanded" on a desktop-size screen.
+    localStorage.setItem('lte.sidebar.state', 'sidebar-open')
+
+    // On a mobile-size screen the sidebar starts collapsed, and a listener
+    // vetoes opening it (for example while a modal is shown).
+    const sidebar = buildLayout()
+    const menu = new PushMenu(sidebar, { enablePersistence: true, sidebarBreakpoint: 99_999 })
+    menu.init()
+    expect(document.body.classList.contains('sidebar-collapse')).toBe(true)
+
+    sidebar.addEventListener('open.lte.push-menu', event => {
+      event.preventDefault()
+    }, { once: true })
+
+    menu.toggle()
+    expect(document.body.classList.contains('sidebar-collapse')).toBe(true)
+    expect(localStorage.getItem('lte.sidebar.state')).toBe('sidebar-open')
+  })
+
+  it('an unvetoed toggle persists the state it reached', () => {
+    localStorage.clear()
+    const sidebar = buildLayout()
+    const menu = new PushMenu(sidebar, { enablePersistence: true })
+
+    menu.toggle()
+    expect(localStorage.getItem('lte.sidebar.state')).toBe('sidebar-collapse')
+
+    menu.toggle()
+    expect(localStorage.getItem('lte.sidebar.state')).toBe('sidebar-open')
+  })
+
   it('is retrievable via getInstance for programmatic control', () => {
     const sidebar = buildLayout()
     const menu = PushMenu.getOrCreateInstance(sidebar, { enablePersistence: false })
