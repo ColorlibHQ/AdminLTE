@@ -5,6 +5,12 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- With `data-enable-persistence="true"`, a sidebar toggle that a listener vetoes through the cancelable `open.lte.push-menu` or `collapse.lte.push-menu` event no longer saves a state the sidebar never reached. A blocked toggle now leaves the stored preference untouched, so a vetoed tap on a mobile-size screen can no longer overwrite the state the user chose on desktop ([#6159](https://github.com/ColorlibHQ/AdminLTE/pull/6159), @Dev-next-gen).
+
 ## [4.10.2] - 2026-11-16
 
 ### Changed

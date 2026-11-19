@@ -703,15 +703,15 @@ class PushMenu extends BaseComponent {
         dispatchCustomEvent(this._element, EVENT_COLLAPSED);
     }
     toggle() {
-        const isCollapsed = this.isCollapsed();
-        if (isCollapsed) {
+        const wasCollapsed = this.isCollapsed();
+        if (wasCollapsed) {
             this.expand();
         }
         else {
             this.collapse();
         }
-        if (this._config.enablePersistence) {
-            this.saveSidebarState(isCollapsed ? CLASS_NAME_SIDEBAR_OPEN : CLASS_NAME_SIDEBAR_COLLAPSE);
+        if (this._config.enablePersistence && this.isCollapsed() !== wasCollapsed) {
+            this.saveSidebarState(this.isCollapsed() ? CLASS_NAME_SIDEBAR_COLLAPSE : CLASS_NAME_SIDEBAR_OPEN);
         }
     }
     setupSidebarBreakPoint() {
