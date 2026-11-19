@@ -88,6 +88,25 @@ describe('CardWidget', () => {
     expect(CardWidget.getInstance(card)).toBeNull()
   })
 
+  it('a second remove click during the animation does not remove the card twice', () => {
+    const card = buildCard()
+    const button = card.querySelector('[data-lte-toggle="card-remove"]') as HTMLElement
+    const remove = vi.fn()
+    const removed = vi.fn()
+    document.addEventListener('remove.lte.card-widget', remove)
+    card.addEventListener('removed.lte.card-widget', removed)
+
+    button.click()
+    vi.advanceTimersByTime(100)
+    button.click()
+    vi.advanceTimersByTime(1000)
+    document.removeEventListener('remove.lte.card-widget', remove)
+
+    expect(card.isConnected).toBe(false)
+    expect(remove).toHaveBeenCalledTimes(1)
+    expect(removed).toHaveBeenCalledTimes(1)
+  })
+
   it('data-api: clicking the tool button (or its icon) works via delegation', () => {
     const card = buildCard()
     const icon = card.querySelector('[data-lte-toggle="card-collapse"] i') as HTMLElement
