@@ -11,7 +11,7 @@
     "#{$lte-prefix}app-sidebar #{$lte-prefix}app-footer";
   grid-template-rows: min-content 1fr min-content;
   grid-template-columns: auto 1fr;
-  grid-gap: 0;
+  gap: 0;
   align-content: stretch;
   align-items: stretch;
   max-width: 100vw;

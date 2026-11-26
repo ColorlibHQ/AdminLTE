@@ -73,6 +73,17 @@ try {
                 viewport: document.documentElement.clientWidth
               }))
               assert.ok(dimensions.content <= dimensions.viewport + 1, `${filename}: horizontal overflow at ${width}px (${dimensions.content}px)`)
+              // scrollWidth misses overflow on the inline-start side (the right
+              // in RTL), which Firefox for Android still widens the page to fit
+              // (#6161). The off-canvas sidebar is expected; a box thousands of
+              // pixels out is not.
+              const farOut = await current.evaluate(() => [...document.querySelectorAll('body *')]
+                .filter(element => {
+                  const rect = element.getBoundingClientRect()
+                  return rect.width > 0 && (rect.left < -1000 || rect.right > innerWidth + 1000)
+                })
+                .map(element => `${element.tagName.toLowerCase()}.${[...element.classList].join('.')}`))
+              assert.deepEqual(farOut, [], `${filename}: element far outside the viewport at ${width}px`)
               assert.equal(await current.locator('html').getAttribute('data-bs-theme'), colorScheme)
             })
           }

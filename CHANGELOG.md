@@ -7,8 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Move to **Stylelint 18**. Bootstrap's shared config (`stylelint-config-twbs-bootstrap`) still pins Stylelint 16-era presets, so its rules are now inlined in `stylelint.config.mjs`, on top of the current `stylelint-config-standard`, `stylelint-config-standard-scss`, `stylelint-config-recess-order` and `@stylistic/stylelint-config`. The newer presets reorder a few properties and replace the deprecated `grid-gap`, `word-wrap` and `clip` with `gap`, `overflow-wrap` and `clip-path`. Rendering does not change.
+- Refresh the build, lint and test dependencies to their latest releases, including Astro 7.4.13, typescript-eslint 8.74, Rollup 4.68.8, Vitest 5.1.2, autoprefixer 10.7 and axe-core 4.14.1. TypeScript stays on 6.0.3, because typescript-eslint and the Astro checker still do not support TypeScript 7.
+- Update the pinned demo libraries: Chart.js 4.6.2 and OverlayScrollbars 2.17.1, plus jQuery 4.1.0 and Select2 4.2.0 in the Select2 integration snippet. `adminlte-select2.css` matches the same Select2 class names. FilePond stays on 4.32.14, because 5.0.0 is a rewrite with a new API and file layout.
+
 ### Fixed
 
+- In the RTL build, the screen-reader live region and the hidden "Navigation" label no longer sit 10,000px past the right edge of the page. RTL turned their `left: -10000px` into `right: -10000px`, and Firefox for Android widened the page to fit that box. Both are now clipped in place, so they have no off-screen geometry in either direction, and the browser suite checks every tested page for boxes far outside the viewport ([#6161](https://github.com/ColorlibHQ/AdminLTE/issues/6161), reported by @farhadmahdaviir-alt).
+- Clicking a card's remove tool again while the card is still sliding away no longer removes it twice. The cancelable `remove.lte.card-widget` event, and so any confirmation prompt or delete request bound to it, now fires once, and `removed.lte.card-widget` is no longer dispatched a second time after the card is detached ([#6160](https://github.com/ColorlibHQ/AdminLTE/pull/6160), @Dev-next-gen).
 - With `data-enable-persistence="true"`, a sidebar toggle that a listener vetoes through the cancelable `open.lte.push-menu` or `collapse.lte.push-menu` event no longer saves a state the sidebar never reached. A blocked toggle now leaves the stored preference untouched, so a vetoed tap on a mobile-size screen can no longer overwrite the state the user chose on desktop ([#6159](https://github.com/ColorlibHQ/AdminLTE/pull/6159), @Dev-next-gen).
 
 ## [4.10.2] - 2026-11-16

@@ -53,12 +53,12 @@
     width: var(--#{$lte-prefix}ribbon-width);
     padding: $lte-ribbon-padding;
     overflow: hidden;
+    text-overflow: ellipsis;
     font-size: var(--#{$lte-prefix}ribbon-font-size);
     font-weight: $lte-ribbon-font-weight;
     line-height: 1.2;
     color: var(--#{$prefix}emphasis-color);
     text-align: center;
-    text-overflow: ellipsis;
     text-transform: uppercase;
     white-space: nowrap;
     background-color: var(--#{$prefix}secondary-bg);

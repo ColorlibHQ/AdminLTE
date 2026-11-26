@@ -64,10 +64,10 @@
   *,
   *::before,
   *::after {
+    scroll-behavior: auto !important;
     transition-duration: .01ms !important;
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
   }
 
   .fade {
@@ -94,9 +94,9 @@
   padding: 0 !important;
   margin: -1px !important;
   overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+  clip-path: inset(50%) !important;
 }
 
 .sr-only-focusable:focus {
@@ -106,8 +106,8 @@
   padding: inherit !important;
   margin: inherit !important;
   overflow: visible !important;
-  clip: auto !important;
   white-space: normal !important;
+  clip-path: none !important;
 }
 
 /* Focus Trap Utilities */
@@ -135,19 +135,28 @@
 }
 
 /* ARIA Live Regions */
+// Clipped in place rather than pushed off-screen: a `left: -10000px` offset
+// becomes `right: -10000px` in the RTL build, and Firefox for Android widens
+// the page to fit that box (#6161).
 .live-region {
   position: absolute;
-  left: -10000px;
   width: 1px;
   height: 1px;
+  padding: 0;
+  margin: -1px;
   overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip-path: inset(50%);
 
   &.live-region-visible {
     position: static;
-    left: auto;
     width: auto;
     height: auto;
+    margin: 0;
     overflow: visible;
+    white-space: normal;
+    clip-path: none;
   }
 }
 
@@ -205,10 +214,16 @@
 /* Navigation Landmarks */
 nav[role="navigation"] {
   &:not([aria-label]):not([aria-labelledby]) {
+    // Clipped in place for the same RTL reason as .live-region.
     &::before {
       position: absolute;
-      left: -10000px;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      white-space: nowrap;
       content: "Navigation";
+      clip-path: inset(50%);
     }
   }
 }

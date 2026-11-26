@@ -46,7 +46,7 @@
 
   p {
     margin: 0;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     white-space: normal;
   }
 }
@@ -99,7 +99,7 @@
 
   p {
     margin: 0;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     white-space: normal;
   }
 }
@@ -116,8 +116,8 @@
 // Add fade animation to dropdown menus by appending
 // the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)
 .open:not(.dropup) > .animated-dropdown-menu {
-  animation: flipInX .7s both;
   backface-visibility: visible !important;
+  animation: flipInX .7s both;
 }
 
 // Fix dropdown menu in navbars
@@ -178,7 +178,7 @@
         z-index: 5;
         margin-top: 10px;
         font-size: 17px;
-        word-wrap: break-word;
+        overflow-wrap: break-word;
 
         > small {
           display: block;
