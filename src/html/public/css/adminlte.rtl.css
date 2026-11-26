@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v4.10.2
+ *   AdminLTE v4.10.3
  *   Author: Colorlib
  *   Website: AdminLTE.io <https://adminlte.io>
  *   License: Open source - MIT <https://opensource.org/licenses/MIT>
@@ -12707,12 +12707,12 @@ textarea.form-control-lg {
 @keyframes flipInX {
   0% {
     opacity: 0;
-    transition-timing-function: ease-in;
     transform: perspective(400px) rotate3d(-1, 0, 0, -90deg);
+    transition-timing-function: ease-in;
   }
   40% {
-    transition-timing-function: ease-in;
     transform: perspective(400px) rotate3d(-1, 0, 0, 20deg);
+    transition-timing-function: ease-in;
   }
   60% {
     opacity: 1;
@@ -12810,7 +12810,7 @@ textarea.form-control-lg {
   grid-template-areas: "lte-app-sidebar lte-app-header" "lte-app-sidebar lte-app-main" "lte-app-sidebar lte-app-footer";
   grid-template-rows: min-content 1fr min-content;
   grid-template-columns: auto 1fr;
-  grid-gap: 0;
+  gap: 0;
   align-content: stretch;
   align-items: stretch;
   max-width: 100vw;
@@ -13160,8 +13160,8 @@ textarea.form-control-lg {
 .sidebar-wrapper .nav-header {
   display: inline;
   overflow: hidden;
-  color: var(--lte-sidebar-header-color);
   text-overflow: ellipsis;
+  color: var(--lte-sidebar-header-color);
   background-color: inherit;
 }
 .sidebar-wrapper a {
@@ -13422,9 +13422,9 @@ textarea.form-control-lg {
 .sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .sidebar-menu .nav-link p,
 .sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .brand-text,
 .sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .logo-xl {
+  visibility: visible;
   width: auto;
   margin-right: 0;
-  visibility: visible;
   animation-name: fadeIn;
   animation-duration: 0.3s;
   animation-fill-mode: both;
@@ -13443,8 +13443,8 @@ textarea.form-control-lg {
   visibility: visible;
   animation-name: fadeIn;
   animation-duration: 0.3s;
-  animation-fill-mode: both;
   animation-delay: 0.3s;
+  animation-fill-mode: both;
 }
 .sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .nav-link p {
   padding-right: 0.5rem;
@@ -13490,15 +13490,15 @@ textarea.form-control-lg {
   .sidebar-expand-sm.sidebar-open .nav-link > p > .nav-badge {
     animation-name: fadeIn;
     animation-duration: 0.3s;
-    animation-fill-mode: both;
     animation-delay: 0.3s;
+    animation-fill-mode: both;
   }
   .sidebar-expand-sm.sidebar-open .nav-link > .nav-arrow,
   .sidebar-expand-sm.sidebar-open .nav-link > p > .nav-arrow {
     animation-name: fadeIn;
     animation-duration: 0.3s;
-    animation-fill-mode: both;
     animation-delay: 0.3s;
+    animation-fill-mode: both;
   }
 }
 @media (max-width: 575.98px) {
@@ -13524,10 +13524,10 @@ textarea.form-control-lg {
     position: absolute;
     inset: 0;
     z-index: 1037;
+    visibility: visible;
     width: 100%;
     height: 100%;
     cursor: pointer;
-    visibility: visible;
     background-color: rgba(0, 0, 0, 0.2);
     animation-name: fadeIn;
     animation-fill-mode: both;
@@ -13563,15 +13563,15 @@ textarea.form-control-lg {
   .sidebar-expand-md.sidebar-open .nav-link > p > .nav-badge {
     animation-name: fadeIn;
     animation-duration: 0.3s;
-    animation-fill-mode: both;
     animation-delay: 0.3s;
+    animation-fill-mode: both;
   }
   .sidebar-expand-md.sidebar-open .nav-link > .nav-arrow,
   .sidebar-expand-md.sidebar-open .nav-link > p > .nav-arrow {
     animation-name: fadeIn;
     animation-duration: 0.3s;
-    animation-fill-mode: both;
     animation-delay: 0.3s;
+    animation-fill-mode: both;
   }
 }
 @media (max-width: 767.98px) {
@@ -13597,10 +13597,10 @@ textarea.form-control-lg {
     position: absolute;
     inset: 0;
     z-index: 1037;
+    visibility: visible;
     width: 100%;
     height: 100%;
     cursor: pointer;
-    visibility: visible;
     background-color: rgba(0, 0, 0, 0.2);
     animation-name: fadeIn;
     animation-fill-mode: both;
@@ -13636,15 +13636,15 @@ textarea.form-control-lg {
   .sidebar-expand-lg.sidebar-open .nav-link > p > .nav-badge {
     animation-name: fadeIn;
     animation-duration: 0.3s;
-    animation-fill-mode: both;
     animation-delay: 0.3s;
+    animation-fill-mode: both;
   }
   .sidebar-expand-lg.sidebar-open .nav-link > .nav-arrow,
   .sidebar-expand-lg.sidebar-open .nav-link > p > .nav-arrow {
     animation-name: fadeIn;
     animation-duration: 0.3s;
-    animation-fill-mode: both;
     animation-delay: 0.3s;
+    animation-fill-mode: both;
   }
 }
 @media (max-width: 991.98px) {
@@ -13670,10 +13670,10 @@ textarea.form-control-lg {
     position: absolute;
     inset: 0;
     z-index: 1037;
+    visibility: visible;
     width: 100%;
     height: 100%;
     cursor: pointer;
-    visibility: visible;
     background-color: rgba(0, 0, 0, 0.2);
     animation-name: fadeIn;
     animation-fill-mode: both;
@@ -13709,15 +13709,15 @@ textarea.form-control-lg {
   .sidebar-expand-xl.sidebar-open .nav-link > p > .nav-badge {
     animation-name: fadeIn;
     animation-duration: 0.3s;
-    animation-fill-mode: both;
     animation-delay: 0.3s;
+    animation-fill-mode: both;
   }
   .sidebar-expand-xl.sidebar-open .nav-link > .nav-arrow,
   .sidebar-expand-xl.sidebar-open .nav-link > p > .nav-arrow {
     animation-name: fadeIn;
     animation-duration: 0.3s;
-    animation-fill-mode: both;
     animation-delay: 0.3s;
+    animation-fill-mode: both;
   }
 }
 @media (max-width: 1199.98px) {
@@ -13743,10 +13743,10 @@ textarea.form-control-lg {
     position: absolute;
     inset: 0;
     z-index: 1037;
+    visibility: visible;
     width: 100%;
     height: 100%;
     cursor: pointer;
-    visibility: visible;
     background-color: rgba(0, 0, 0, 0.2);
     animation-name: fadeIn;
     animation-fill-mode: both;
@@ -13782,15 +13782,15 @@ textarea.form-control-lg {
   .sidebar-expand-xxl.sidebar-open .nav-link > p > .nav-badge {
     animation-name: fadeIn;
     animation-duration: 0.3s;
-    animation-fill-mode: both;
     animation-delay: 0.3s;
+    animation-fill-mode: both;
   }
   .sidebar-expand-xxl.sidebar-open .nav-link > .nav-arrow,
   .sidebar-expand-xxl.sidebar-open .nav-link > p > .nav-arrow {
     animation-name: fadeIn;
     animation-duration: 0.3s;
-    animation-fill-mode: both;
     animation-delay: 0.3s;
+    animation-fill-mode: both;
   }
 }
 @media (max-width: 1399.98px) {
@@ -13816,10 +13816,10 @@ textarea.form-control-lg {
     position: absolute;
     inset: 0;
     z-index: 1037;
+    visibility: visible;
     width: 100%;
     height: 100%;
     cursor: pointer;
-    visibility: visible;
     background-color: rgba(0, 0, 0, 0.2);
     animation-name: fadeIn;
     animation-fill-mode: both;
@@ -13854,15 +13854,15 @@ textarea.form-control-lg {
 .sidebar-expand.sidebar-open .nav-link > p > .nav-badge {
   animation-name: fadeIn;
   animation-duration: 0.3s;
-  animation-fill-mode: both;
   animation-delay: 0.3s;
+  animation-fill-mode: both;
 }
 .sidebar-expand.sidebar-open .nav-link > .nav-arrow,
 .sidebar-expand.sidebar-open .nav-link > p > .nav-arrow {
   animation-name: fadeIn;
   animation-duration: 0.3s;
-  animation-fill-mode: both;
   animation-delay: 0.3s;
+  animation-fill-mode: both;
 }
 .sidebar-expand::before {
   display: none;
@@ -13886,10 +13886,10 @@ textarea.form-control-lg {
   position: absolute;
   inset: 0;
   z-index: 1037;
+  visibility: visible;
   width: 100%;
   height: 100%;
   cursor: pointer;
-  visibility: visible;
   background-color: rgba(0, 0, 0, 0.2);
   animation-name: fadeIn;
   animation-fill-mode: both;
@@ -14081,7 +14081,7 @@ body:not(.app-loaded) .app-footer {
 }
 .dropdown-menu-lg p {
   margin: 0;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   white-space: normal;
 }
 
@@ -14122,7 +14122,7 @@ body:not(.app-loaded) .app-footer {
 }
 .dropdown-menu-xl p {
   margin: 0;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   white-space: normal;
 }
 
@@ -14135,8 +14135,8 @@ body:not(.app-loaded) .app-footer {
 }
 
 .open:not(.dropup) > .animated-dropdown-menu {
-  animation: flipInX 0.7s both;
   backface-visibility: visible !important;
+  animation: flipInX 0.7s both;
 }
 
 .navbar-custom-menu > .navbar-nav > li {
@@ -14187,7 +14187,7 @@ body:not(.app-loaded) .app-footer {
   z-index: 5;
   margin-top: 10px;
   font-size: 17px;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 .navbar-nav > .user-menu > .dropdown-menu > li.user-header > p > small, .navbar-nav > .user-menu > .dropdown-menu > li.user-header > p > .small {
   display: block;
@@ -15389,12 +15389,12 @@ html.maximized-card {
   width: var(--lte-ribbon-width);
   padding: 0.375rem 0;
   overflow: hidden;
+  text-overflow: ellipsis;
   font-size: var(--lte-ribbon-font-size);
   font-weight: 400;
   line-height: 1.2;
   color: var(--bs-emphasis-color);
   text-align: center;
-  text-overflow: ellipsis;
   text-transform: uppercase;
   white-space: nowrap;
   background-color: var(--bs-secondary-bg);
@@ -15778,10 +15778,10 @@ html.maximized-card {
   *,
   *::before,
   *::after {
+    scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
   }
   .fade {
     opacity: 1 !important;
@@ -15804,9 +15804,9 @@ html.maximized-card {
   padding: 0 !important;
   margin: -1px !important;
   overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+  clip-path: inset(50%) !important;
 }
 
 .sr-only-focusable:focus {
@@ -15816,8 +15816,8 @@ html.maximized-card {
   padding: inherit !important;
   margin: inherit !important;
   overflow: visible !important;
-  clip: auto !important;
   white-space: normal !important;
+  clip-path: none !important;
 }
 
 /* Focus Trap Utilities */
@@ -15845,17 +15845,23 @@ html.maximized-card {
 /* ARIA Live Regions */
 .live-region {
   position: absolute;
-  right: -10000px;
   width: 1px;
   height: 1px;
+  padding: 0;
+  margin: -1px;
   overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip-path: inset(50%);
 }
 .live-region.live-region-visible {
   position: static;
-  right: auto;
   width: auto;
   height: auto;
+  margin: 0;
   overflow: visible;
+  white-space: normal;
+  clip-path: none;
 }
 
 /* Enhanced Error States - WCAG 3.3.1: Error Identification */
@@ -15903,8 +15909,13 @@ html.maximized-card {
 /* Navigation Landmarks */
 nav[role=navigation]:not([aria-label]):not([aria-labelledby])::before {
   position: absolute;
-  right: -10000px;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  white-space: nowrap;
   content: "Navigation";
+  clip-path: inset(50%);
 }
 
 /* Form Fieldset Styling */

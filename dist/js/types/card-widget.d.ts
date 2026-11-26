@@ -18,6 +18,7 @@ declare class CardWidget extends BaseComponent {
     static getOrCreateInstance(element: HTMLElement, config?: Partial<Config>): CardWidget;
     _parent: HTMLElement | undefined;
     _config: Config;
+    _removing: boolean;
     constructor(element: HTMLElement, config?: Partial<Config>);
     collapse(): void;
     expand(): void;

@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v4.10.2 (https://adminlte.io)
+ * AdminLTE v4.10.3 (https://adminlte.io)
  * Copyright 2014-2026 Colorlib <https://colorlib.com>
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
@@ -238,6 +238,7 @@
         }
         _parent;
         _config;
+        _removing = false;
         constructor(element, config = {}) {
             super(element);
             this._parent = element.closest(SELECTOR_CARD);
@@ -292,12 +293,13 @@
             }, this._config.animationSpeed);
         }
         remove() {
-            if (!this._parent) {
+            if (!this._parent || this._removing) {
                 return;
             }
             if (dispatchCustomEvent(this._parent, EVENT_REMOVE, { cancelable: true }).defaultPrevented) {
                 return;
             }
+            this._removing = true;
             const parent = this._parent;
             slideUp(parent, this._config.animationSpeed);
             setTimeout(() => {

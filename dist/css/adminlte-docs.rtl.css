@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v4.10.2 — documentation styles
+ *   AdminLTE v4.10.3 — documentation styles
  *   Styles for the documentation and FAQ pages only (body.docs-page /
  *   body.faq-page). Applications never need this file; it is loaded by the
  *   docs pages in addition to adminlte.css.
@@ -8,12 +8,12 @@
 @keyframes flipInX {
   0% {
     opacity: 0;
-    transition-timing-function: ease-in;
     transform: perspective(400px) rotate3d(-1, 0, 0, -90deg);
+    transition-timing-function: ease-in;
   }
   40% {
-    transition-timing-function: ease-in;
     transform: perspective(400px) rotate3d(-1, 0, 0, 20deg);
+    transition-timing-function: ease-in;
   }
   60% {
     opacity: 1;
@@ -262,8 +262,8 @@
 .docs-page .card > .card-body table th,
 .docs-page .card > .card-body table td {
   padding: 0.65rem 0.9rem;
-  text-align: right;
   vertical-align: top;
+  text-align: right;
   border-bottom: 1px solid var(--bs-border-color);
 }
 .docs-page .card > .card-body table th {
@@ -340,10 +340,10 @@
   font-size: 1rem;
   font-weight: 600;
   color: var(--bs-emphasis-color);
-  list-style: none;
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
+  list-style: none;
   transition: color 0.15s ease;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -747,10 +747,10 @@
   font-size: 1rem;
   font-weight: 500;
   color: var(--bs-emphasis-color);
-  list-style: none;
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
+  list-style: none;
 }
 .faq-page .faq-section-items .faq-item summary::-webkit-details-marker {
   display: none;

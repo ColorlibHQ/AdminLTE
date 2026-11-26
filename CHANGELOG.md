@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.10.3] - 2026-11-26
+
 ### Changed
 
 - Move to **Stylelint 18**. Bootstrap's shared config (`stylelint-config-twbs-bootstrap`) still pins Stylelint 16-era presets, so its rules are now inlined in `stylelint.config.mjs`, on top of the current `stylelint-config-standard`, `stylelint-config-standard-scss`, `stylelint-config-recess-order` and `@stylistic/stylelint-config`. The newer presets reorder a few properties and replace the deprecated `grid-gap`, `word-wrap` and `clip` with `gap`, `overflow-wrap` and `clip-path`. Rendering does not change.
