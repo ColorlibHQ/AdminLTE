@@ -135,19 +135,28 @@
 }
 
 /* ARIA Live Regions */
+// Clipped in place rather than pushed off-screen: a `left: -10000px` offset
+// becomes `right: -10000px` in the RTL build, and Firefox for Android widens
+// the page to fit that box (#6161).
 .live-region {
   position: absolute;
-  left: -10000px;
   width: 1px;
   height: 1px;
+  padding: 0;
+  margin: -1px;
   overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip-path: inset(50%);
 
   &.live-region-visible {
     position: static;
-    left: auto;
     width: auto;
     height: auto;
+    margin: 0;
     overflow: visible;
+    white-space: normal;
+    clip-path: none;
   }
 }
 
@@ -205,10 +214,16 @@
 /* Navigation Landmarks */
 nav[role="navigation"] {
   &:not([aria-label]):not([aria-labelledby]) {
+    // Clipped in place for the same RTL reason as .live-region.
     &::before {
       position: absolute;
-      left: -10000px;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      white-space: nowrap;
       content: "Navigation";
+      clip-path: inset(50%);
     }
   }
 }
