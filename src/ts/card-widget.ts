@@ -75,6 +75,7 @@ class CardWidget extends BaseComponent {
 
   _parent: HTMLElement | undefined
   _config: Config
+  _removing = false
 
   constructor(element: HTMLElement, config: Partial<Config> = {}) {
     super(element)
@@ -150,7 +151,9 @@ class CardWidget extends BaseComponent {
   }
 
   remove() {
-    if (!this._parent) {
+    // A second click on the remove button while the card is still sliding
+    // away must not start a second removal.
+    if (!this._parent || this._removing) {
       return
     }
 
@@ -158,6 +161,7 @@ class CardWidget extends BaseComponent {
       return
     }
 
+    this._removing = true
     const parent = this._parent
     slideUp(parent, this._config.animationSpeed)
 
