@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Move to **Stylelint 18**. Bootstrap's shared config (`stylelint-config-twbs-bootstrap`) still pins Stylelint 16-era presets, so its rules are now inlined in `stylelint.config.mjs`, on top of the current `stylelint-config-standard`, `stylelint-config-standard-scss`, `stylelint-config-recess-order` and `@stylistic/stylelint-config`. The newer presets reorder a few properties and replace the deprecated `grid-gap`, `word-wrap` and `clip` with `gap`, `overflow-wrap` and `clip-path`. Rendering does not change.
 - Refresh the build, lint and test dependencies to their latest releases, including Astro 7.4.13, typescript-eslint 8.74, Rollup 4.68.8, Vitest 5.1.2, autoprefixer 10.7 and axe-core 4.14.1. TypeScript stays on 6.0.3, because typescript-eslint and the Astro checker still do not support TypeScript 7.
+- Update the pinned demo libraries: Chart.js 4.6.2 and OverlayScrollbars 2.17.1, plus jQuery 4.1.0 and Select2 4.2.0 in the Select2 integration snippet. `adminlte-select2.css` matches the same Select2 class names. FilePond stays on 4.32.14, because 5.0.0 is a rewrite with a new API and file layout.
 
 ### Fixed
 

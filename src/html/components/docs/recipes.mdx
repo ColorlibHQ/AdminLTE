@@ -389,7 +389,7 @@ Charting libraries draw on a canvas, so they know nothing about `data-bs-theme` 
 The demo pages that draw charts ship a small preset for this (`src/html/components/_chartjs.astro`, inlined after Chart.js on each of those pages). It reads AdminLTE's CSS variables into `Chart.defaults` — font family, text colour, gridlines, a tooltip and legend styled like the rest of the UI, `rtl` when `<html dir="rtl">` — and watches `<html>` so every chart on the page is restyled when the mode changes, whether that comes from the toggle, the OS preference in auto mode, or your own code. The core of it:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.6.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.6.2/dist/chart.umd.min.js"></script>
 <script>
   const root = document.documentElement
   const cssVar = (name) => getComputedStyle(root).getPropertyValue(name).trim()
