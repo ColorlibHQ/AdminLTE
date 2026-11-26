@@ -229,8 +229,8 @@ $lte-select2-choice-padding-x:    .375rem !default;
   &.select2-container--open {
     .select2-selection--single,
     .select2-selection--multiple {
-      border-color: $input-focus-border-color;
       outline: 0;
+      border-color: $input-focus-border-color;
 
       @if $enable-shadows {
         @include box-shadow($input-box-shadow, $input-focus-box-shadow);
@@ -294,8 +294,8 @@ $lte-select2-choice-padding-x:    .375rem !default;
       @include transition($input-transition);
 
       &:focus {
-        border-color: $input-focus-border-color;
         outline: 0;
+        border-color: $input-focus-border-color;
 
         @if $enable-shadows {
           @include box-shadow($input-box-shadow, $input-focus-box-shadow);

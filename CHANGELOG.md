@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Move to **Stylelint 18**. Bootstrap's shared config (`stylelint-config-twbs-bootstrap`) still pins Stylelint 16-era presets, so its rules are now inlined in `stylelint.config.mjs`, on top of the current `stylelint-config-standard`, `stylelint-config-standard-scss`, `stylelint-config-recess-order` and `@stylistic/stylelint-config`. The newer presets reorder a few properties and replace the deprecated `grid-gap`, `word-wrap` and `clip` with `gap`, `overflow-wrap` and `clip-path`. Rendering does not change.
+- Refresh the build, lint and test dependencies to their latest releases, including Astro 7.4.13, typescript-eslint 8.74, Rollup 4.68.8, Vitest 5.1.2, autoprefixer 10.7 and axe-core 4.14.1. TypeScript stays on 6.0.3, because typescript-eslint and the Astro checker still do not support TypeScript 7.
+
 ### Fixed
 
 - With `data-enable-persistence="true"`, a sidebar toggle that a listener vetoes through the cancelable `open.lte.push-menu` or `collapse.lte.push-menu` event no longer saves a state the sidebar never reached. A blocked toggle now leaves the stored preference untouched, so a vetoed tap on a mobile-size screen can no longer overwrite the state the user chose on desktop ([#6159](https://github.com/ColorlibHQ/AdminLTE/pull/6159), @Dev-next-gen).

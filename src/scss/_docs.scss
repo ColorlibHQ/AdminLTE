@@ -201,8 +201,8 @@
       th,
       td {
         padding: .65rem .9rem;
-        text-align: left;
         vertical-align: top;
+        text-align: left;
         border-bottom: 1px solid var(--#{$prefix}border-color);
       }
 
@@ -305,9 +305,9 @@
         font-size: 1rem;
         font-weight: 600;
         color: var(--#{$prefix}emphasis-color);
-        list-style: none;
         cursor: pointer;
         user-select: none;
+        list-style: none;
         @include transition(color .15s ease);
 
         // Hide the default disclosure triangle in Webkit/Blink
@@ -675,9 +675,9 @@
       font-size: 1rem;
       font-weight: 500;
       color: var(--#{$prefix}emphasis-color);
-      list-style: none;
       cursor: pointer;
       user-select: none;
+      list-style: none;
 
       &::-webkit-details-marker {
         display: none;

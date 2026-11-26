@@ -140,7 +140,6 @@
 // Deliberately a second `[data-lte-primary]` block: the variable defaults above
 // have to be declared before the per-colour presets (same specificity), and the
 // component rules have to come after them.
-/* stylelint-disable-next-line no-duplicate-selectors */
 [data-lte-primary] {
   .btn-primary {
     --#{$prefix}btn-color: var(--#{$lte-prefix}primary-color);

@@ -153,8 +153,8 @@
   .nav-header {
     display: inline;
     overflow: hidden;
-    color: var(--#{$lte-prefix}sidebar-header-color);
     text-overflow: ellipsis;
+    color: var(--#{$lte-prefix}sidebar-header-color);
     background-color: inherit;
   }
 
@@ -439,9 +439,9 @@
       .sidebar-menu .nav-link p,
       .brand-text,
       .logo-xl {
+        visibility: visible;
         width: auto;
         margin-left: 0;
-        visibility: visible;
         animation-name: fadeIn;
         animation-duration: $lte-transition-speed;
         animation-fill-mode: both;
@@ -462,8 +462,8 @@
         visibility: visible;
         animation-name: fadeIn;
         animation-duration: $lte-transition-speed;
-        animation-fill-mode: both;
         animation-delay: $lte-transition-speed;
+        animation-fill-mode: both;
       }
 
       .nav-link p {
@@ -525,15 +525,15 @@
           .nav-link > p > .nav-badge {
             animation-name: fadeIn;
             animation-duration: $lte-transition-speed;
-            animation-fill-mode: both;
             animation-delay: $lte-transition-speed;
+            animation-fill-mode: both;
           }
           .nav-link > .nav-arrow,
           .nav-link > p > .nav-arrow {
             animation-name: fadeIn;
             animation-duration: $lte-transition-speed;
-            animation-fill-mode: both;
             animation-delay: $lte-transition-speed;
+            animation-fill-mode: both;
           }
         }
       }
@@ -568,10 +568,10 @@
             position: absolute;
             inset: 0;
             z-index: $lte-zindex-sidebar-overlay;
+            visibility: visible;
             width: 100%;
             height: 100%;
             cursor: pointer;
-            visibility: visible;
             background-color: rgba(0, 0, 0, .2);
             animation-name: fadeIn;
             animation-fill-mode: both;
@@ -621,6 +621,8 @@ body:not(.app-loaded) {
 
 @if $enable-dark-mode {
   @include color-mode(dark) {
+    // `&` is the `[data-bs-theme="dark"]` selector color-mode() wraps this in.
+    // stylelint-disable-next-line nesting-selector-no-missing-scoping-root
     &.app-sidebar,
     .app-sidebar {
       --#{$lte-prefix}sidebar-hover-bg: #{$lte-sidebar-hover-bg-dark};

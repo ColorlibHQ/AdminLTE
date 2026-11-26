@@ -64,10 +64,10 @@
   *,
   *::before,
   *::after {
+    scroll-behavior: auto !important;
     transition-duration: .01ms !important;
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
   }
 
   .fade {
@@ -94,9 +94,9 @@
   padding: 0 !important;
   margin: -1px !important;
   overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+  clip-path: inset(50%) !important;
 }
 
 .sr-only-focusable:focus {
@@ -106,8 +106,8 @@
   padding: inherit !important;
   margin: inherit !important;
   overflow: visible !important;
-  clip: auto !important;
   white-space: normal !important;
+  clip-path: none !important;
 }
 
 /* Focus Trap Utilities */
