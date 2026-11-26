@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - In the RTL build, the screen-reader live region and the hidden "Navigation" label no longer sit 10,000px past the right edge of the page. RTL turned their `left: -10000px` into `right: -10000px`, and Firefox for Android widened the page to fit that box. Both are now clipped in place, so they have no off-screen geometry in either direction, and the browser suite checks every tested page for boxes far outside the viewport ([#6161](https://github.com/ColorlibHQ/AdminLTE/issues/6161), reported by @farhadmahdaviir-alt).
+- Clicking a card's remove tool again while the card is still sliding away no longer removes it twice. The cancelable `remove.lte.card-widget` event, and so any confirmation prompt or delete request bound to it, now fires once, and `removed.lte.card-widget` is no longer dispatched a second time after the card is detached ([#6160](https://github.com/ColorlibHQ/AdminLTE/pull/6160), @Dev-next-gen).
 - With `data-enable-persistence="true"`, a sidebar toggle that a listener vetoes through the cancelable `open.lte.push-menu` or `collapse.lte.push-menu` event no longer saves a state the sidebar never reached. A blocked toggle now leaves the stored preference untouched, so a vetoed tap on a mobile-size screen can no longer overwrite the state the user chose on desktop ([#6159](https://github.com/ColorlibHQ/AdminLTE/pull/6159), @Dev-next-gen).
 
 ## [4.10.2] - 2026-11-16
