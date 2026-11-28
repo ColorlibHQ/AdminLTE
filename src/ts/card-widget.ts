@@ -172,6 +172,12 @@ class CardWidget extends BaseComponent {
       dispatchCustomEvent(parent, EVENT_REMOVED)
       parent.remove()
       this.dispose()
+
+      // A maximized card locks the page scroll through <html>; release it
+      // unless another card is still maximized.
+      if (!document.querySelector(`${SELECTOR_CARD}.${CLASS_NAME_MAXIMIZED}`)) {
+        document.documentElement.classList.remove(CLASS_NAME_MAXIMIZED)
+      }
     }, this._config.animationSpeed)
   }
 

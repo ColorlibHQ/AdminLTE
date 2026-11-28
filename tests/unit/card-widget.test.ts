@@ -107,6 +107,21 @@ describe('CardWidget', () => {
     expect(removed).toHaveBeenCalledTimes(1)
   })
 
+  it('removing a maximized card gives the page its scrolling back', () => {
+    const card = buildCard()
+    card.querySelector('.card-header')?.insertAdjacentHTML('beforeend', '<button type="button" class="btn btn-tool" data-lte-toggle="card-maximize" aria-label="Maximize card"></button>')
+
+    ;(card.querySelector('[data-lte-toggle="card-maximize"]') as HTMLElement).click()
+    vi.advanceTimersByTime(200)
+    expect(document.documentElement.classList.contains('maximized-card')).toBe(true)
+
+    ;(card.querySelector('[data-lte-toggle="card-remove"]') as HTMLElement).click()
+    vi.advanceTimersByTime(1000)
+
+    expect(card.isConnected).toBe(false)
+    expect(document.documentElement.classList.contains('maximized-card')).toBe(false)
+  })
+
   it('data-api: clicking the tool button (or its icon) works via delegation', () => {
     const card = buildCard()
     const icon = card.querySelector('[data-lte-toggle="card-collapse"] i') as HTMLElement
